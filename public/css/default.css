@@ -86,7 +86,10 @@ a {
 }
 .toolbar label {
 	display: inline-block;
-	margin: 8px 4px;
+	margin: 0 4px;
+}
+.toolbar div {
+	padding: 4px;
 }
 .toolbar a {
 	display: inline-block;

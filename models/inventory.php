@@ -9,10 +9,14 @@ class Inventory_Model extends Model {
 	
 
 	/* generic use DB functions	 */
-	public function getData($sql) {
+	public function getData($sql, $vars = null) {
 		$ps = $this->db->prepare($sql);
 		$ps->setFetchMode(PDO::FETCH_ASSOC);
-		$ps->execute();
+		if( $vars ) {
+			$ps->execute($vars);
+		} else {
+			$ps->execute();
+		}
 		return $ps->fetchAll();
 	}
 	public function addData($prepared_statement, $vars) {
@@ -36,16 +40,7 @@ class Inventory_Model extends Model {
 			':id' => $id
 		));
 	}
-	/* utility function for the getGroups() and getSuppliers()  */
-	public function getTableData($table, $id) { 
-		$sql = 'SELECT * FROM ' . $table;
-		if( $id != -1 ) {
-			$sql .= ' WHERE id = ' . $id;
-		}
-		$data = $this->getData($sql);
-		return $data;
-	}
-	
+
 	/*
 	 * GET ITEMS / SUPPLIERS / GROUPS
 	 */
@@ -78,12 +73,14 @@ class Inventory_Model extends Model {
 		return $items;
 	}
 	
-	public function getGroups($id = -1) {
-		return $this->getTableData('groups', $id);
+	public function getGroups($filter = '') {
+		$sql = 'SELECT * FROM groups ' . $filter;
+		return $this->getData($sql);
 	}
 	
-	public function getSuppliers($id = -1) {
-		return $this->getTableData('suppliers', $id);
+	public function getSuppliers($filter = '') {
+		$sql = 'SELECT * FROM suppliers ' . $filter;
+		return $this->getData($sql);
 	}
 	
 	/*

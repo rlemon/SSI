@@ -19,7 +19,9 @@ class Inventory extends Controller {
 		/* this is the default method for all controllers */
 		$this->itemList();
 	}
-	
+
+
+	/* Items functions */
 	function itemList() {
 		$filter = ' WHERE ';
 		if( isset($_GET['suppliers']) && !empty($_GET['suppliers']) ) {
@@ -38,7 +40,6 @@ class Inventory extends Controller {
 		$this->view->rowData = $this->model->getItems($filter);
 		$this->view->render('inventory/itemList');
 	}
-
 	function createItem() {
 		if( isset($_POST['submit']) ) {
 			$id = $this->model->addItem($_POST['part_code'], $_POST['part_description'], $_POST['part_supplier_id'], $_POST['supplier_part_code'], $_POST['loc'], $_POST['qty'], $_POST['unit_cost'], $_POST['groups']);
@@ -58,15 +59,6 @@ class Inventory extends Controller {
 		$this->view->groups = $this->model->getGroups();
 		$this->view->render('inventory/createItem');
 	}
-
-/*	Creates a new item and loads the edit page. 
-	function createBlankItem() {
-		$id = $this->model->addItem('DM_', 'No Description', -1, '', 'A', '0', '0.00', array());
-		header('Location: ' . URL . 'inventory/editItem/' . $id);
-		//$this->editItem($id);
-	}
-*/
-
 	function editItem($id) {
 		if( isset($_POST['submit']) ) {
 			$this->model->updateItem($_POST['id'], array(
@@ -86,9 +78,29 @@ class Inventory extends Controller {
 		$this->view->groups = $this->model->getGroups();
 		$this->view->render('inventory/editItem');
 	}
-	
 	function deleteItem($id) {
 		$this->model->deleteItem($id);
 		header('Location: ' . URL . 'inventory/itemList');
+	}
+
+	/* Suppliers functions */
+	function supplierList() {
+		$filter = ' WHERE ';
+		if( isset($_GET['text']) && !empty($_GET['text']) ) { // should filtering be done on exact phrase or words
+			$filter .= '(name LIKE "%' . $_GET['text'] . '%" OR description LIKE "%' . $_GET['text'] . '%" OR email LIKE "%' . $_GET['text'] . '%" OR contact_name LIKE "%' . $_GET['text'] . '%" OR url LIKE "%' . $_GET['text'] . '%") AND ';
+		}
+		$filter .= '1';
+		
+		$this->view->rowData = $this->model->getSuppliers($filter);
+		$this->view->render('inventory/supplierList');
+	}
+	function createSupplier() {
+		
+	}
+	function editSupplier($id) {
+		
+	}
+	function deleteSupplier($id) {
+		
 	}
 }
