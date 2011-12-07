@@ -9,19 +9,24 @@ function clearForm(frm) {
 		}
 	}
 }
-/* Register the delete buttons functionality - basically a confirm and thats it
- */
-var delete_buttons = document.getElementsByClassName('btn-delete');
-for(var i = 0, l = delete_buttons.length; i < l; i++) {
-	addEvent(delete_buttons[i], 'click', function(event) {
-		if( !confirm('Are you sure you want to delete the following item?\n\nPart Code:\t' + this.dataset.partCode + '\nPart Desc:\t\t' + this.dataset.partDescription + '\n\nThis operation cannot be undone.') ) {
-			event.preventDefault();
-		}
-	}, false);
-}
 /* Register the Clear Form button onclick
  */
 var clear_button = document.getElementById('btn-clearForm');
-addEvent(clear_button, 'click', function() {
-	clearForm(this.parentNode);
-}, false);
+if(clear_button) {
+	addEvent(clear_button, 'click', function() {
+		clearForm(this.parentNode);
+	}, false);
+}
+
+// delete buttons
+var blockDelete = function(event) {
+	if( !confirm('Are you sure you want to delete the following?\n\nID:\t' + this['id'].value + '\n\nThis operation cannot be undone.') ){
+		event.preventDefault();
+	}
+};
+var dels = document.getElementsByClassName('frm-delete'); // please please please find a better way to do this.
+if(dels) {
+	for(var i = 0, l = dels.length; i < l; i++) {
+		dels[i].onsubmit = blockDelete;
+	}
+}

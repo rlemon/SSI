@@ -60,6 +60,7 @@ for($i = 0, $l = count($this->groups); $i < $l; $i++) {
 <table class="table-main" data-type="items">
 	<thead>
 		<tr>
+			<th>ID#</th>
 			<th>Group(s)</th>
 			<th>Part Code (P.C)</th>
 			<th>Description</th>
@@ -80,22 +81,24 @@ function extractNames($arr) {
 	return implode(', ', $ret);
 }
 if( count($this->rowData) === 0 ) {
-	echo '<tr><td colspan="8">No Records Found</td><td></td></tr>';
+	echo '<tr><td colspan="9">No Records Found</td><td></td></tr>';
 } else {
 	for($i = 0, $l = count($this->rowData); $i < $l; $i++) {
 		$r = $this->rowData[$i];
-		echo '<tr><td data-type="check">' . extractNames($r['groups']) . '</td>' .
-			 '<td>' . $r['part_code'] . '</td>' .
-			 '<td>' . $r['part_description'] . '</td>' .
-			 '<td data-type="select">' . $r['part_supplier_name'] . '</td>' .
-			 '<td>' . $r['supplier_part_code'] . '</td>' .
-			 '<td>' . $r['loc'] . '</td>' .
-			 '<td>' . $r['qty'] . '</td>' .
-			 '<td>' . $r['unit_cost'] . '</td>' . 
-			 '<td class="btn-block"><a href="' . URL . 'inventory/editItem/'. $r['id'] . '" title="Edit Item" class="btn-edit">E</a>' .
-			 '&nbsp;' .
-			 '<a href="' . URL . 'inventory/deleteItem/' . $r['id'] . '" data-id="' . $r['id'] . '" data-part-code="' . $r['part_code'] . '" data-part-description="' . $r['part_description'] . '" title="Delete Item" class="btn-delete">X</a></td>' .
-			 '</tr>';
+		echo '<tr>' .
+			'<td>' . $r['id'] . '</td>' .
+			'<td data-type="check">' . extractNames($r['groups']) . '</td>' .
+			'<td>' . $r['part_code'] . '</td>' .
+			'<td>' . $r['part_description'] . '</td>' .
+			'<td data-type="select">' . $r['part_supplier_name'] . '</td>' .
+			'<td>' . $r['supplier_part_code'] . '</td>' .
+			'<td>' . $r['loc'] . '</td>' .
+			'<td>' . $r['qty'] . '</td>' .
+			'<td>' . $r['unit_cost'] . '</td>' . 
+			'<td class="btn-block"><form action="' . URL . 'inventory/editItem/'. $r['id'] . '"><input type="submit" value="E" /></form>' . /*'<a href="' . URL . 'inventory/editItem/'. $r['id'] . '" title="Edit Item" class="btn-edit">E</a>' . */
+			'&nbsp;' .
+			'<form class="frm-delete" action="' . URL . 'inventory/deleteItem/'. $r['id'] . '"><input type="hidden" name="id" value="' . $r['id'] . '" /><input type="submit" name="delete" value="D" /></form></td>' .
+			'</tr>';
 	}
 }
 ?>
