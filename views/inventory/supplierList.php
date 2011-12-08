@@ -2,10 +2,8 @@
 $filter_text = isset($_GET['text']) ? $_GET['text'] : '';
 ?>
 
-<div class="btn-block toolbar">
-	<a href="<?php echo URL; ?>inventory/itemList">View Items</a>
-	<a href="<?php echo URL; ?>inventory/groupList">View Groups</a>
-</div>
+
+	<a class="small-text" href="<?php echo URL; ?>inventory/itemList">&larr; Return to Item List</a>
 
 <hr />
 
@@ -57,9 +55,9 @@ if( count($this->rowData) === 0 ) {
 			'<td>' . $r['telephone'] . '</td>' .
 			'<td>' . $r['fax'] . '</td>' .
 			'<td>' . $r['url'] . '</td>' . 
-			'<td class="btn-block"><form action="' . URL . 'inventory/editSupplier/'. $r['id'] . '"><input type="submit" value="E" /></form>' . /*'<a href="' . URL . 'inventory/editItem/'. $r['id'] . '" title="Edit Item" class="btn-edit">E</a>' . */
+			'<td class="btn-block"><form action="' . URL . 'inventory/editSupplier/'. $r['id'] . '"><input type="submit" title="Edit Supplier" value="E" /></form>' . /*'<a href="' . URL . 'inventory/editItem/'. $r['id'] . '" title="Edit Item" class="btn-edit">E</a>' . */
 			'&nbsp;' .
-			'<form class="frm-delete" action="' . URL . 'inventory/deleteSupplier/'. $r['id'] . '"><input type="hidden" name="id" value="' . $r['id'] . '" /><input type="submit" name="delete" value="D" /></form></td>' .
+			'<form class="frm-delete" action="' . URL . 'inventory/deleteSupplier/'. $r['id'] . '"><input type="hidden" name="id" value="' . $r['id'] . '" /><input type="submit" name="delete" title="Delete Supplier" value="D" /></form></td>' .
 			'</tr>';
 	}
 }

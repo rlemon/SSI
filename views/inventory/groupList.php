@@ -2,10 +2,7 @@
 $filter_text = isset($_GET['text']) ? $_GET['text'] : '';
 ?>
 
-<div class="btn-block toolbar">
-	<a href="<?php echo URL; ?>inventory/itemList">View Items</a>
-	<a href="<?php echo URL; ?>inventory/supplierList">View Suppliers</a>
-</div>
+	<a class="small-text" href="<?php echo URL; ?>inventory/itemList">&larr; Return to Item List</a>
 
 <hr />
 
@@ -47,9 +44,9 @@ if( count($this->rowData) === 0 ) {
 			'<td>' . $r['id'] . '</td>' .
 			'<td>' . $r['name'] . '</td>' .
 			'<td>' . $r['description'] . '</td>' .
-			'<td class="btn-block"><form action="' . URL . 'inventory/editGroup/'. $r['id'] . '"><input type="submit" value="E" /></form>' .
+			'<td class="btn-block"><form action="' . URL . 'inventory/editGroup/'. $r['id'] . '"><input type="submit" value="E" title="Edit Group" /></form>' .
 			'&nbsp;' .
-			'<form class="frm-delete" action="' . URL . 'inventory/deleteGroup/'. $r['id'] . '"><input type="hidden" name="id" value="' . $r['id'] . '" /><input type="submit" name="delete" value="D" /></form></td>' .
+			'<form class="frm-delete" action="' . URL . 'inventory/deleteGroup/'. $r['id'] . '"><input type="hidden" name="id" value="' . $r['id'] . '" /><input type="submit" name="delete" title="Delete Group" value="D" /></form></td>' .
 			'</tr>';
 	}
 }

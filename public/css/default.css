@@ -113,6 +113,11 @@ a {
 	background: #4d8add
 }
 
+
+.btn-block form {
+	display: inline-block;
+}
+
 /** Edit Table **/
 .edit-form td {
 	padding: 4px;
@@ -155,6 +160,8 @@ a {
 .table-main tr td:last-child {
 	border: none;
 	background-color: #fff;
+	width: 60px;
+	text-align: center;
 }
 
 

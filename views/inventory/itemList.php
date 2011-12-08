@@ -95,9 +95,9 @@ if( count($this->rowData) === 0 ) {
 			'<td>' . $r['loc'] . '</td>' .
 			'<td>' . $r['qty'] . '</td>' .
 			'<td>' . $r['unit_cost'] . '</td>' . 
-			'<td class="btn-block"><form action="' . URL . 'inventory/editItem/'. $r['id'] . '"><input type="submit" value="E" /></form>' . /*'<a href="' . URL . 'inventory/editItem/'. $r['id'] . '" title="Edit Item" class="btn-edit">E</a>' . */
+			'<td class="btn-block"><form action="' . URL . 'inventory/editItem/'. $r['id'] . '"><input type="submit" title="Edit Item" value="E" /></form>' . /*'<a href="' . URL . 'inventory/editItem/'. $r['id'] . '" title="Edit Item" class="btn-edit">E</a>' . */
 			'&nbsp;' .
-			'<form class="frm-delete" action="' . URL . 'inventory/deleteItem/'. $r['id'] . '"><input type="hidden" name="id" value="' . $r['id'] . '" /><input type="submit" name="delete" value="D" /></form></td>' .
+			'<form class="frm-delete" action="' . URL . 'inventory/deleteItem/'. $r['id'] . '"><input type="hidden" name="id" value="' . $r['id'] . '" /><input type="submit" name="delete" title="Delete Item" value="D" /></form></td>' .
 			'</tr>';
 	}
 }
