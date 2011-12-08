@@ -139,4 +139,46 @@ class Inventory extends Controller {
 		$this->model->deleteSupplier($id);
 		header('Location: ' . URL . 'inventory/supplierList');
 	}
+	
+	/* Groups functions */
+	function groupList() {
+		$filter = ' WHERE ';
+		if( isset($_GET['text']) && !empty($_GET['text']) ) { // should filtering be done on exact phrase or words
+			$filter .= '(name LIKE "%' . $_GET['text'] .
+			'%" OR description LIKE "%' . $_GET['description'] . '%" ) AND ';
+		}
+		$filter .= '1';
+		
+		$this->view->rowData = $this->model->getGroups($filter);
+		$this->view->render('inventory/groupList');
+	}
+	function createGroup() {
+		if( isset($_POST['submit']) ) {
+			$id = $this->model->addGroup($_POST['name'], $_POST['description']);
+			header('Location: ' . URL . 'inventory/groupList');
+		}
+		
+		/** Default values for new item template */
+		$this->view->groupDefaults = array(
+			'name' => '',
+			'description' => 'No Description'
+		);
+		$this->view->render('inventory/createGroup');
+	}
+	function editGroup($id) {
+		if( isset($_POST['submit']) ) {
+			$this->model->updateGroup($_POST['id'], array(
+				'name' => $_POST['name'],
+				'description' => $_POST['description']
+			));
+			header('Location: ' . URL . 'inventory/groupList');
+		}
+		$filter = ' WHERE id = ' . $id;
+		$this->view->groups = $this->model->getGroups($filter);
+		$this->view->render('inventory/editGroup');
+	}
+	function deleteGroup($id) {
+		$this->model->deleteGroup($id);
+		header('Location: ' . URL . 'inventory/groupList');
+	}
 }
