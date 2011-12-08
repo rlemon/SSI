@@ -1,9 +1,6 @@
 <h3>T.B.C</h3>
 <ul>
 	<li>
-		View Groups -> Edit/Add/Delete 
-	</li>
-	<li>
 		Advanced filtering -> current UI needs some retouching if going to be used for the time being.
 	</li>
 	<li>
