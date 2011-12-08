@@ -1,5 +1,5 @@
 <?php
-define('URL', "http://" . $_SERVER["HTTP_HOST"] . "/");
+define('URL', "http://" . $_SERVER["HTTP_HOST"] . "/work/");
 
 define('PATH_CONTROLLERS', 'controllers/');
 define('PATH_MODELS', 'models/');

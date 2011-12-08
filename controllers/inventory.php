@@ -87,20 +87,56 @@ class Inventory extends Controller {
 	function supplierList() {
 		$filter = ' WHERE ';
 		if( isset($_GET['text']) && !empty($_GET['text']) ) { // should filtering be done on exact phrase or words
-			$filter .= '(name LIKE "%' . $_GET['text'] . '%" OR description LIKE "%' . $_GET['text'] . '%" OR email LIKE "%' . $_GET['text'] . '%" OR contact_name LIKE "%' . $_GET['text'] . '%" OR url LIKE "%' . $_GET['text'] . '%") AND ';
+			$filter .= '(name LIKE "%' . $_GET['text'] .
+			'%" OR description LIKE "%' . $_GET['text'] .
+			'%" OR email LIKE "%' . $_GET['text'] .
+			'%" OR telephone LIKE "%' . $_GET['text'] .
+			'%" OR fax LIKE "%' . $_GET['text'] .
+			'%" OR contact_name LIKE "%' . $_GET['text'] .
+			'%" OR url LIKE "%' . $_GET['text'] . '%" ) AND ';
 		}
 		$filter .= '1';
 		
 		$this->view->rowData = $this->model->getSuppliers($filter);
 		$this->view->render('inventory/supplierList');
 	}
-	function createSupplier() {
+	function createSupplier() { //name, $description, $email, $telephone, $fax, $url, $contact_name
+		if( isset($_POST['submit']) ) {
+			$id = $this->model->addSupplier($_POST['name'], $_POST['description'], $_POST['email'], $_POST['telephone'], $_POST['fax'], $_POST['url'], $_POST['contact_name']);
+			header('Location: ' . URL . 'inventory/supplierList');
+		}
 		
+		/** Default values for new item template */
+		$this->view->supplierDefaults = array(
+			'name' => '',
+			'description' => 'No Description',
+			'contact_name' => '',
+			'email' => '',
+			'telephone' => '',
+			'fax' => '',
+			'url' => ''
+		);
+		$this->view->render('inventory/createSupplier');
 	}
 	function editSupplier($id) {
-		
+		if( isset($_POST['submit']) ) {
+			$this->model->updateSupplier($_POST['id'], array(
+				'name' => $_POST['name'],
+				'description' => $_POST['description'],
+				'contact_name' => $_POST['contact_name'],
+				'email' => $_POST['email'],
+				'telephone' => $_POST['telephone'],
+				'fax' => $_POST['fax'],
+				'url' => $_POST['url']
+			));
+			header('Location: ' . URL . 'inventory/supplierList');
+		}
+		$filter = ' WHERE id = ' . $id;
+		$this->view->suppliers = $this->model->getSuppliers($filter);
+		$this->view->render('inventory/editSupplier');
 	}
 	function deleteSupplier($id) {
-		
+		$this->model->deleteSupplier($id);
+		header('Location: ' . URL . 'inventory/supplierList');
 	}
 }
