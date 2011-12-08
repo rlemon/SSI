@@ -1,9 +1,6 @@
 <h3>T.B.C</h3>
 <ul>
 	<li>
-		View Suppliers -> Edit/Add/Delete 
-	</li>
-	<li>
 		View Groups -> Edit/Add/Delete 
 	</li>
 	<li>
