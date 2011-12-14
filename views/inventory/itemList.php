@@ -1,61 +1,43 @@
 <?php
 $filter_text = isset($_GET['text']) ? $_GET['text'] : '';
 
-$suppliers_options = '';
-$filter_suppliers = isset($_GET['suppliers']) ? $_GET['suppliers'] : array();
+$suppliers_options = '<option value="">- Add a Supplier -</option>';
 for($i = 0, $l = count($this->suppliers); $i < $l; $i++) {
-	$checked = '';
-	for($j = 0, $k = count($filter_suppliers); $j < $k; $j++) {
-		if( $this->suppliers[$i]['id'] === $filter_suppliers[$j] ) {
-			$checked = 'checked="checked"';
-		}
-	}
-	$suppliers_options .= '<label><input type="checkbox" ' . $checked . ' name="suppliers[]" value="' . $this->suppliers[$i]['id'] . '" />' . $this->suppliers[$i]['name'] . '</label>';
+	$suppliers_options .= '<option value="' . $this->suppliers[$i]['id'] . '">' . $this->suppliers[$i]['name'] . '</option>';
 }
-$groups_options = '';
-$filter_groups = isset($_GET['groups']) ? $_GET['groups'] : array();
+
+$groups_options = '<option value="">- Add a Group -</option>';
 for($i = 0, $l = count($this->groups); $i < $l; $i++) {
-	$checked = '';
-	for($j = 0, $k = count($filter_groups); $j < $k; $j++) {
-		if( $this->groups[$i]['id'] === $filter_groups[$j] ) {
-			$checked = 'checked="checked"';
-		}
-	}
-	$groups_options .= '<label><input type="checkbox" ' . $checked . ' name="groups[]" value="' . $this->groups[$i]['id'] . '" />' . $this->groups[$i]['name'] . '</label>';
+	$groups_options .= '<option value="' . $this->groups[$i]['id'] . '">' . $this->groups[$i]['name'] . '</option>';
 }
+
 ?>
 
-<div class="btn-block toolbar">
+<p>
 	<a href="<?php echo URL; ?>inventory/supplierList">View Suppliers</a>
 	<a href="<?php echo URL; ?>inventory/groupList">View Groups</a>
+</p>
+<p>
+<a href="#" id="btn-toggle-filter">Hide Filter Options</a>
+</p>
+<div class="iblock">
+	<form name="filter" method="get">
+		<div class="filter_term">
+			<label>Term:<input type="text" /></label>
+		</div>
+		<div class="filter_groups">
+			<label>Groups:<select name="groups">
+				<?php echo $groups_options; ?>
+			</select></label>
+		</div>
+		<div class="filter_suppliers">
+			<label>Suppliers:<select name="suppliers">
+				<?php echo $suppliers_options; ?>
+			</select></label>
+		</div>
+	</form>
 </div>
 
-<hr />
-
-<div><i><u>Filter Options</u></i></div>
-<div class="btn-block toolbar">
-		<form method="get" name="filter">
-		<div>Term:
-			<input type="text" name="text" value="<?php echo $filter_text; ?>" />
-		</div>
-		<div>Suppliers:
-			<?php echo $suppliers_options; ?>
-		</div>
-		<div>Groups:
-			<?php echo $groups_options; ?>
-		</div>
-		<input type="submit" value="Apply Filter" />&nbsp;
-		<input type="button" value="Clear Form" id="btn-clearForm" />
-		
-		</form>
-</div>
-
-<table>
-
-</table>
-
-
-<hr />
 
 <table class="table-main" data-type="items">
 	<thead>

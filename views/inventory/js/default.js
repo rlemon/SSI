@@ -1,3 +1,5 @@
+
+
 /* Utility Functions specific to this page.. 
  */
 function clearForm(frm) {
@@ -30,3 +32,67 @@ if(dels) {
 		dels[i].onsubmit = blockDelete;
 	}
 }
+
+/* Filter Functions 
+ * added 12/14/2011
+ */
+
+
+var toggle_filter_button = document.getElementById('btn-toggle-filter');
+if(toggle_filter_button) {
+	addEvent(toggle_filter_button, 'click', function(event) {
+		event.preventDefault();
+		var container = nextElementSibling(this.parentNode);
+		if( this.textContent.indexOf('Show') === -1 ) {
+			this.textContent = 'Show Filter Options';
+			container.className = 'hidden';
+		} else {
+			this.textContent = 'Hide Filter Options';
+			container.className = 'iblock';
+		}
+	}, false);
+}
+var frm = document.forms['filter'],
+    list_groups = document.getElementsByClassName('filter_groups')[0],
+    list_suppliers = document.getElementsByClassName('filter_suppliers')[0],
+    array_groups = [],
+    array_suppliers = [];
+
+function addToList(selected, arr, list, delHandle) {
+    if (!selected.value || arr.indexOf(selected.value) !== -1) {
+        return;
+    }
+    var item = document.createElement('div'),
+        del = document.createElement('a');
+    item.appendChild(document.createTextNode(selected.textContent));
+    del.addEventListener('click', delHandle, false);
+    del.appendChild(document.createTextNode("[X]"));
+    del.id = selected.value;
+    item.appendChild(del);
+    list.appendChild(item);
+    arr.push(selected.value);
+}
+
+function removeFromList(obj, arr) {
+    var match = obj.id;
+    arr.splice(arr.indexOf(match), 1);
+    var item = obj.parentNode;
+    item.parentNode.removeChild(item);
+}
+
+var addGroupToList = function() {
+    addToList(this[this.selectedIndex], array_groups, list_groups, function() {
+        removeFromList(this, array_groups);
+    });
+    this[0].selected = true;
+};
+var addSupplierToList = function() {
+    addToList(this[this.selectedIndex], array_suppliers, list_suppliers, function() {
+        removeFromList(this, array_suppliers);
+    });
+    this[0].selected = true;
+};
+
+
+frm['groups'].addEventListener('change', addGroupToList, false);
+frm['suppliers'].addEventListener('change', addSupplierToList, false);

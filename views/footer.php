@@ -1,6 +1,6 @@
 </div>
 
-<div id="footer">
+<div class="footer">
 	&copy; 2011 DryerMaster Inc.
 </div>
 	<script type="text/javascript" src="<?php echo URL; ?>public/js/util.js"></script>
