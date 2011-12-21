@@ -1,8 +1,8 @@
 function StyleButton(elm) {
-	if( elm.dataset.iconOnly ) {
+	if( elm.getAttribute('data-icon-only') ) {
 		$(elm).button({
 			icons: {
-				primary: elm.dataset.iconOnly
+				primary: elm.getAttribute('data-icon-only')
 			},
 			text: false
 		});
@@ -10,7 +10,7 @@ function StyleButton(elm) {
 		$(elm).button();
 	}
 	
-	if( elm.dataset.disabled ) {
+	if( elm.getAttribute('data-disabled') ) {
 		$(elm).button('option', 'disabled', true);
 	}
 }

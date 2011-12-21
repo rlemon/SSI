@@ -1,8 +1,8 @@
 <?php
-$filter_text = isset($_GET['text']) ? $_GET['text'] : '';
+$filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 
-$selected_suppliers_list = isset($_GET['suppliers']) ? explode(',', $_GET['suppliers']) : null;
-$selected_groups_list = isset($_GET['groups']) ? explode(',', $_GET['groups']) : null;
+$selected_suppliers_list = isset($_GET['suppliers']) ? $_GET['suppliers'] : null;
+$selected_groups_list = isset($_GET['groups']) ? $_GET['groups'] : null;
 
 $selected_suppliers = '';
 $selected_groups = '';
@@ -12,7 +12,8 @@ for($i = 0, $l = count($this->suppliers); $i < $l; $i++) {
 	for($ii = 0, $ll = count($selected_suppliers_list); $ii < $ll; $ii++) {
 		if( $selected_suppliers_list[$ii] === $this->suppliers[$i]['id'] ) {
 			$selected_suppliers .= <<<ITM
-			<div class="filter_menu_item" data-id="{$this->suppliers[$i]['id']}">
+			<div class="filter_menu_item">
+				<input type="hidden" name="suppliers[]" value="{$this->suppliers[$i]['id']}" />
 				{$this->suppliers[$i]['name']}<a class="ui-btn xsmall" data-icon-only="ui-icon-trash" onclick="$(this.parentNode).remove()">delete</a>
 			</div>
 ITM;
@@ -26,7 +27,8 @@ for($i = 0, $l = count($this->groups); $i < $l; $i++) {
 	for($ii = 0, $ll = count($selected_groups_list); $ii < $ll; $ii++) {
 		if( $selected_groups_list[$ii] === $this->groups[$i]['id'] ) {
 			$selected_groups .= <<<ITM
-			<div class="filter_menu_item" data-id="{$this->groups[$i]['id']}">
+			<div class="filter_menu_item">
+				<input type="hidden" name="groups[]" value="{$this->groups[$i]['id']}" />
 				{$this->groups[$i]['name']}<a class="ui-btn xsmall" data-icon-only="ui-icon-trash" onclick="$(this.parentNode).remove()">delete</a>
 			</div>
 ITM;
@@ -52,24 +54,24 @@ function extractNames($arr) {
 	<form method="get" name="filter" id="filter">
 		<div class="clearfix ui-padded-bottom">
 			<label for="filter_term">Term</label>
-			<input type="text" name="term" id="filter_term">
+			<input type="text" name="term" id="filter_term" value="<?php echo $filter_term; ?>" />
 		</div>
 		<div class="filter_menu">
 			<label for="filter_menu_groups">Groups</label>
-			<select name="groups" id="filter_menu_groups">
+			<select id="filter_menu_groups" data-list-name="groups[]" >
 				<?php echo $groups_options; ?>
 			</select>
 			<?php echo $selected_groups; ?>
 		</div>
 		<div class="filter_menu">
 			<label for="filter_menu_suppliers">Suppliers</label>
-			<select name="suppliers" id="filter_menu_suppliers">
+			<select id="filter_menu_suppliers" data-list-name="suppliers[]">
 				<?php echo $suppliers_options; ?>
 			</select>
 			<?php echo $selected_suppliers; ?>
 		</div>
 		<div class="clearfix ui-padded-top">
-			<input class="ui-btn small" type="submit" name="apply_filter" value="Apply">
+			<input class="ui-btn small" type="submit" value="Apply">
 		</div>
 	</form>
 </div>

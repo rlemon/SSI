@@ -25,13 +25,13 @@ class Inventory extends Controller {
 	function itemList() {
 		$filter = ' WHERE ';
 		if( isset($_GET['suppliers']) && $_GET['suppliers'] != '' ) {
-			$filter .= '(part_supplier_id IN (' . trim($_GET['suppliers'], ',') . ')) AND ';
+			$filter .= '(part_supplier_id IN (' . implode(',', $_GET['suppliers']) . ')) AND ';
 		}
 		if( isset($_GET['groups']) && $_GET['groups'] != '' ) {
-			$filter .= '(inv.id IN (SELECT item_id FROM group_item_mapping WHERE group_id IN (' . trim($_GET['groups'], ',') . '))) AND ';
+			$filter .= '(inv.id IN (SELECT item_id FROM group_item_mapping WHERE group_id IN (' . implode(',', $_GET['groups']) . '))) AND ';
 		}
-		if( isset($_GET['text']) && !empty($_GET['text']) ) {
-			$filter .= '(inv.part_code LIKE "%' . $_GET['text'] . '%" OR inv.part_description LIKE "%' . $_GET['text'] . '%") AND ';
+		if( isset($_GET['term']) && !empty($_GET['term']) ) {
+			$filter .= '(inv.part_code LIKE "%' . $_GET['term'] . '%" OR inv.part_description LIKE "%' . $_GET['term'] . '%") AND ';
 		}
 		$filter .= '1';
 		
