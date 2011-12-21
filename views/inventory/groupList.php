@@ -3,8 +3,8 @@ $filter_text = isset($_GET['text']) ? $_GET['text'] : '';
 ?>
 
 <a class="ui-btn small" href="<?php echo URL; ?>inventory/itemList">Items</a>
-<a class="ui-btn small" href="<?php echo URL; ?>inventory/supplierList">Suppliers</a>
 <a class="ui-btn small" data-disabled="disabled" href="<?php echo URL; ?>inventory/groupList">Groups</a>
+<a class="ui-btn small" href="<?php echo URL; ?>inventory/supplierList">Suppliers</a>
 
 <div><i><u>Filter Options</u></i></div>
 <div class="btn-block toolbar">

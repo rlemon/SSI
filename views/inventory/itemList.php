@@ -50,7 +50,8 @@ function extractNames($arr) {
 <a class="ui-btn small" data-disabled="disabled" href="<?php echo URL; ?>inventory/itemList">Items</a>
 <a class="ui-btn small" href="<?php echo URL; ?>inventory/groupList">Groups</a>
 <a class="ui-btn small" href="<?php echo URL; ?>inventory/supplierList">Suppliers</a>
-<div class="ui-padded-all">
+<div class="ui-padded-all iblock">
+	<div class="ui-padded-bottom"><u>Filter Options</u></div>
 	<form method="get" name="filter" id="filter">
 		<div class="clearfix ui-padded-bottom">
 			<label for="filter_term">Term</label>
@@ -75,6 +76,7 @@ function extractNames($arr) {
 		</div>
 	</form>
 </div>
+
 
 <table class="data-table">
 	<thead>
@@ -124,13 +126,8 @@ ROWS;
 	</tbody>
 </table>
 
-
-<p>
-	<a href="<?php echo URL; ?>inventory/supplierList">View Suppliers</a>
-	<a href="<?php echo URL; ?>inventory/groupList">View Groups</a>
-</p>
-<div class="btn-block toolbar">
-	<a href="<?php echo URL; ?>inventory/createItem">+ New Item</a>
+<div class="ui-padded-all">
+	<a class="ui-btn small" data-icon="ui-icon-plus" href="<?php echo URL; ?>inventory/createItem">New Item</a>
 </div>
 
 

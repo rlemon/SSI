@@ -1,10 +1,10 @@
 function StyleButton(elm) {
-	if( elm.getAttribute('data-icon-only') ) {
+	if( elm.getAttribute('data-icon-only') || elm.getAttribute('data-icon') ) {
 		$(elm).button({
 			icons: {
-				primary: elm.getAttribute('data-icon-only')
+				primary: elm.getAttribute('data-icon') || elm.getAttribute('data-icon-only')
 			},
-			text: false
+			text: elm.getAttribute('data-icon-only') ? false : true
 		});
 	} else {
 		$(elm).button();

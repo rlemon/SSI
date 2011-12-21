@@ -84,6 +84,7 @@ body,html {
 
 .filter_menu {
     float: left;
+    margin-right: 18px;
 }
 
 .clearfix {
@@ -103,8 +104,13 @@ body,html {
 	top: 3px;
 }
 
+.iblock {
+	margin: 6px;
+	background-color: #e6e6e6;
+}
 
 .data-table {
+	width: 100%;
     font-size: 90%;
     background-color: #fff;
     border: 1px solid #666;
