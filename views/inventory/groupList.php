@@ -12,6 +12,7 @@ $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 		<div>
 			<label for="filter_term">Term</label>
 			<input type="text" name="term" id="filter_term" value="<?php echo $filter_term; ?>" />
+			<a href="#" id="btn-clear-term" class="ui-btn xsmall ui-btn-inline" data-icon-only="ui-icon-cancel">Clear Field</a>
 		</div>
 		<div class="ui-padded-top">
 			<input class="ui-btn small" type="submit" value="Apply">
@@ -41,10 +42,10 @@ if( count($this->rowData) === 0 ) {
 			<td>{$r['id']}</td>
 			<td>{$r['name']}</td>
 			<td>{$r['description']}</td>
-			<td>
+			<td><span>
 				<a href="{$url}inventory/editGroup/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Group</a>
 				<a href="{$url}inventory/deleteGroup/{$r['id']}" class="ui-btn ui-btn-delete" data-icon-only="ui-icon-trash" title="Delete Item">Delete Group</a>
-			</td>
+			</span></td>
 		</tr>
 ROWS;
 	}

@@ -68,11 +68,11 @@ body,html {
 }
 
 .small {
-	font-size: 90%;
+	font-size: 89%;
 	padding: 0;
 }
 .xsmall {
-	font-size: 70%;
+	font-size: 68%;
 	padding: 0;
 
 }
@@ -115,16 +115,13 @@ body,html {
     background-color: #fff;
     border: 1px solid #666;
 }
-.data-table th {
+.data-table th, .data-table td:last-child span {
     white-space: nowrap;
     text-align: center;
 }
 .data-table td {
     font-size: 90%;
     color: #222;   
-}
-.data-table td:last-child {
-    white-space: nowrap;
 }
 .data-table td, .data-table th {
     padding: 6px;
@@ -147,4 +144,8 @@ body,html {
 }
 .static-column.xlarge {
 	width: 6.5em;
+}
+
+.ui-btn-inline {
+	top: -2px;
 }

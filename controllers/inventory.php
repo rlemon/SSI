@@ -86,14 +86,14 @@ class Inventory extends Controller {
 	/* Suppliers functions */
 	function supplierList() {
 		$filter = ' WHERE ';
-		if( isset($_GET['text']) && !empty($_GET['text']) ) { // should filtering be done on exact phrase or words
-			$filter .= '(name LIKE "%' . $_GET['text'] .
-			'%" OR description LIKE "%' . $_GET['text'] .
-			'%" OR email LIKE "%' . $_GET['text'] .
-			'%" OR telephone LIKE "%' . $_GET['text'] .
-			'%" OR fax LIKE "%' . $_GET['text'] .
-			'%" OR contact_name LIKE "%' . $_GET['text'] .
-			'%" OR url LIKE "%' . $_GET['text'] . '%" ) AND ';
+		if( isset($_GET['term']) && !empty($_GET['term']) ) { // should filtering be done on exact phrase or words
+			$filter .= '(name LIKE "%' . $_GET['term'] .
+			'%" OR description LIKE "%' . $_GET['term'] .
+			'%" OR email LIKE "%' . $_GET['term'] .
+			'%" OR telephone LIKE "%' . $_GET['term'] .
+			'%" OR fax LIKE "%' . $_GET['term'] .
+			'%" OR contact_name LIKE "%' . $_GET['term'] .
+			'%" OR url LIKE "%' . $_GET['term'] . '%" ) AND ';
 		}
 		$filter .= '1';
 		
@@ -143,9 +143,9 @@ class Inventory extends Controller {
 	/* Groups functions */
 	function groupList() {
 		$filter = ' WHERE ';
-		if( isset($_GET['text']) && !empty($_GET['text']) ) { // should filtering be done on exact phrase or words
-			$filter .= '(name LIKE "%' . $_GET['text'] .
-			'%" OR description LIKE "%' . $_GET['description'] . '%" ) AND ';
+		if( isset($_GET['term']) && !empty($_GET['term']) ) { // should filtering be done on exact phrase or words
+			$filter .= '(name LIKE "%' . $_GET['term'] .
+			'%" OR description LIKE "%' . $_GET['term'] . '%" ) AND ';
 		}
 		$filter .= '1';
 		

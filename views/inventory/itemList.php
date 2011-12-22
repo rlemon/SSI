@@ -56,6 +56,7 @@ function extractNames($arr) {
 		<div class="clearfix ui-padded-bottom">
 			<label for="filter_term">Term</label>
 			<input type="text" name="term" id="filter_term" value="<?php echo $filter_term; ?>" />
+			<a href="#" id="btn-clear-term" class="ui-btn xsmall ui-btn-inline" data-icon-only="ui-icon-cancel">Clear Field</a>
 		</div>
 		<div class="filter_menu">
 			<label for="filter_menu_groups">Groups</label>
@@ -114,10 +115,10 @@ function extractNames($arr) {
 			<td>{$r['loc']}</td>
 			<td>{$r['qty']}</td>
 			<td>{$r['unit_cost']}</td>
-			<td>
+			<td><span>
 				<a href="{$url}inventory/editItem/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Item</a>
 				<a href="{$url}inventory/deleteItem/{$r['id']}" class="ui-btn ui-btn-delete" data-icon-only="ui-icon-trash" title="Delete Item">Delete Item</a>
-			</td>
+			</span></td>
 		</tr>
 ROWS;
 			}
