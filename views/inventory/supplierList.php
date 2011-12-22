@@ -1,41 +1,37 @@
 <?php
-$filter_text = isset($_GET['text']) ? $_GET['text'] : '';
+$filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 ?>
+
 
 <a class="ui-btn small" href="<?php echo URL; ?>inventory/itemList">Items</a>
 <a class="ui-btn small" href="<?php echo URL; ?>inventory/groupList">Groups</a>
 <a class="ui-btn small" data-disabled="disabled" href="<?php echo URL; ?>inventory/supplierList">Suppliers</a>
 
-<div><i><u>Filter Options</u></i></div>
-<div class="btn-block toolbar">
-		<form method="get" name="filter">
-		<div>Term:
-			<input type="text" name="text" value="<?php echo $filter_text; ?>" />
+<div class="ui-padded-all iblock">
+	<div class="ui-padded-bottom"><u>Filter Options</u></div>
+	<form method="get" name="filter" id="filter">
+		<div>
+			<label for="filter_term">Term</label>
+			<input type="text" name="term" id="filter_term" value="<?php echo $filter_term; ?>" />
 		</div>
-		<input type="submit" value="Apply Filter" />&nbsp;
-		<input type="button" value="Clear Form" id="btn-clearForm" />
-		
-		</form>
+		<div class="ui-padded-top">
+			<input class="ui-btn small" type="submit" value="Apply">
+		</div>
+	</form>
 </div>
 
-<table>
-
-</table>
-
-
-<hr />
-
-<table class="table-main" data-type="items">
+<table class="data-table">
 	<thead>
 		<tr>
-			<th>ID#</th>
-			<th>Name</th>
+			<th class="static-column">ID#</th>
+			<th class="static-column xlarge">Name</th>
 			<th>Description</th>
-			<th>Contact Name</th>
-			<th>Email</th>
-			<th>Telephone</th>
-			<th>Fax</th>
-			<th>URL</th>
+			<th class="static-column xlarge">Contact Name</th>
+			<th class="static-column">Email</th>
+			<th class="static-column xlarge">Telephone</th>
+			<th class="static-column xlarge">Fax</th>
+			<th class="static-column">URL</th>
+			<th class="static-column">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -45,28 +41,33 @@ if( count($this->rowData) === 0 ) {
 } else {
 	for($i = 0, $l = count($this->rowData); $i < $l; $i++) {
 		$r = $this->rowData[$i];
-		echo '<tr>' .
-			'<td>' . $r['id'] . '</td>' .
-			'<td>' . $r['name'] . '</td>' .
-			'<td>' . $r['description'] . '</td>' .
-			'<td>' . $r['contact_name'] . '</td>' .
-			'<td>' . $r['email'] . '</td>' .
-			'<td>' . $r['telephone'] . '</td>' .
-			'<td>' . $r['fax'] . '</td>' .
-			'<td>' . $r['url'] . '</td>' . 
-			'<td class="btn-block"><form action="' . URL . 'inventory/editSupplier/'. $r['id'] . '"><input type="submit" title="Edit Supplier" value="E" /></form>' . /*'<a href="' . URL . 'inventory/editItem/'. $r['id'] . '" title="Edit Item" class="btn-edit">E</a>' . */
-			'&nbsp;' .
-			'<form class="frm-delete" action="' . URL . 'inventory/deleteSupplier/'. $r['id'] . '"><input type="hidden" name="id" value="' . $r['id'] . '" /><input type="submit" name="delete" title="Delete Supplier" value="D" /></form></td>' .
-			'</tr>';
+		$url = URL;
+		echo <<<ROWS
+		<tr>
+			<td>{$r['id']}</td>
+			<td>{$r['name']}</td>
+			<td>{$r['description']}</td>
+			<td>{$r['contact_name']}</td>
+			<td>{$r['email']}</td>
+			<td>{$r['telephone']}</td>
+			<td>{$r['fax']}</td>
+			<td>{$r['url']}</td>
+			<td>
+				<a href="{$url}inventory/editSupplier/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Group</a>
+				<a href="{$url}inventory/deleteSupplier/{$r['id']}" class="ui-btn ui-btn-delete" data-icon-only="ui-icon-trash" title="Delete Item">Delete Group</a>
+			</td>
+		</tr>
+ROWS;
 	}
 }
 ?>
     </tbody>
 </table>
 
-<div class="btn-block toolbar">
-	<a href="<?php echo URL; ?>inventory/createSupplier">+ New Supplier</a>
+<div class="ui-padded-all">
+	<a class="ui-btn small" data-icon="ui-icon-plus" href="<?php echo URL; ?>inventory/createSupplier">New Supplier</a>
 </div>
+
 
 
 

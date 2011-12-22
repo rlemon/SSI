@@ -81,16 +81,16 @@ function extractNames($arr) {
 <table class="data-table">
 	<thead>
 		<tr>
-			<th>ID#</th>
-			<th>Group(s)</th>
-			<th>Part Code (P.C)</th>
+			<th class="static-column">ID#</th>
+			<th class="static-column xlarge">Group(s)</th>
+			<th class="static-column large">Part Code (P.C)</th>
 			<th>Description</th>
-			<th>Supplier</th>
-			<th>Supplier P.C</th>
-			<th>LOC</th>
-			<th>QTY</th>
-			<th>Unit Cost (CND)</th>
-			<th>Actions</th>
+			<th class="static-column xlarge">Supplier</th>
+			<th class="static-column large">Supplier P.C</th>
+			<th class="static-column">LOC</th>
+			<th class="static-column">QTY</th>
+			<th class="static-column large">Unit Cost (CND)</th>
+			<th class="static-column">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
