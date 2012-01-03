@@ -126,8 +126,7 @@ class Inventory_Model extends Model {
 		$ps = $this->db->prepare('INSERT INTO groups (name, description) VALUES (:name, :description)');
 		$ps->execute(array(
 			':name' => $name,
-			':description' => $description,
-			':email' => $email
+			':description' => $description
 		));
 		return $this->db->lastInsertId();
 	}

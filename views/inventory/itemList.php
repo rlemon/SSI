@@ -83,14 +83,14 @@ function extractNames($arr) {
 	<thead>
 		<tr>
 			<th class="static-column">ID#</th>
-			<th class="static-column xlarge">Group(s)</th>
-			<th class="static-column large">Part Code (P.C)</th>
+			<th class="static-column">Group(s)</th>
+			<th class="static-column">Part Code (P.C)</th>
 			<th>Description</th>
-			<th class="static-column xlarge">Supplier</th>
-			<th class="static-column large">Supplier P.C</th>
+			<th class="static-column">Supplier</th>
+			<th class="static-column">Supplier P.C</th>
 			<th class="static-column">LOC</th>
 			<th class="static-column">QTY</th>
-			<th class="static-column large">Unit Cost (CND)</th>
+			<th class="static-column">Unit Cost (CND)</th>
 			<th class="static-column">Actions</th>
 		</tr>
 	</thead>
@@ -108,13 +108,13 @@ function extractNames($arr) {
 		<tr>
 			<td>{$r['id']}</td>
 			<td>{$groups}</td>
-			<td>{$r['part_code']}</td>
+			<td class="nowrap">{$r['part_code']}</td>
 			<td>{$r['part_description']}</td>
-			<td>{$r['part_supplier_name']}</td>
-			<td>{$r['supplier_part_code']}</td>
+			<td class="nowrap">{$r['part_supplier_name']}</td>
+			<td class="nowrap">{$r['supplier_part_code']}</td>
 			<td>{$r['loc']}</td>
 			<td>{$r['qty']}</td>
-			<td>{$r['unit_cost']}</td>
+			<td class="nowrap">{$r['unit_cost']}</td>
 			<td><span>
 				<a href="{$url}inventory/editItem/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Item</a>
 				<a href="{$url}inventory/deleteItem/{$r['id']}" class="ui-btn ui-btn-delete" data-icon-only="ui-icon-trash" title="Delete Item">Delete Item</a>

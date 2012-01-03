@@ -25,12 +25,12 @@ $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 	<thead>
 		<tr>
 			<th class="static-column">ID#</th>
-			<th class="static-column xlarge">Name</th>
+			<th class="static-column">Name</th>
 			<th>Description</th>
-			<th class="static-column xlarge">Contact Name</th>
+			<th class="static-column">Contact Name</th>
 			<th class="static-column">Email</th>
-			<th class="static-column xlarge">Telephone</th>
-			<th class="static-column xlarge">Fax</th>
+			<th class="static-column">Telephone</th>
+			<th class="static-column">Fax</th>
 			<th class="static-column">URL</th>
 			<th class="static-column">Actions</th>
 		</tr>
@@ -46,13 +46,13 @@ if( count($this->rowData) === 0 ) {
 		echo <<<ROWS
 		<tr>
 			<td>{$r['id']}</td>
-			<td>{$r['name']}</td>
+			<td class="nowrap">{$r['name']}</td>
 			<td>{$r['description']}</td>
-			<td>{$r['contact_name']}</td>
-			<td>{$r['email']}</td>
-			<td>{$r['telephone']}</td>
-			<td>{$r['fax']}</td>
-			<td>{$r['url']}</td>
+			<td class="nowrap">{$r['contact_name']}</td>
+			<td class="nowrap">{$r['email']}</td>
+			<td class="nowrap">{$r['telephone']}</td>
+			<td class="nowrap">{$r['fax']}</td>
+			<td class="nowrap">{$r['url']}</td>
 			<td><span>
 				<a href="{$url}inventory/editSupplier/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Group</a>
 				<a href="{$url}inventory/deleteSupplier/{$r['id']}" class="ui-btn ui-btn-delete" data-icon-only="ui-icon-trash" title="Delete Item">Delete Group</a>

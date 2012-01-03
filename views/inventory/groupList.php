@@ -24,7 +24,7 @@ $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 	<thead>
 		<tr>
 			<th class="static-column">ID#</th>
-			<th class="static-column xlarge">Name</th>
+			<th class="static-column">Name</th>
 			<th>Description</th>
 			<th class="static-column">Actions</th>
 		</tr>
@@ -40,7 +40,7 @@ if( count($this->rowData) === 0 ) {
 		echo <<<ROWS
 		<tr>
 			<td>{$r['id']}</td>
-			<td>{$r['name']}</td>
+			<td class="nowrap">{$r['name']}</td>
 			<td>{$r['description']}</td>
 			<td><span>
 				<a href="{$url}inventory/editGroup/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Group</a>
