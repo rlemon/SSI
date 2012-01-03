@@ -45,7 +45,7 @@ class Inventory_Model extends Model {
 	 * GET ITEMS / SUPPLIERS / GROUPS
 	 */
 	public function getItems($filter = '') {
-		$sql_items = 'SELECT
+		$sql_items = 'SELECT SQL_CALC_FOUND_ROWS
 				inv.id, 
 				inv.part_code, 
 				inv.part_description, 
@@ -59,6 +59,7 @@ class Inventory_Model extends Model {
 			LEFT JOIN suppliers AS sup 
 				ON inv.part_supplier_id = sup.id' . $filter;
 		$items = $this->getData($sql_items);
+		$len = $this->getData('SELECT FOUND_ROWS();');
 		for($i = 0, $l = count($items); $i < $l; $i++) {
 			$sql_groups = 'SELECT
 					grp.id,
@@ -70,17 +71,21 @@ class Inventory_Model extends Model {
 			$groups = $this->getData($sql_groups);
 			$items[$i]['groups'] = $groups;
 		}
-		return $items;
+		return array($len, $items);
 	}
 	
 	public function getGroups($filter = '') {
-		$sql = 'SELECT * FROM groups ' . $filter;
-		return $this->getData($sql);
+		$sql = 'SELECT SQL_CALC_FOUND_ROWS * FROM groups ' . $filter;
+		$groups = $this->getData($sql);
+		$len = $this->getData('SELECT FOUND_ROWS();');
+		return array($len, $groups);
 	}
 	
 	public function getSuppliers($filter = '') {
-		$sql = 'SELECT * FROM suppliers ' . $filter;
-		return $this->getData($sql);
+		$sql = 'SELECT SQL_CALC_FOUND_ROWS * FROM suppliers ' . $filter;
+		$suppliers = $this->getData($sql);
+		$len = $this->getData('SELECT FOUND_ROWS();');
+		return array($len, $suppliers);
 	}
 	
 	/*

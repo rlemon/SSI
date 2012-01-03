@@ -35,6 +35,11 @@ class Inventory extends Controller {
 		}
 		$filter .= '1';
 		
+		$limit = isset( $_GET['rpp'] ) ? $_GET['rpp'] : 5;
+		$offset = isset( $_GET['ro'] ) ? $_GET['rpp'] : 0;
+		
+		$filter .= ' LIMIT ' . $limit . ' OFFSET ' . $offset .' ';
+		
 		$this->view->suppliers = $this->model->getSuppliers();
 		$this->view->groups = $this->model->getGroups();
 		$this->view->rowData = $this->model->getItems($filter);
@@ -97,6 +102,11 @@ class Inventory extends Controller {
 		}
 		$filter .= '1';
 		
+		$limit = isset( $_GET['rpp'] ) ? $_GET['rpp'] : 5;
+		$offset = isset( $_GET['ro'] ) ? $_GET['rpp'] : 0;
+		
+		$filter .= ' LIMIT ' . $limit . ' OFFSET ' . $offset .' ';
+		
 		$this->view->rowData = $this->model->getSuppliers($filter);
 		$this->view->render('inventory/supplierList');
 	}
@@ -148,6 +158,11 @@ class Inventory extends Controller {
 			'%" OR description LIKE "%' . $_GET['term'] . '%" ) AND ';
 		}
 		$filter .= '1';
+		
+		$limit = isset( $_GET['rpp'] ) ? $_GET['rpp'] : 5;
+		$offset = isset( $_GET['ro'] ) ? $_GET['rpp'] : 0;
+		
+		$filter .= ' LIMIT ' . $limit . ' OFFSET ' . $offset .' ';
 		
 		$this->view->rowData = $this->model->getGroups($filter);
 		$this->view->render('inventory/groupList');

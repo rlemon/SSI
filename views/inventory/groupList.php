@@ -9,10 +9,24 @@ $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 <div class="ui-padded-all iblock">
 	<div class="ui-padded-bottom"><u>Filter Options</u></div>
 	<form method="get" name="filter" id="filter">
-		<div>
+		<div class="ui-padded-bottom">
 			<label for="filter_term">Term</label>
 			<input type="text" name="term" id="filter_term" value="<?php echo $filter_term; ?>" />
 			<a href="#" id="btn-clear-term" class="ui-btn xsmall ui-btn-inline" data-icon-only="ui-icon-cancel">Clear Field</a>
+		</div>
+		<div class="clearfix">
+			<label for="filter_rpp">Results Per Page</label>
+			<select name="rpp" id="filter_rpp">
+				<?php
+					foreach(array(5,10,25,50,100) as $value) {
+						echo '<option value="' . $value . '" ';
+						if( isset($_GET['rpp']) && $_GET['rpp'] == $value ) {
+							echo 'selected="selected" ';
+						}
+						echo '>'. $value .'</option>';
+					}
+				?>
+			</select>
 		</div>
 		<div class="ui-padded-top">
 			<input class="ui-btn small" type="submit" value="Apply">
