@@ -15,11 +15,7 @@
 	<div class="header ui-corner-top ui-widget-header">
 		<div class="ui-priority-primary ui-padded-all">DryerMaster SSI 2011-2012</div>
 		<ul>
-			<?php if( Session::get('logged_in') != true ) { ?>
-			<li>
-				<a class="ui-btn" href="<?php echo URL; ?>login">Login</a>
-			</li>
-			<?php } else { ?>
+			<?php if( Session::get('logged_in') ) { ?>
 			<li>
 				<a class="ui-btn" href="<?php echo URL; ?>dashboard">Dashboard</a>
 			</li>

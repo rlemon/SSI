@@ -43,6 +43,13 @@ body,html {
     font-family: Verdana,Arial,sans-serif;
 }
 
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
 .ui-btn {
 	padding: 0;
 	margin: 0;

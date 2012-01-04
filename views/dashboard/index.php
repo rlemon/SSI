@@ -1,7 +1,7 @@
 <form method="post">
 <div class="iblock">
 	<div class="ui-padded-bottom ui-heading">
-		<?php echo Session::get('username'); ?> Dashboard
+		<?php echo Session::get('username'); ?>'s Dashboard
 	</div>
 	<div class="ui-padded-bottom">
 	<span class="label small">Theme Selection:</span>

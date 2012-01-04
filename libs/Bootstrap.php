@@ -3,7 +3,7 @@ class Bootstrap {
 	function __construct() {
 		$url = isset( $_GET[ 'url' ] ) ? explode( '/', rtrim( $_GET[ 'url' ], '/' ) ) : null;
 		if ( empty( $url[ 0 ] ) ) {
-			$url[ 0 ] = 'index'; // default value
+			$url[ 0 ] = 'dashboard'; // default value
 		}
 		$file = PATH_CONTROLLERS . $url[ 0 ] . '.php';
 		if ( file_exists( $file ) ) {

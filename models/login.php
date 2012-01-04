@@ -21,6 +21,7 @@ class Login_Model extends Model {
 			) );
 			Session::init();
 			Session::set( 'id', $data[ 'id' ] );
+			Session::set( 'username', $data[ 'username' ] );
 			Session::set( 'role', $data[ 'role' ] );
 			Session::set( 'ui_theme', $data[ 'ui_theme' ] );
 			Session::set( 'last_login', $data[ 'last_login' ] );
