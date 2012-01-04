@@ -4,6 +4,25 @@
 		<?php echo Session::get('username'); ?>'s Dashboard
 	</div>
 	<div class="ui-widget ui-padded-bottom">
+		<div class="ui-widget-header ui-padded-all">Information</div>
+		<div class="ui-widget-content ui-padded-all">
+			<table>
+				<tr>
+					<td>
+						<span class="small">Last Login:</span>
+					</td>
+					<td>
+						<span class="small">
+						<?php
+						echo strftime('%A, %B, %e. %Y. @ %l:%M:%S %p', strtotime(Session::get('last_login')));
+						?>
+						</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="ui-widget ui-padded-bottom">
 		<div class="ui-widget-header ui-padded-all">Personal Options</div>
 		<div class="ui-widget-content ui-padded-all">
 			<div class="ui-padded-bottom">
