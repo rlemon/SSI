@@ -1,5 +1,5 @@
    </div>
-    <div class="footer ui-corner-bottom ui-padded-all">
+    <div class="footer ui-corner-bottom ui-padded-all ui-widget-header">
         &copy; 2011 DryerMaster Inc.
     </div>
 </div>

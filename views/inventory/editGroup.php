@@ -1,5 +1,5 @@
 <?php
-	$group = $this->groups[1];
+	$group = $this->groups[1][0];
 ?>
 <div class="ui-padded-bottom ui-heading">
 	Edit Group <?php echo $group['id']; ?>

@@ -67,7 +67,7 @@ function extractNames($arr) {
 		</div>
 		<div class="clearfix ui-padded-bottom">
 			<label for="filter_rpp">Results Per Page</label>
-			<select name="rpp" id="filter_rpp">
+			<select class="ui-state-default" name="rpp" id="filter_rpp">
 				<?php
 					foreach(array(5,10,25,50,100) as $value) {
 						echo '<option value="' . $value . '" ';
@@ -81,14 +81,14 @@ function extractNames($arr) {
 		</div>
 		<div class="filter_menu">
 			<label for="filter_menu_groups">Groups</label>
-			<select id="filter_menu_groups" data-list-name="groups[]" >
+			<select class="ui-state-default" id="filter_menu_groups" data-list-name="groups[]" >
 				<?php echo $groups_options; ?>
 			</select>
 			<?php echo $selected_groups; ?>
 		</div>
 		<div class="filter_menu">
 			<label for="filter_menu_suppliers">Suppliers</label>
-			<select id="filter_menu_suppliers" data-list-name="suppliers[]">
+			<select class="ui-state-default" id="filter_menu_suppliers" data-list-name="suppliers[]">
 				<?php echo $suppliers_options; ?>
 			</select>
 			<?php echo $selected_suppliers; ?>
@@ -145,6 +145,7 @@ ROWS;
 		?>
 	</tbody>
 </table>
+<div class="ui-padded-top paging-buttons">
 <span class="label small">Page: </span>
 <?php
 	$pages = ceil($this->rowData[0] / $rpp);
@@ -156,6 +157,7 @@ ROWS;
 		echo '<input class="ui-btn xsmall" ' . $disabled . 'type="submit" name="ro" value="' . ($i+1) . '" />';
 	}
 ?>
+</div>
 <div class="ui-padded-all">
 	<a class="ui-btn small" data-icon="ui-icon-plus" href="<?php echo URL; ?>inventory/createItem">New Item</a>
 </div>

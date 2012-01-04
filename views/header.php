@@ -11,7 +11,7 @@
 <?php Session::init(); ?>
 
 <div class="wrapper">
-	<div class="header ui-corner-top">
+	<div class="header ui-corner-top ui-widget-header">
 		<div class="ui-priority-primary ui-padded-all">DryerMaster SSI 2011-2012</div>
 		<ul>
 			<?php if( Session::get('loggedIn') != true ) { ?>
@@ -44,4 +44,4 @@
 			<?php } ?>
 		</ul>
 	</div>
-	<div class="content">
+	<div class="content ui-widget-content">

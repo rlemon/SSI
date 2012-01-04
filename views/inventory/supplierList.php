@@ -18,7 +18,7 @@ $ro = isset($_GET['ro']) ? $_GET['ro'] : 1;
 		</div>
 		<div class="clearfix">
 			<label for="filter_rpp">Results Per Page</label>
-			<select name="rpp" id="filter_rpp">
+			<select class="ui-state-default" name="rpp" id="filter_rpp">
 				<?php
 					foreach(array(5,10,25,50,100) as $value) {
 						echo '<option value="' . $value . '" ';
@@ -79,6 +79,7 @@ ROWS;
 ?>
     </tbody>
 </table>
+<div class="ui-padded-top paging-buttons">
 <span class="label small">Page: </span>
 <?php
 	$pages = ceil($this->rowData[0] / $rpp);
@@ -90,6 +91,7 @@ ROWS;
 		echo '<input class="ui-btn xsmall" ' . $disabled . 'type="submit" name="ro" value="' . ($i+1) . '" />';
 	}
 ?>
+</div>
 <div class="ui-padded-all">
 	<a class="ui-btn small" data-icon="ui-icon-plus" href="<?php echo URL; ?>inventory/createSupplier">New Supplier</a>
 </div>

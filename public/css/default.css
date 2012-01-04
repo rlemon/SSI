@@ -68,7 +68,6 @@ body,html {
 }
 .content {
     padding: 6px;
-    background-color: #efefef;
     border-left: 1px solid #a9a9a9;
     border-right: 1px solid #a9a9a9;
     overflow-x: auto; 
@@ -113,12 +112,14 @@ body,html {
 
 .iblock {
 	margin: 6px;
-	background-color: #e6e6e6;
 }
 .iblock td, .iblock th {
 	padding: 6px;
 }
 
+.paging-buttons input {
+	margin: 1px;
+}
 
 .data-table {
 	width: 100%;

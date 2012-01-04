@@ -45,7 +45,7 @@ ITM;
 			Supplier
 		</td>
 		<td>
-			<select name="part_supplier_id">
+			<select class="ui-state-default" name="part_supplier_id">
 				<?php echo $suppliers_options; ?>
 			</select>
 		</td>
@@ -89,7 +89,7 @@ ITM;
 			Group(s)
 		</td>
 		<td>
-			<select id="filter_menu_groups" data-list-name="groups[]" >
+			<select class="ui-state-default" id="filter_menu_groups" data-list-name="groups[]" >
 				<?php echo $groups_options; ?>
 			</select>
 			<?php echo $selected_groups; ?>
