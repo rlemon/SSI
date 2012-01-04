@@ -7,6 +7,9 @@ $('.ui-btn-delete').bind('click', function(event) {
 	}
 	cells.removeClass('ui-row-highlight');
 });
+$('#filter_rpp').bind('change', function() {
+	document.forms['filter'].submit();
+});
 $('#filter_menu_groups, #filter_menu_suppliers').bind('change', function() {
 	var sel = this.options[this.selectedIndex];
 	if( this.selectedIndex !== 0 ) {

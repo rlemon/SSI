@@ -6,3 +6,5 @@ define('PATH_MODELS', 'models/');
 define('PATH_VIEWS', 'views/');
 
 define('MODEL_NAME_POSTPEND', '_Model');
+
+define('RESULTS_PER_PAGE', 5);

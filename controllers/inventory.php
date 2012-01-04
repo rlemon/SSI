@@ -30,8 +30,8 @@ class Inventory extends Controller {
 			$filter .= '(inv.part_code LIKE "%' . $_GET[ 'term' ] . '%" OR inv.part_description LIKE "%' . $_GET[ 'term' ] . '%") AND ';
 		}
 		$filter .= '1';
-		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : 5;
-		$offset = isset( $_GET[ 'ro' ] ) ? $_GET[ 'rpp' ] : 0;
+		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
+		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
 		$filter .= ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
 		$this->view->suppliers = $this->model->getSuppliers();
 		$this->view->groups = $this->model->getGroups();
@@ -86,8 +86,8 @@ class Inventory extends Controller {
 			$filter .= '(name LIKE "%' . $_GET[ 'term' ] . '%" OR description LIKE "%' . $_GET[ 'term' ] . '%" OR email LIKE "%' . $_GET[ 'term' ] . '%" OR telephone LIKE "%' . $_GET[ 'term' ] . '%" OR fax LIKE "%' . $_GET[ 'term' ] . '%" OR contact_name LIKE "%' . $_GET[ 'term' ] . '%" OR url LIKE "%' . $_GET[ 'term' ] . '%" ) AND ';
 		}
 		$filter .= '1';
-		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : 5;
-		$offset = isset( $_GET[ 'ro' ] ) ? $_GET[ 'rpp' ] : 0;
+		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
+		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
 		$filter .= ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
 		$this->view->rowData = $this->model->getSuppliers( $filter );
 		$this->view->render( 'inventory/supplierList' );
@@ -137,8 +137,8 @@ class Inventory extends Controller {
 			$filter .= '(name LIKE "%' . $_GET[ 'term' ] . '%" OR description LIKE "%' . $_GET[ 'term' ] . '%" ) AND ';
 		}
 		$filter .= '1';
-		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : 5;
-		$offset = isset( $_GET[ 'ro' ] ) ? $_GET[ 'rpp' ] : 0;
+		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
+		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
 		$filter .= ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
 		$this->view->rowData = $this->model->getGroups( $filter );
 		$this->view->render( 'inventory/groupList' );

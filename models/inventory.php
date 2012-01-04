@@ -69,7 +69,7 @@ class Inventory_Model extends Model {
 			$items[ $i ][ 'groups' ] = $groups;
 		}
 		return array(
-			 $len,
+			 $len[0]['FOUND_ROWS()'],
 			$items 
 		);
 	}
@@ -78,7 +78,7 @@ class Inventory_Model extends Model {
 		$groups = $this->getData( $sql );
 		$len = $this->getData( 'SELECT FOUND_ROWS();' );
 		return array(
-			 $len,
+			 $len[0]['FOUND_ROWS()'],
 			$groups 
 		);
 	}
@@ -87,7 +87,7 @@ class Inventory_Model extends Model {
 		$suppliers = $this->getData( $sql );
 		$len = $this->getData( 'SELECT FOUND_ROWS();' );
 		return array(
-			 $len,
+			 $len[0]['FOUND_ROWS()'],
 			$suppliers 
 		);
 	}
