@@ -3,7 +3,7 @@ class Inventory extends Controller {
 	function __construct() {
 		parent::__construct();
 		Session::init();
-		$logged = Session::get( 'loggedIn' );
+		$logged = Session::get( 'logged_in' );
 		if ( $logged == false ) {
 			Session::destroy();
 			header( 'location: ../login' );

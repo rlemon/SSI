@@ -5,7 +5,7 @@ class User extends Controller {
 	public function __construct() {
 		parent::__construct();
 		Session::init();
-		$logged = Session::get('loggedIn');
+		$logged = Session::get('logged_in');
 		$role = Session::get('role');
 		
 		if ($logged == false || $role != 'owner') {
