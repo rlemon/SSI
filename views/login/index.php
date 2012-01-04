@@ -1,4 +1,4 @@
-<form action="login/run" method="post">
+<form action="login/login" method="post">
 <div class="iblock">
 	<div class="ui-heading ui-padded-bottom">
 		User Login

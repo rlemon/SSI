@@ -14,15 +14,11 @@ class Dashboard extends Controller {
 	}
 	
 	function index() 
-	{	
+	{
+		if( isset( $_POST['theme'] ) ) {
+			$this->model->updateTheme( Session::get('id'), $_POST['theme'] );
+		}
 		$this->view->render('dashboard/index');
 	}
-	
-	function logout()
-	{
-		Session::destroy();
-		header('location: ' . URL .  'login');
-		exit;
-	}
-	
+
 }
