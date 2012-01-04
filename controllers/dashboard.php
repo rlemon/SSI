@@ -15,8 +15,15 @@ class Dashboard extends Controller {
 	
 	function index() 
 	{
-		if( isset( $_POST['theme'] ) ) {
-			$this->model->updateTheme( Session::get('id'), $_POST['theme'] );
+		if( isset( $_POST['save'] ) ) {
+			if( isset($_POST['old_password']) && isset($_POST['new_password']) && isset($_POST['confirm_password']) ) {
+				if( $this->model->checkPassword( Session::get('id'), md5($_POST['old_password']) ) && $_POST['new_password'] == $_POST['confirm_password'] ) {
+					$this->model->updateProfile( Session::get('id'), array(
+						'ui_theme' => $_POST['theme'],
+						'password' => md5($_POST['new_password'])
+					) );
+				}
+			}
 		}
 		$this->view->render('dashboard/index');
 	}

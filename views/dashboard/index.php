@@ -59,6 +59,6 @@
 			</div>
 		</div>
 	</div>
-	<input type="submit" class="ui-btn" value="Save" />
+	<input type="submit" class="ui-btn" name="save" value="Save" />
 </div>
 </form>

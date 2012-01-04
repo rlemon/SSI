@@ -32,9 +32,19 @@ class Dashboard_Model extends Model {
 		$ps->execute( $data );
 	}
 	
-	public function updateTheme($id, $index) {
-		$this->updateData( 'users', $id, array( 'ui_theme' => $index ) );
-		Session::set('ui_theme', $index);
+	public function updateProfile($id, $map) {
+		$this->updateData( 'users', $id, $map);
+		Session::set('ui_theme', $map['ui_theme']);
+	}
+	
+	public function checkPassword($id, $password) {
+		$res = $this->getData( 'SELECT password FROM users WHERE id = :id', array(
+			':id' => $id
+		) );
+		if( $res[0]['password'] != $password ) {
+			return false;
+		}
+		return true;
 	}
 	
 }
