@@ -4,7 +4,6 @@ Being developed as an open source project and will also be used internally.
 ### add theme support
 - http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css
 - http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/blitzer/jquery-ui.css
-- http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css
 - http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/dot-luv/jquery-ui.css
 - http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/eggplant/jquery-ui.css
 - http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/excite-bike/jquery-ui.css
