@@ -7,34 +7,38 @@ $selected_groups_list = isset($_GET['groups']) ? $_GET['groups'] : null;
 $selected_suppliers = '';
 $selected_groups = '';
 
+$suppliers = $this->suppliers[1];
+$groups = $this->groups[1];
+$rowData = $this->rowData[1];
+
 $suppliers_options = '<option value="">- Add a Supplier -</option>';
-for($i = 0, $l = count($this->suppliers); $i < $l; $i++) {
+for($i = 0, $l = count($suppliers); $i < $l; $i++) {
 	for($ii = 0, $ll = count($selected_suppliers_list); $ii < $ll; $ii++) {
-		if( $selected_suppliers_list[$ii] === $this->suppliers[$i]['id'] ) {
+		if( $selected_suppliers_list[$ii] === $suppliers[$i]['id'] ) {
 			$selected_suppliers .= <<<ITM
 			<div class="filter_menu_item">
-				<input type="hidden" name="suppliers[]" value="{$this->suppliers[$i]['id']}" />
-				{$this->suppliers[$i]['name']}<a class="ui-btn xsmall" data-icon-only="ui-icon-trash" onclick="$(this.parentNode).remove()">delete</a>
+				<input type="hidden" name="suppliers[]" value="{$suppliers[$i]['id']}" />
+				{$suppliers[$i]['name']}<a class="ui-btn xsmall" data-icon-only="ui-icon-trash" onclick="$(this.parentNode).remove()">delete</a>
 			</div>
 ITM;
 		}
 	}
-	$suppliers_options .= "\n\t\t\t\t" . '<option value="' . $this->suppliers[$i]['id'] . '">' . $this->suppliers[$i]['name'] . '</option>';
+	$suppliers_options .= "\n\t\t\t\t" . '<option value="' . $suppliers[$i]['id'] . '">' . $suppliers[$i]['name'] . '</option>';
 }
 
 $groups_options = '<option value="">- Add a Group -</option>';
-for($i = 0, $l = count($this->groups); $i < $l; $i++) {
+for($i = 0, $l = count($groups); $i < $l; $i++) {
 	for($ii = 0, $ll = count($selected_groups_list); $ii < $ll; $ii++) {
-		if( $selected_groups_list[$ii] === $this->groups[$i]['id'] ) {
+		if( $selected_groups_list[$ii] === $groups[$i]['id'] ) {
 			$selected_groups .= <<<ITM
 			<div class="filter_menu_item">
-				<input type="hidden" name="groups[]" value="{$this->groups[$i]['id']}" />
-				{$this->groups[$i]['name']}<a class="ui-btn xsmall" data-icon-only="ui-icon-trash" onclick="$(this.parentNode).remove()">delete</a>
+				<input type="hidden" name="groups[]" value="{$groups[$i]['id']}" />
+				{$groups[$i]['name']}<a class="ui-btn xsmall" data-icon-only="ui-icon-trash" onclick="$(this.parentNode).remove()">delete</a>
 			</div>
 ITM;
 		}
 	}
-	$groups_options .= "\n\t\t\t\t" . '<option value="' . $this->groups[$i]['id'] . '">' . $this->groups[$i]['name'] . '</option>';
+	$groups_options .= "\n\t\t\t\t" . '<option value="' . $groups[$i]['id'] . '">' . $groups[$i]['name'] . '</option>';
 }
 
 function extractNames($arr) {
@@ -109,11 +113,11 @@ function extractNames($arr) {
 	<tbody>
 		<?php
 		
-		if( count($this->rowData) === 0 ) {
+		if( count($rowData) === 0 ) {
 			echo '<tr><td colspan="10">No Records Found</td><td></td></tr>';
 		} else {
-			for($i = 0, $l = count($this->rowData); $i < $l; $i++) {
-				$r = $this->rowData[$i];
+			for($i = 0, $l = count($rowData); $i < $l; $i++) {
+				$r = $rowData[$i];
 				$groups = extractNames($r['groups']);
 				$url = URL;
 				echo <<<ROWS

@@ -1,30 +1,31 @@
-<?php
-$item = $this->items[0];
 
+<?php
+$item = $this->items[ 1 ][ 0 ];
+$suppliers = $this->suppliers[ 1 ];
+$groups = $this->groups[ 1 ];
 $suppliers_options = '<option value="-1">- None -</option>';
-for($i = 0, $l = count($this->suppliers); $i < $l; $i++) {
+for ( $i = 0, $l = count( $suppliers ); $i < $l; $i++ ) {
 	$selected = '';
-	if( $item['part_supplier_id'] == $this->suppliers[$i]['id'] ) {
+	if ( $item[ 'part_supplier_id' ] == $suppliers[ $i ][ 'id' ] ) {
 		$selected = ' selected="selected" ';
 	}
-	$suppliers_options .= '<option value="' . $this->suppliers[$i]['id'] . '" ' . $selected . '>' . $this->suppliers[$i]['name'] . '</option>';
+	$suppliers_options .= '<option value="' . $suppliers[ $i ][ 'id' ] . '" ' . $selected . '>' . $suppliers[ $i ][ 'name' ] . '</option>';
 }
 $selected_groups = '';
 $groups_options = '<option value="">- Add a Group -</option>';
-for($i = 0, $l = count($this->groups); $i < $l; $i++) {
-	for($j = 0, $k = count($item['groups']); $j < $k; $j++) {
-		if( $item['groups'][$j]['id'] === $this->groups[$i]['id'] ) {
+for ( $i = 0, $l = count( $groups ); $i < $l; $i++ ) {
+	for ( $j = 0, $k = count( $item[ 'groups' ] ); $j < $k; $j++ ) {
+		if ( $item[ 'groups' ][ $j ][ 'id' ] === $groups[ $i ][ 'id' ] ) {
 			$selected_groups .= <<<ITM
 			<div class="filter_menu_item">
-				<input type="hidden" name="groups[]" value="{$this->groups[$i]['id']}" />
-				{$this->groups[$i]['name']}<a class="ui-btn xsmall" data-icon-only="ui-icon-trash" onclick="$(this.parentNode).remove()">delete</a>
+				<input type="hidden" name="groups[]" value="{$groups[$i]['id']}" />
+				{$groups[$i]['name']}<a class="ui-btn xsmall" data-icon-only="ui-icon-trash" onclick="$(this.parentNode).remove()">delete</a>
 			</div>
 ITM;
 		}
 	}
-	$groups_options .= "\n\t\t\t\t" . '<option value="' . $this->groups[$i]['id'] . '">' . $this->groups[$i]['name'] . '</option>';
+	$groups_options .= "\n\t\t\t\t" . '<option value="' . $groups[ $i ][ 'id' ] . '">' . $groups[ $i ][ 'name' ] . '</option>';
 }
-
 ?>
 <div class="ui-padded-bottom ui-heading">
 	Edit Item <?php echo $item['id']; ?>

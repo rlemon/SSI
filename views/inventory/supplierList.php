@@ -1,8 +1,7 @@
 <?php
 $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
+$rowData = $this->rowData[1];
 ?>
-
-
 <a class="ui-btn small" href="<?php echo URL; ?>inventory/itemList">Items</a>
 <a class="ui-btn small" href="<?php echo URL; ?>inventory/groupList">Groups</a>
 <a class="ui-btn small" data-disabled="disabled" href="<?php echo URL; ?>inventory/supplierList">Suppliers</a>
@@ -51,11 +50,11 @@ $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 	</thead>
 	<tbody>
 <?php
-if( count($this->rowData) === 0 ) {
+if( count($rowData) === 0 ) {
 	echo '<tr><td colspan="8">No Records Found</td><td></td></tr>';
 } else {
-	for($i = 0, $l = count($this->rowData); $i < $l; $i++) {
-		$r = $this->rowData[$i];
+	for($i = 0, $l = count($rowData); $i < $l; $i++) {
+		$r = $rowData[$i];
 		$url = URL;
 		echo <<<ROWS
 		<tr>

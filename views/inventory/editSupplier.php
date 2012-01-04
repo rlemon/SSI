@@ -1,5 +1,5 @@
 <?php
-	$supplier = $this->suppliers[0];
+	$supplier = $this->suppliers[1];
 ?>
 <div class="ui-padded-bottom ui-heading">
 	Edit Supplier <?php echo $supplier['id']; ?>

@@ -1,15 +1,15 @@
-
 <?php
-	$item = $this->itemDefaults;
-	$suppliers_options = '<option value="">- None -</option>';
-	for($i = 0, $l = count($this->suppliers); $i < $l; $i++) {
-		$suppliers_options .= '<option value="' . $this->suppliers[$i]['id'] . '">' . $this->suppliers[$i]['name'] . '</option>';
-	}
-
-	$groups_options = '<option value="">- Add a Group -</option>';
-	for($i = 0, $l = count($this->groups); $i < $l; $i++) {
-		$groups_options .= '<option value="' . $this->groups[$i]['id'] . '">' . $this->groups[$i]['name'] . '</option>';
-	}
+$item = $this->itemDefaults;
+$suppliers = $this->suppliers[ 1 ];
+$groups = $this->groups[ 1 ];
+$suppliers_options = '<option value="">- None -</option>';
+for ( $i = 0, $l = count( $suppliers ); $i < $l; $i++ ) {
+    $suppliers_options .= '<option value="' . $suppliers[ $i ][ 'id' ] . '">' . $suppliers[ $i ][ 'name' ] . '</option>';
+}
+$groups_options = '<option value="">- Add a Group -</option>';
+for ( $i = 0, $l = count( $groups ); $i < $l; $i++ ) {
+    $groups_options .= '<option value="' . $groups[ $i ][ 'id' ] . '">' . $groups[ $i ][ 'name' ] . '</option>';
+}
 ?>
 <div class="ui-padded-bottom ui-heading">
 	Create New Item
