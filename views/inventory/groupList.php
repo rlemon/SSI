@@ -36,8 +36,8 @@ $rowData = $this->rowData[1];
 
 </div>
 
-<table class="data-table">
-	<thead>
+<table class="ui-widget data-table">
+	<thead class="ui-widget-header">
 		<tr>
 			<th class="static-column">ID#</th>
 			<th class="static-column">Name</th>
@@ -53,10 +53,11 @@ if( count($rowData) === 0 ) {
 	for($i = 0, $l = count($rowData); $i < $l; $i++) {
 		$r = $rowData[$i];
 		$url = URL;
+		$alt_style = $i%2 ? ' class="ui-widget-content"' : '';
 		echo <<<ROWS
-		<tr>
-			<td>{$r['id']}</td>
-			<td class="nowrap">{$r['name']}</td>
+		<tr{$alt_style}>
+			<td class="static-cell">{$r['id']}</td>
+			<td class="static-cell">{$r['name']}</td>
 			<td>{$r['description']}</td>
 			<td><span>
 				<a href="{$url}inventory/editGroup/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Group</a>
@@ -70,7 +71,7 @@ ROWS;
     </tbody>
 </table>
 <div class="ui-padded-top paging-buttons">
-<span class="label small">Page: </span>
+<span class="small">Page: </span>
 <?php
 	$pages = ceil($this->rowData[0] / $rpp);
 	for( $i = 0; $i < $pages; $i++) {

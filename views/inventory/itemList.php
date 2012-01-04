@@ -98,8 +98,8 @@ function extractNames($arr) {
 		</div>
 
 </div>
-<table class="data-table">
-	<thead>
+<table class="ui-widget data-table">
+	<thead class="ui-widget-header">
 		<tr>
 			<th class="static-column">ID#</th>
 			<th class="static-column">Group(s)</th>
@@ -123,17 +123,18 @@ function extractNames($arr) {
 				$r = $rowData[$i];
 				$groups = extractNames($r['groups']);
 				$url = URL;
+				$alt_style = $i%2 ? ' class="ui-widget-content"' : '';
 				echo <<<ROWS
-		<tr>
-			<td>{$r['id']}</td>
+		<tr{$alt_style}>
+			<td class="static-cell">{$r['id']}</td>
 			<td>{$groups}</td>
-			<td class="nowrap">{$r['part_code']}</td>
+			<td class="static-cell">{$r['part_code']}</td>
 			<td>{$r['part_description']}</td>
-			<td class="nowrap">{$r['part_supplier_name']}</td>
-			<td class="nowrap">{$r['supplier_part_code']}</td>
-			<td>{$r['loc']}</td>
-			<td>{$r['qty']}</td>
-			<td class="nowrap">{$r['unit_cost']}</td>
+			<td class="static-cell">{$r['part_supplier_name']}</td>
+			<td class="static-cell">{$r['supplier_part_code']}</td>
+			<td class="static-cell">{$r['loc']}</td>
+			<td class="static-cell">{$r['qty']}</td>
+			<td class="static-cell">{$r['unit_cost']}</td>
 			<td><span>
 				<a href="{$url}inventory/editItem/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Item</a>
 				<a href="{$url}inventory/deleteItem/{$r['id']}" class="ui-btn ui-btn-delete" data-icon-only="ui-icon-trash" title="Delete Item">Delete Item</a>
@@ -146,7 +147,7 @@ ROWS;
 	</tbody>
 </table>
 <div class="ui-padded-top paging-buttons">
-<span class="label small">Page: </span>
+<span class="small">Page: </span>
 <?php
 	$pages = ceil($this->rowData[0] / $rpp);
 	for( $i = 0; $i < $pages; $i++) {

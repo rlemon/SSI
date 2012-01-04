@@ -127,37 +127,28 @@ body,html {
 .data-table {
 	width: 100%;
     font-size: 90%;
-    background-color: #fff;
-    border: 1px solid #666;
 }
 .data-table th, .data-table td:last-child span {
     white-space: nowrap;
     text-align: center;
 }
 .data-table td {
-    font-size: 90%;
-    color: #222;   
+    font-size: 90%; 
 }
 .data-table td, .data-table th {
-    padding: 6px;
-    border-right: 1px solid #999; 
+    padding: 6px 12px;
 }
 .data-table td:last-child, .data-table th:last-child {
     border: none; 
 }
-.data-table tbody tr {
-    border: 1px solid #666; 
-}
-.data-table tbody tr:nth-child(odd) td {
-    background-color: #efefef;
-}
-
-.nowrap {
+.static-cell {
 	white-space: nowrap;
+	text-align: center;
 }
 
 .static-column {
 	width: 1em;
+
 }
 
 .ui-heading {
@@ -165,6 +156,3 @@ body,html {
 	font-weight: 700;
 }
 
-.label {
-	color: #555;
-}

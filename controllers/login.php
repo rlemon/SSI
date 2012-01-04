@@ -15,12 +15,5 @@ class Login extends Controller {
 	{
 		$this->model->login();
 	}
-	
-	function logout()
-	{
-		Session::destroy();
-		header('location: ' . URL .  'login');
-		exit;
-	}
 
 }

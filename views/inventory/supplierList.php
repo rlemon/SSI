@@ -36,8 +36,8 @@ $ro = isset($_GET['ro']) ? $_GET['ro'] : 1;
 
 </div>
 
-<table class="data-table">
-	<thead>
+<table class="ui-widget data-table">
+	<thead class="ui-widget-header">
 		<tr>
 			<th class="static-column">ID#</th>
 			<th class="static-column">Name</th>
@@ -58,16 +58,17 @@ if( count($rowData) === 0 ) {
 	for($i = 0, $l = count($rowData); $i < $l; $i++) {
 		$r = $rowData[$i];
 		$url = URL;
+		$alt_style = $i%2 ? ' class="ui-widget-content"' : '';
 		echo <<<ROWS
-		<tr>
-			<td>{$r['id']}</td>
-			<td class="nowrap">{$r['name']}</td>
+		<tr{$alt_style}>
+			<td class="static-cell">{$r['id']}</td>
+			<td class="static-cell">{$r['name']}</td>
 			<td>{$r['description']}</td>
-			<td class="nowrap">{$r['contact_name']}</td>
-			<td class="nowrap">{$r['email']}</td>
-			<td class="nowrap">{$r['telephone']}</td>
-			<td class="nowrap">{$r['fax']}</td>
-			<td class="nowrap">{$r['url']}</td>
+			<td class="static-cell">{$r['contact_name']}</td>
+			<td class="static-cell"><a href="mailto:{$r['email']}" title="Click to compose Email">{$r['email']}</a></td>
+			<td class="static-cell">{$r['telephone']}</td>
+			<td class="static-cell">{$r['fax']}</td>
+			<td class="static-cell"><a href="{$r['url']}" title="Open link in new window" target="_blank">{$r['url']}</a></td>
 			<td><span>
 				<a href="{$url}inventory/editSupplier/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Group</a>
 				<a href="{$url}inventory/deleteSupplier/{$r['id']}" class="ui-btn ui-btn-delete" data-icon-only="ui-icon-trash" title="Delete Item">Delete Group</a>
@@ -80,7 +81,7 @@ ROWS;
     </tbody>
 </table>
 <div class="ui-padded-top paging-buttons">
-<span class="label small">Page: </span>
+<span class="small">Page: </span>
 <?php
 	$pages = ceil($this->rowData[0] / $rpp);
 	for( $i = 0; $i < $pages; $i++) {
