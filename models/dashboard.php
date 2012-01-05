@@ -36,8 +36,12 @@ class Dashboard_Model extends Model {
 		if( empty( $map ) ) {
 			return;
 		}
+		
 		$this->updateData( 'users', $id, $map);
-		Session::set('ui_theme', $map['ui_theme']);
+		
+		if( isset( $map['ui_theme'] ) ) {
+			Session::set('ui_theme', $map['ui_theme']);
+		}
 	}
 	
 	public function checkPassword($id, $password) {

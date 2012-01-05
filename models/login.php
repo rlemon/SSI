@@ -26,9 +26,9 @@ class Login_Model extends Model {
 			Session::set( 'ui_theme', $data[ 'ui_theme' ] );
 			Session::set( 'last_login', $data[ 'last_login' ] );
 			Session::set( 'logged_in', true );
-			header( 'location: ../dashboard' );
+			return true;
 		} else {
-			header( 'location: ../login' );
+			return false;
 		}
 	}
 }

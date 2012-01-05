@@ -13,7 +13,13 @@ class Login extends Controller {
 	
 	function login()
 	{
-		$this->model->login();
+		if( $this->model->login() ) {
+			header( 'location: ' . URL . 'dashboard' );
+		} else {
+			$message = 'Login Incorrect. Please try again.';
+			$this->view->message = array('text' => $message);
+			$this->view->render('login/index');
+		}
 	}
 
 }

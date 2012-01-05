@@ -24,7 +24,7 @@ class Dashboard extends Controller {
 				) );
 				$message .= 'Theme Updated. ';
 			}
-			if( isset($_POST['old_password']) && isset($_POST['new_password']) && isset($_POST['confirm_password']) ) {
+			if( !empty($_POST['old_password']) && !empty($_POST['new_password']) && !empty($_POST['confirm_password']) ) {
 				if( $this->model->checkPassword( Session::get('id'), md5($_POST['old_password']) ) && $_POST['new_password'] == $_POST['confirm_password'] ) {
 					$map = array_merge( $map, array(
 						'password' => md5($_POST['new_password'])
@@ -39,6 +39,7 @@ class Dashboard extends Controller {
 		}
 		$this->view->render('dashboard/index');
 	}
+	
 	function logout()
 	{
 		Session::destroy();
