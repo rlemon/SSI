@@ -33,6 +33,9 @@ class Dashboard_Model extends Model {
 	}
 	
 	public function updateProfile($id, $map) {
+		if( empty( $map ) ) {
+			return;
+		}
 		$this->updateData( 'users', $id, $map);
 		Session::set('ui_theme', $map['ui_theme']);
 	}

@@ -19,4 +19,21 @@ $('.ui-btn').each(function() {
 	StyleButton(this);
 });
 
-
+function Notify(message, delay) {
+	if (typeof message === 'undefined') {
+		return;
+	}
+	delay = delay || 5000;
+	var elm = $('<div>', {
+		'text': message,
+		'class': 'ui-state-hover ui-notify'
+	});
+	$('body').append(elm);
+	elm.animate({
+		'bottom': '0px'
+	}, 300).delay(delay).animate({
+		'bottom': '-65px'
+	}, 300, function() {
+		this.parentNode.removeChild(this);
+	});
+}
