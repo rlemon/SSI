@@ -98,10 +98,13 @@ function extractNames($arr) {
 		</div>
 
 </div>
+
+<input type="hidden" id="order_by" name="order" value="id" />
+<input type="hidden" id="order_dir" name="dir" value="ASC" />
+
 <table class="ui-widget data-table">
 	<thead class="ui-widget-header">
-		<tr>
-			<th class="static-column">ID#</th>
+			<th class="static-column"><a href=""><span class="ui-icon left ui-icon-triangle-1-s"></span>ID#</a></th>
 			<th class="static-column">Group(s)</th>
 			<th class="static-column">Part Code (P.C)</th>
 			<th>Description</th>

@@ -30,9 +30,11 @@ class Inventory extends Controller {
 			$filter .= '(inv.part_code LIKE "%' . $_GET[ 'term' ] . '%" OR inv.part_description LIKE "%' . $_GET[ 'term' ] . '%") AND ';
 		}
 		$filter .= '1';
+		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'id';
+		$order_dir = isset( $_GET[ 'dir' ] ) ? $_GET[ 'dir' ] : 'ASC';
 		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
 		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
-		$filter .= ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
+		$filter .= ' ORDER BY ' . $order . ' ' . $order_dir . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
 		$this->view->suppliers = $this->model->getSuppliers();
 		$this->view->groups = $this->model->getGroups();
 		$this->view->rowData = $this->model->getItems( $filter );
@@ -86,9 +88,11 @@ class Inventory extends Controller {
 			$filter .= '(name LIKE "%' . $_GET[ 'term' ] . '%" OR description LIKE "%' . $_GET[ 'term' ] . '%" OR email LIKE "%' . $_GET[ 'term' ] . '%" OR telephone LIKE "%' . $_GET[ 'term' ] . '%" OR fax LIKE "%' . $_GET[ 'term' ] . '%" OR contact_name LIKE "%' . $_GET[ 'term' ] . '%" OR url LIKE "%' . $_GET[ 'term' ] . '%" ) AND ';
 		}
 		$filter .= '1';
+		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'id';
+		$order_dir = isset( $_GET[ 'dir' ] ) ? $_GET[ 'dir' ] : 'ASC';
 		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
 		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
-		$filter .= ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
+		$filter .= ' ORDER BY ' . $order . ' ' . $order_dir . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
 		$this->view->rowData = $this->model->getSuppliers( $filter );
 		$this->view->render( 'inventory/supplierList' );
 	}
@@ -100,7 +104,7 @@ class Inventory extends Controller {
 		/** Default values for new item template */
 		$this->view->supplierDefaults = array(
 			 'name' => '',
-			'description' => 'No Description',
+			'description' => '',
 			'contact_name' => '',
 			'email' => '',
 			'telephone' => '',
@@ -137,9 +141,11 @@ class Inventory extends Controller {
 			$filter .= '(name LIKE "%' . $_GET[ 'term' ] . '%" OR description LIKE "%' . $_GET[ 'term' ] . '%" ) AND ';
 		}
 		$filter .= '1';
+		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'id';
+		$order_dir = isset( $_GET[ 'dir' ] ) ? $_GET[ 'dir' ] : 'ASC';
 		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
 		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
-		$filter .= ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
+		$filter .= ' ORDER BY ' . $order . ' ' . $order_dir . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
 		$this->view->rowData = $this->model->getGroups( $filter );
 		$this->view->render( 'inventory/groupList' );
 	}
