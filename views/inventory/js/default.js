@@ -48,3 +48,19 @@ $('#btn-clear-term').bind('click', function(event) {
 	$(this).prev().val('');
 });
 
+$('.order-by').bind('click', function(event) {
+	event.preventDefault();
+	var order_by = $('#order_by'), order_dir = $('#order_dir'); //, handle = $('#order_handle');
+	if( order_by.val() == this.name ) {
+		order_dir.val( order_dir.val() == 'ASC' ? 'DESC' : 'ASC' );
+		//handle.removeClass('ui-icon-triangle-1-s').addClass('ui-icon-triangle-1-n');
+	} else {
+		order_by.val(this.name);
+		order_dir.val('ASC');
+		//handle.detach();
+		//$(this).prepend(handle);
+	}
+	
+	document.forms['filter'].submit();
+});
+

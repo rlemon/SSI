@@ -3,6 +3,19 @@ $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 $rowData = $this->rowData[1];
 $rpp = isset($_GET['rpp']) ? $_GET['rpp'] : RESULTS_PER_PAGE;
 $ro = isset($_GET['ro']) ? $_GET['ro'] : 1;
+
+$order_by = isset($_GET['order']) ? $_GET['order'] : 'id';
+$order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
+
+$handle = '<span id="order_handle" class="ui-icon left ui-icon-triangle-1-'. ($order_dir == 'ASC' ? 's' : 'n') .'"></span>';
+
+function hasHandle($identifier, $order_by, $handle) {
+	if( $order_by == $identifier ) {
+		return $handle;
+	} else {
+		return "";
+	}
+}
 ?>
 <a class="ui-btn small" href="<?php echo URL; ?>inventory/itemList">Items</a>
 <a class="ui-btn small" href="<?php echo URL; ?>inventory/groupList">Groups</a>
@@ -36,17 +49,20 @@ $ro = isset($_GET['ro']) ? $_GET['ro'] : 1;
 
 </div>
 
+<input type="hidden" id="order_by" name="order" value="<?php echo $order_by; ?>" />
+<input type="hidden" id="order_dir" name="dir" value="<?php echo $order_dir; ?>" />
+
 <table class="ui-widget data-table">
 	<thead class="ui-widget-header">
 		<tr>
-			<th class="static-column">ID#</th>
-			<th class="static-column">Name</th>
-			<th>Description</th>
-			<th class="static-column">Contact Name</th>
-			<th class="static-column">Email</th>
-			<th class="static-column">Telephone</th>
-			<th class="static-column">Fax</th>
-			<th class="static-column">URL</th>
+			<th class="static-column"><a href="#" class="order-by" name="id"><?php echo hasHandle('id', $order_by, $handle); ?>ID#</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="name"><?php echo hasHandle('name', $order_by, $handle); ?>Name</a></th>
+			<th><a href="#" class="order-by" name="description"><?php echo hasHandle('description', $order_by, $handle); ?>Description</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="contact_name"><?php echo hasHandle('contact_name', $order_by, $handle); ?>Contact Name</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="email"><?php echo hasHandle('email', $order_by, $handle); ?>Email</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="telephone"><?php echo hasHandle('telephone', $order_by, $handle); ?>Telephone</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="fax"><?php echo hasHandle('fax', $order_by, $handle); ?>FAX</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="url"><?php echo hasHandle('url', $order_by, $handle); ?>URL</a></th>
 			<th class="static-column">Actions</th>
 		</tr>
 	</thead>

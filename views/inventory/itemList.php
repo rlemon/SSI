@@ -5,6 +5,12 @@ $ro = isset($_GET['ro']) ? $_GET['ro'] : 1;
 $selected_suppliers_list = isset($_GET['suppliers']) ? $_GET['suppliers'] : null;
 $selected_groups_list = isset($_GET['groups']) ? $_GET['groups'] : null;
 
+$order_by = isset($_GET['order']) ? $_GET['order'] : 'id';
+$order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
+
+$handle = '<span id="order_handle" class="ui-icon left ui-icon-triangle-1-'. ($order_dir == 'ASC' ? 's' : 'n') .'"></span>';
+
+
 $selected_suppliers = '';
 $selected_groups = '';
 
@@ -49,7 +55,13 @@ function extractNames($arr) {
 	}
 	return implode(', ', $ret);
 }
-
+function hasHandle($identifier, $order_by, $handle) {
+	if( $order_by == $identifier ) {
+		return $handle;
+	} else {
+		return "";
+	}
+}
 ?>
 
 <a class="ui-btn small" data-disabled="disabled" href="<?php echo URL; ?>inventory/itemList">Items</a>
@@ -99,20 +111,26 @@ function extractNames($arr) {
 
 </div>
 
-<input type="hidden" id="order_by" name="order" value="id" />
-<input type="hidden" id="order_dir" name="dir" value="ASC" />
-
+<input type="hidden" id="order_by" name="order" value="<?php echo $order_by; ?>" />
+<input type="hidden" id="order_dir" name="dir" value="<?php echo $order_dir; ?>" />
+<?php
+/* 
+ * The handle code can be changed - correction, must be changed. I don't like it and it is messy
+ * 
+ * here be dragons
+ */
+?>
 <table class="ui-widget data-table">
 	<thead class="ui-widget-header">
-			<th class="static-column"><a href=""><span class="ui-icon left ui-icon-triangle-1-s"></span>ID#</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="id"><?php echo hasHandle('id', $order_by, $handle); ?>ID#</a></th>
 			<th class="static-column">Group(s)</th>
-			<th class="static-column">Part Code (P.C)</th>
-			<th>Description</th>
-			<th class="static-column">Supplier</th>
-			<th class="static-column">Supplier P.C</th>
-			<th class="static-column">LOC</th>
-			<th class="static-column">QTY</th>
-			<th class="static-column">Unit Cost (CND)</th>
+			<th class="static-column"><a href="#" class="order-by" name="part_code"><?php echo hasHandle('part_code', $order_by, $handle); ?>Part Code (P.C)</a></th>
+			<th><a href="#" class="order-by" name="part_description"><?php echo hasHandle('part_description', $order_by, $handle); ?>Description</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="part_supplier_name"><?php echo hasHandle('part_supplier_name', $order_by, $handle); ?>Supplier</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="supplier_part_code"><?php echo hasHandle('supplier_part_code', $order_by, $handle); ?>Supplier P.C</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="loc"><?php echo hasHandle('loc', $order_by, $handle); ?>LOC</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="qty"><?php echo hasHandle('qty', $order_by, $handle); ?>QTY</a></th>
+			<th class="static-column"><a href="#" class="order-by" name="unit_cost"><?php echo hasHandle('unit_cost', $order_by, $handle); ?>Unit Cost (CND)</a></th>
 			<th class="static-column">Actions</th>
 		</tr>
 	</thead>
