@@ -12,6 +12,9 @@ class Inventory extends Controller {
 		$this->view->js = array(
 			 'inventory/js/default.js' 
 		);
+		$this->view->widgets = array(
+			'inventory/widgets/default.php'
+		);
 	}
 	function index() {
 		/* this is the default method for all controllers */
@@ -41,9 +44,12 @@ class Inventory extends Controller {
 		$this->view->render( 'inventory/itemList' );
 	}
 	function createItem() {
-		if ( isset( $_POST[ 'submit' ] ) ) {
+		
+		if ( isset( $_POST[ 'save' ] ) ) {
 			$id = $this->model->addItem( $_POST[ 'part_code' ], $_POST[ 'part_description' ], $_POST[ 'part_supplier_id' ], $_POST[ 'supplier_part_code' ], $_POST[ 'loc' ], $_POST[ 'qty' ], $_POST[ 'unit_cost' ], $_POST[ 'groups' ] );
-			header( 'Location: ' . URL . 'inventory/itemList' );
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
+		} else if ( isset( $_POST[ 'cancel' ] ) ) {
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
 		}
 		/** Default values for new item template */
 		$this->view->itemDefaults = array(
@@ -59,7 +65,7 @@ class Inventory extends Controller {
 		$this->view->render( 'inventory/createItem' );
 	}
 	function editItem( $id ) {
-		if ( isset( $_POST[ 'submit' ] ) ) {
+		if ( isset( $_POST[ 'save' ] ) ) {
 			$this->model->updateItem( $_POST[ 'id' ], array(
 				 'part_code' => $_POST[ 'part_code' ],
 				'part_description' => $_POST[ 'part_description' ],
@@ -69,7 +75,9 @@ class Inventory extends Controller {
 				'qty' => $_POST[ 'qty' ],
 				'unit_cost' => $_POST[ 'unit_cost' ] 
 			), $_POST[ 'groups' ] );
-			header( 'Location: ' . URL . 'inventory/itemList' );
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
+		} else if ( isset( $_POST[ 'cancel' ] ) ) {
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
 		}
 		$filter = ' WHERE inv.id = ' . $id;
 		$this->view->items = $this->model->getItems( $filter );
@@ -97,9 +105,11 @@ class Inventory extends Controller {
 		$this->view->render( 'inventory/supplierList' );
 	}
 	function createSupplier() { //name, $description, $email, $telephone, $fax, $url, $contact_name
-		if ( isset( $_POST[ 'submit' ] ) ) {
+		if ( isset( $_POST[ 'save' ] ) ) {
 			$id = $this->model->addSupplier( $_POST[ 'name' ], $_POST[ 'description' ], $_POST[ 'email' ], $_POST[ 'telephone' ], $_POST[ 'fax' ], $_POST[ 'url' ], $_POST[ 'contact_name' ] );
-			header( 'Location: ' . URL . 'inventory/supplierList' );
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
+		} else if ( isset( $_POST[ 'cancel' ] ) ) {
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
 		}
 		/** Default values for new item template */
 		$this->view->supplierDefaults = array(
@@ -114,7 +124,7 @@ class Inventory extends Controller {
 		$this->view->render( 'inventory/createSupplier' );
 	}
 	function editSupplier( $id ) {
-		if ( isset( $_POST[ 'submit' ] ) ) {
+		if ( isset( $_POST[ 'save' ] ) ) {
 			$this->model->updateSupplier( $_POST[ 'id' ], array(
 				 'name' => $_POST[ 'name' ],
 				'description' => $_POST[ 'description' ],
@@ -124,7 +134,9 @@ class Inventory extends Controller {
 				'fax' => $_POST[ 'fax' ],
 				'url' => $_POST[ 'url' ] 
 			) );
-			header( 'Location: ' . URL . 'inventory/supplierList' );
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
+		} else if ( isset( $_POST[ 'cancel' ] ) ) {
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
 		}
 		$filter = ' WHERE id = ' . $id;
 		$this->view->suppliers = $this->model->getSuppliers( $filter );
@@ -150,9 +162,11 @@ class Inventory extends Controller {
 		$this->view->render( 'inventory/groupList' );
 	}
 	function createGroup() {
-		if ( isset( $_POST[ 'submit' ] ) ) {
+		if ( isset( $_POST[ 'save' ] ) ) {
 			$id = $this->model->addGroup( $_POST[ 'name' ], $_POST[ 'description' ] );
-			header( 'Location: ' . URL . 'inventory/groupList' );
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
+		} else if ( isset( $_POST[ 'cancel' ] ) ) {
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
 		}
 		/** Default values for new item template */
 		$this->view->groupDefaults = array(
@@ -162,12 +176,14 @@ class Inventory extends Controller {
 		$this->view->render( 'inventory/createGroup' );
 	}
 	function editGroup( $id ) {
-		if ( isset( $_POST[ 'submit' ] ) ) {
+		if ( isset( $_POST[ 'save' ] ) ) {
 			$this->model->updateGroup( $_POST[ 'id' ], array(
 				 'name' => $_POST[ 'name' ],
 				'description' => $_POST[ 'description' ] 
 			) );
-			header( 'Location: ' . URL . 'inventory/groupList' );
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
+		} else if ( isset( $_POST[ 'cancel' ] ) ) {
+			header( 'Location: ' . $_POST[ 'ref_url' ] );
 		}
 		$filter = ' WHERE id = ' . $id;
 		$this->view->groups = $this->model->getGroups( $filter );

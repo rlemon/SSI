@@ -26,6 +26,11 @@ class View {
 		if ( $noInclude == true ) {
 			require 'views/' . $name . '.php';
 		} else {
+			if( isset( $this->widgets ) ) {
+				foreach( $this->widgets as $widget_file ) {
+					require 'views/' . $widget_file;
+				}
+			}
 			require 'views/header.php';
 			require 'views/' . $name . '.php';
 			require 'views/footer.php';

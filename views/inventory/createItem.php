@@ -79,10 +79,8 @@ for ( $i = 0, $l = count( $groups ); $i < $l; $i++ ) {
 	</tr>
 </table>
 </div>
-<div class="ui-padded-all">
-<input type="submit" name="submit" class="ui-btn small" value="Save" />
-<a href="javascript:history.back();" class="ui-btn small" >Cancel</a>
-</div>
+
+<?php echo $save_cancel_buttons; ?>
 
 </form>
 
