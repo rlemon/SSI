@@ -52,40 +52,31 @@ function hasHandle($identifier, $order_by, $handle) {
 <input type="hidden" id="order_by" name="order" value="<?php echo $order_by; ?>" />
 <input type="hidden" id="order_dir" name="dir" value="<?php echo $order_dir; ?>" />
 
-<table class="ui-widget data-table">
-	<thead class="ui-widget-header">
-		<tr>
-			<th class="static-column"><a href="#" class="order-by" name="id"><?php echo hasHandle('id', $order_by, $handle); ?>ID#</a></th>
-			<th class="static-column"><a href="#" class="order-by" name="name"><?php echo hasHandle('name', $order_by, $handle); ?>Name</a></th>
-			<th><a href="#" class="order-by" name="description"><?php echo hasHandle('description', $order_by, $handle); ?>Description</a></th>
-			<th class="static-column">Actions</th>
-		</tr>
-	</thead>
-	<tbody>
 <?php
-if( count($rowData) === 0 ) {
-	echo '<tr><td colspan="4">No Records Found</td><td></td></tr>';
-} else {
-	for($i = 0, $l = count($rowData); $i < $l; $i++) {
-		$r = $rowData[$i];
-		$url = URL;
-		$alt_style = $i%2 ? ' class="ui-widget-content"' : '';
-		echo <<<ROWS
-		<tr{$alt_style}>
-			<td class="static-cell">{$r['id']}</td>
-			<td class="static-cell">{$r['name']}</td>
-			<td>{$r['description']}</td>
-			<td><span>
-				<a href="{$url}inventory/editGroup/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Group</a>
-				<a href="{$url}inventory/deleteGroup/{$r['id']}" class="ui-btn ui-btn-delete" data-icon-only="ui-icon-trash" title="Delete Item">Delete Group</a>
-			</span></td>
-		</tr>
-ROWS;
-	}
-}
+	echo data_table( 'Group', array(
+		array(
+			'name' => 'id',
+			'title' => 'ID',
+			'is_static' => true
+		),
+		array(
+			'name' => 'name',
+			'title' => 'Name',
+			'is_static' => true
+		),
+		array(
+			'name' => 'description',
+			'title' => 'Description',
+			'is_static' => false
+		),
+		array(
+			'name' => 'actions',
+			'title' => 'Actions',
+			'is_static' => true
+		)
+	), $this->rowData[1], $order_by, $order_dir );
 ?>
-    </tbody>
-</table>
+
 <div class="ui-padded-top paging-buttons">
 <span class="small">Page: </span>
 <?php

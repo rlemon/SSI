@@ -80,7 +80,7 @@ for ( $i = 0, $l = count( $groups ); $i < $l; $i++ ) {
 </table>
 </div>
 
-<?php echo $save_cancel_buttons; ?>
+<?php echo save_cancel_buttons(); ?>
 
 </form>
 
