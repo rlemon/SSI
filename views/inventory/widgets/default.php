@@ -21,8 +21,10 @@ function data_table($type, $columns, $rows, $sort, $direction) {
 HEAD;
 	foreach( $columns as $column ) {
 		$static = $column['is_static'] ? ' class="static-column"' : '';
+		
+		$handle = $column['name'] == $sort ? '<span id="order_handle" class="ui-icon left ui-icon-triangle-1-'. ($direction == 'ASC' ? 's' : 'n') .'"></span>' : '';
 		$head .= <<<HEAD
-		<th{$static}><a href="#" class="order-by" name="{$column['name']}">{$column['title']}</a></th>
+		<th{$static}>{$handle}<a href="#" class="order-by" name="{$column['name']}">{$column['title']}</a></th>
 HEAD;
 	}
 	$head .= <<<HEAD

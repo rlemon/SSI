@@ -7,15 +7,7 @@ $rowData = $this->rowData[1];
 $order_by = isset($_GET['order']) ? $_GET['order'] : 'id';
 $order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
 
-$handle = '<span id="order_handle" class="ui-icon left ui-icon-triangle-1-'. ($order_dir == 'ASC' ? 's' : 'n') .'"></span>';
 
-function hasHandle($identifier, $order_by, $handle) {
-	if( $order_by == $identifier ) {
-		return $handle;
-	} else {
-		return "";
-	}
-}
 ?>
 
 <a class="ui-btn small" href="<?php echo URL; ?>inventory/itemList">Items</a>

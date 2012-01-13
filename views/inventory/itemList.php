@@ -8,9 +8,6 @@ $selected_groups_list = isset($_GET['groups']) ? $_GET['groups'] : null;
 $order_by = isset($_GET['order']) ? $_GET['order'] : 'id';
 $order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
 
-$handle = '<span id="order_handle" class="ui-icon left ui-icon-triangle-1-'. ($order_dir == 'ASC' ? 's' : 'n') .'"></span>';
-
-
 $selected_suppliers = '';
 $selected_groups = '';
 
@@ -55,13 +52,7 @@ function extractNames($arr) {
 	}
 	return implode(', ', $ret);
 }
-function hasHandle($identifier, $order_by, $handle) {
-	if( $order_by == $identifier ) {
-		return $handle;
-	} else {
-		return "";
-	}
-}
+
 ?>
 
 <a class="ui-btn small" data-disabled="disabled" href="<?php echo URL; ?>inventory/itemList">Items</a>
@@ -113,60 +104,57 @@ function hasHandle($identifier, $order_by, $handle) {
 
 <input type="hidden" id="order_by" name="order" value="<?php echo $order_by; ?>" />
 <input type="hidden" id="order_dir" name="dir" value="<?php echo $order_dir; ?>" />
+
 <?php
-/* 
- * The handle code can be changed - correction, must be changed. I don't like it and it is messy
- * 
- * here be dragons
- */
+	echo data_table( 'Item', array(
+		array(
+			'name' => 'id',
+			'title' => 'ID',
+			'is_static' => true
+		),
+		array(
+			'name' => 'part_code',
+			'title' => 'Part Code (P.C)',
+			'is_static' => true
+		),
+		array(
+			'name' => 'part_description',
+			'title' => 'Description',
+			'is_static' => false
+		),
+		array(
+			'name' => 'part_supplier_name',
+			'title' => 'Supplier',
+			'is_static' => true
+		),
+		array(
+			'name' => 'supplier_part_code',
+			'title' => 'Supplier P.C',
+			'is_static' => true
+		),
+		array(
+			'name' => 'loc',
+			'title' => 'LOC',
+			'is_static' => true
+		),
+		array(
+			'name' => 'qty',
+			'title' => 'QTY',
+			'is_static' => true
+		),
+		array(
+			'name' => 'unit_cost',
+			'title' => 'Unit Cost (CND)',
+			'is_static' => true
+		),
+		array(
+			'name' => 'actions',
+			'title' => 'Actions',
+			'is_static' => true
+		)
+	), $this->rowData[1], $order_by, $order_dir );
 ?>
-<table class="ui-widget data-table">
-	<thead class="ui-widget-header">
-			<th class="static-column"><a href="#" class="order-by" name="id"><?php echo hasHandle('id', $order_by, $handle); ?>ID#</a></th>
-			<th class="static-column">Group(s)</th>
-			<th class="static-column"><a href="#" class="order-by" name="part_code"><?php echo hasHandle('part_code', $order_by, $handle); ?>Part Code (P.C)</a></th>
-			<th><a href="#" class="order-by" name="part_description"><?php echo hasHandle('part_description', $order_by, $handle); ?>Description</a></th>
-			<th class="static-column"><a href="#" class="order-by" name="part_supplier_name"><?php echo hasHandle('part_supplier_name', $order_by, $handle); ?>Supplier</a></th>
-			<th class="static-column"><a href="#" class="order-by" name="supplier_part_code"><?php echo hasHandle('supplier_part_code', $order_by, $handle); ?>Supplier P.C</a></th>
-			<th class="static-column"><a href="#" class="order-by" name="loc"><?php echo hasHandle('loc', $order_by, $handle); ?>LOC</a></th>
-			<th class="static-column"><a href="#" class="order-by" name="qty"><?php echo hasHandle('qty', $order_by, $handle); ?>QTY</a></th>
-			<th class="static-column"><a href="#" class="order-by" name="unit_cost"><?php echo hasHandle('unit_cost', $order_by, $handle); ?>Unit Cost (CND)</a></th>
-			<th class="static-column">Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php
-		
-		if( count($rowData) === 0 ) {
-			echo '<tr><td colspan="10">No Records Found</td><td></td></tr>';
-		} else {
-			for($i = 0, $l = count($rowData); $i < $l; $i++) {
-				$r = $rowData[$i];
-				$groups = extractNames($r['groups']);
-				$url = URL;
-				$alt_style = $i%2 ? ' class="ui-widget-content"' : '';
-				echo <<<ROWS
-		<tr{$alt_style}>
-			<td class="static-cell">{$r['id']}</td>
-			<td>{$groups}</td>
-			<td class="static-cell">{$r['part_code']}</td>
-			<td>{$r['part_description']}</td>
-			<td class="static-cell">{$r['part_supplier_name']}</td>
-			<td class="static-cell">{$r['supplier_part_code']}</td>
-			<td class="static-cell">{$r['loc']}</td>
-			<td class="static-cell">{$r['qty']}</td>
-			<td class="static-cell">{$r['unit_cost']}</td>
-			<td><span>
-				<a href="{$url}inventory/editItem/{$r['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit Item">Edit Item</a>
-				<a href="{$url}inventory/deleteItem/{$r['id']}" class="ui-btn ui-btn-delete" data-icon-only="ui-icon-trash" title="Delete Item">Delete Item</a>
-			</span></td>
-		</tr>
-ROWS;
-			}
-		}
-		?>
-	</tbody>
-</table>
+
 <div class="ui-padded-top paging-buttons">
 <span class="small">Page: </span>
 <?php
