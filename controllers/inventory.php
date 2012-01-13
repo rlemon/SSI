@@ -33,11 +33,13 @@ class Inventory extends Controller {
 			$filter .= '(inv.part_code LIKE "%' . $_GET[ 'term' ] . '%" OR inv.part_description LIKE "%' . $_GET[ 'term' ] . '%") AND ';
 		}
 		$filter .= '1';
-		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'id';
-		$order_dir = isset( $_GET[ 'dir' ] ) ? $_GET[ 'dir' ] : 'ASC';
+		$sort = isset( $_GET[ 'sort' ] ) ? $_GET[ 'sort' ] : 'id';
+		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'ASC';
 		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
 		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
-		$filter .= ' ORDER BY ' . $order . ' ' . $order_dir . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
+		$filter .= ' ORDER BY ' . $sort . ' ' . $order . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
+		$this->view->sort = $sort;
+		$this->view->order = $order;
 		$this->view->suppliers = $this->model->getSuppliers();
 		$this->view->groups = $this->model->getGroups();
 		$this->view->rowData = $this->model->getItems( $filter );

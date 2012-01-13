@@ -5,9 +5,6 @@ $ro = isset($_GET['ro']) ? $_GET['ro'] : 1;
 $selected_suppliers_list = isset($_GET['suppliers']) ? $_GET['suppliers'] : null;
 $selected_groups_list = isset($_GET['groups']) ? $_GET['groups'] : null;
 
-$order_by = isset($_GET['order']) ? $_GET['order'] : 'id';
-$order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
-
 $selected_suppliers = '';
 $selected_groups = '';
 
@@ -102,8 +99,8 @@ function extractNames($arr) {
 
 </div>
 
-<input type="hidden" id="order_by" name="order" value="<?php echo $order_by; ?>" />
-<input type="hidden" id="order_dir" name="dir" value="<?php echo $order_dir; ?>" />
+<input type="hidden" id="order_by" name="sort" value="<?php echo $this->sort; ?>" />
+<input type="hidden" id="order_dir" name="order" value="<?php echo $this->order; ?>" />
 
 <?php
 	echo data_table( 'Item', array(
@@ -152,7 +149,7 @@ function extractNames($arr) {
 			'title' => 'Actions',
 			'is_static' => true
 		)
-	), $this->rowData[1], $order_by, $order_dir );
+	), $this->rowData[1], $this->sort, $this->order );
 ?>
 
 <div class="ui-padded-top paging-buttons">

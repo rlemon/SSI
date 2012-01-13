@@ -6,3 +6,5 @@ Shipping, Sales, and Inventory management system.
 
 - Shipping Service
 - Sales Service
+
+- clean up all variable names. Currently they do not follow a consistent pattern and some are confusing. Think this through.
