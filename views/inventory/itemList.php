@@ -149,22 +149,10 @@ function extractNames($arr) {
 			'title' => 'Actions',
 			'is_static' => true
 		)
-	), $this->rowData[1], $this->sort, $this->order );
+	), $this->rowData[1], $this->sort, $this->order, $rpp, $ro, $this->rowData[0] );
 ?>
 
-<div class="ui-padded-top paging-buttons">
-<span class="small">Page: </span>
-<?php
-	$pages = ceil($this->rowData[0] / $rpp);
-	for( $i = 0; $i < $pages; $i++) {
-		$disabled = '';
-		if( $ro == ($i+1) ) {
-			$disabled .= 'data-disabled="disabled" ';
-		}
-		echo '<input class="ui-btn xsmall" ' . $disabled . 'type="submit" name="ro" value="' . ($i+1) . '" />';
-	}
-?>
-</div>
+
 <div class="ui-padded-all">
 	<a class="ui-btn small" data-icon="ui-icon-plus" href="<?php echo URL; ?>inventory/createItem">New Item</a>
 </div>

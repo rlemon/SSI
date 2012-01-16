@@ -9,10 +9,11 @@ function save_cancel_buttons() {
 WGT;
 }
 
-function data_table($type, $columns, $rows, $sort, $direction) {
+function data_table($type, $columns, $rows, $sort, $direction, $rpp, $offset, $len) {
 	$i = 0; // i am used to determine if the row is odd or even
 	$url = URL;
-	$clen = count($columns);
+	$clen = count( $columns );
+	$rlen = count( $rows );
 	/*
 	 *  Table Header 
 	 */
@@ -37,7 +38,7 @@ HEAD;
 	$body = <<<BODY
 	<tbody>
 BODY;
-	if( count( $rows ) < 1 ) {
+	if( $rlen < 1 ) {
 		$body .= <<<BODY
 		<tr><td colspan="{$clen}">Zero(0) Records Found.</td></tr>
 BODY;
@@ -76,6 +77,29 @@ BODY;
 </table>
 TABLE;
 
-	return $table;
+	$paging = "";
+	if( $rlen > 0 ) {
+		
+		$paging .= <<<PAGING
+	<div class="ui-padded-top paging-buttons">
+	<span class="small">Page: </span>
+PAGING;
+
+	$pages = ceil($len / $rpp);
+	for( $i = 0; $i < $pages; $i++) {
+		$disabled = '';
+		$val = $i + 1;
+		if( $offset == $val ) {
+			$disabled .= 'data-disabled="disabled" ';
+		}
+		$paging .= <<<PAGING
+			<input class="ui-btn xsmall" {$disabled}type="submit" name="ro" value="{$val}" />
+PAGING;
+	}
+	$paging .= <<<PAGING
+	</div>
+PAGING;
+	}
+	return $table . $paging;
 }
 ?>
