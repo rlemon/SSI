@@ -98,11 +98,13 @@ class Inventory extends Controller {
 			$filter .= '(name LIKE "%' . $_GET[ 'term' ] . '%" OR description LIKE "%' . $_GET[ 'term' ] . '%" OR email LIKE "%' . $_GET[ 'term' ] . '%" OR telephone LIKE "%' . $_GET[ 'term' ] . '%" OR fax LIKE "%' . $_GET[ 'term' ] . '%" OR contact_name LIKE "%' . $_GET[ 'term' ] . '%" OR url LIKE "%' . $_GET[ 'term' ] . '%" ) AND ';
 		}
 		$filter .= '1';
-		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'id';
-		$order_dir = isset( $_GET[ 'dir' ] ) ? $_GET[ 'dir' ] : 'ASC';
+		$sort = isset( $_GET[ 'sort' ] ) ? $_GET[ 'sort' ] : 'id';
+		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'ASC';
 		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
 		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
-		$filter .= ' ORDER BY ' . $order . ' ' . $order_dir . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
+		$filter .= ' ORDER BY ' . $sort . ' ' . $order . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
+		$this->view->sort = $sort;
+		$this->view->order = $order;
 		$this->view->rowData = $this->model->getSuppliers( $filter );
 		$this->view->render( 'inventory/supplierList' );
 	}
@@ -155,11 +157,13 @@ class Inventory extends Controller {
 			$filter .= '(name LIKE "%' . $_GET[ 'term' ] . '%" OR description LIKE "%' . $_GET[ 'term' ] . '%" ) AND ';
 		}
 		$filter .= '1';
-		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'id';
-		$order_dir = isset( $_GET[ 'dir' ] ) ? $_GET[ 'dir' ] : 'ASC';
+		$sort = isset( $_GET[ 'sort' ] ) ? $_GET[ 'sort' ] : 'id';
+		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'ASC';
 		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
 		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
-		$filter .= ' ORDER BY ' . $order . ' ' . $order_dir . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
+		$filter .= ' ORDER BY ' . $sort . ' ' . $order . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
+		$this->view->sort = $sort;
+		$this->view->order = $order;
 		$this->view->rowData = $this->model->getGroups( $filter );
 		$this->view->render( 'inventory/groupList' );
 	}
