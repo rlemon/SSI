@@ -1,7 +1,7 @@
 <?php
 $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 $rpp = isset($_GET['rpp']) ? $_GET['rpp'] : RESULTS_PER_PAGE;
-$ro = isset($_GET['ro']) ? $_GET['ro'] : 1;
+$ro = isset($_GET['page']) ? $_GET['page'] : 1;
 $selected_suppliers_list = isset($_GET['suppliers']) ? $_GET['suppliers'] : null;
 $selected_groups_list = isset($_GET['groups']) ? $_GET['groups'] : null;
 
@@ -149,7 +149,7 @@ function extractNames($arr) {
 			'title' => 'Actions',
 			'is_static' => true
 		)
-	), $this->rowData[1], $this->sort, $this->order, $rpp, $ro, $this->rowData[0] );
+	), $this->rowData[1], $this->sort, $this->order, $rpp, $page, $this->rowData[0] );
 ?>
 
 

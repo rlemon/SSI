@@ -36,7 +36,7 @@ class Inventory extends Controller {
 		$sort = isset( $_GET[ 'sort' ] ) ? $_GET[ 'sort' ] : 'id';
 		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'ASC';
 		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
-		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
+		$offset = isset( $_GET[ 'page' ] ) ? (($_GET[ 'page' ]-1) * $limit) : 0;
 		$filter .= ' ORDER BY ' . $sort . ' ' . $order . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
 		$this->view->sort = $sort;
 		$this->view->order = $order;
@@ -101,7 +101,7 @@ class Inventory extends Controller {
 		$sort = isset( $_GET[ 'sort' ] ) ? $_GET[ 'sort' ] : 'id';
 		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'ASC';
 		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
-		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
+		$offset = isset( $_GET[ 'page' ] ) ? (($_GET[ 'page' ]-1) * $limit) : 0;
 		$filter .= ' ORDER BY ' . $sort . ' ' . $order . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
 		$this->view->sort = $sort;
 		$this->view->order = $order;
@@ -160,7 +160,7 @@ class Inventory extends Controller {
 		$sort = isset( $_GET[ 'sort' ] ) ? $_GET[ 'sort' ] : 'id';
 		$order = isset( $_GET[ 'order' ] ) ? $_GET[ 'order' ] : 'ASC';
 		$limit = isset( $_GET[ 'rpp' ] ) ? $_GET[ 'rpp' ] : RESULTS_PER_PAGE;
-		$offset = isset( $_GET[ 'ro' ] ) ? (($_GET[ 'ro' ]-1) * $limit) : 0;
+		$offset = isset( $_GET[ 'page' ] ) ? (($_GET[ 'page' ]-1) * $limit) : 0;
 		$filter .= ' ORDER BY ' . $sort . ' ' . $order . ' LIMIT ' . $limit . ' OFFSET ' . $offset . ' ';
 		$this->view->sort = $sort;
 		$this->view->order = $order;

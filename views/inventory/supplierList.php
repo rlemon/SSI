@@ -2,7 +2,7 @@
 $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 $rowData = $this->rowData[1];
 $rpp = isset($_GET['rpp']) ? $_GET['rpp'] : RESULTS_PER_PAGE;
-$ro = isset($_GET['ro']) ? $_GET['ro'] : 1;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 $order_by = isset($_GET['order']) ? $_GET['order'] : 'id';
 $order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
@@ -41,8 +41,8 @@ $order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
 
 </div>
 
-<input type="hidden" id="order_by" name="order" value="<?php echo $order_by; ?>" />
-<input type="hidden" id="order_dir" name="dir" value="<?php echo $order_dir; ?>" />
+<input type="hidden" id="order_by" name="sort" value="<?php echo $this->sort; ?>" />
+<input type="hidden" id="order_dir" name="order" value="<?php echo $this->order; ?>" />
 
 <?php
 	echo data_table( 'Supplier', array(
@@ -91,7 +91,7 @@ $order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
 			'title' => 'Actions',
 			'is_static' => true
 		)
-	), $this->rowData[1], $this->sort, $this->order, $rpp, $ro, $this->rowData[0] );
+	), $this->rowData[1], $this->sort, $this->order, $rpp, $page, $this->rowData[0] );
 ?>
 <div class="ui-padded-all">
 	<a class="ui-btn small" data-icon="ui-icon-plus" href="<?php echo URL; ?>inventory/createSupplier">New Supplier</a>
