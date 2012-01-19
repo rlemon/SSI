@@ -1,12 +1,18 @@
 <?php
-	$supplier = $this->suppliers[1][0];
+	$supplier = isset( $this->suppliers[ 1 ][ 0 ] ) ? $this->suppliers[ 1 ][ 0 ] : $this->suppliers;
 ?>
 <div class="ui-padded-bottom ui-heading">
+<?php if( isset( $supplier['id'] ) ) { ?>
 	Edit Supplier <?php echo $supplier['id']; ?>
+<?php } else { ?>
+	Create New Supplier
+<?php } ?>
 </div>
 <div class="iblock ui-padded-all">
 <form method="post">
-<input type="hidden" name="id" value="<?php echo $supplier['id']; ?>" />
+<?php if( isset( $supplier['id'] ) ) { ?>
+	<input type="hidden" name="id" value="<?php echo $supplier['id']; ?>" />
+<? } ?>
 <table>
 	<tr>
 		<td>

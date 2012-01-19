@@ -112,8 +112,8 @@ class Inventory extends Controller {
 			header( 'Location: ' . $this->view->refer );
 		}
 		/** Default values for new item template */
-		$this->view->supplierDefaults = array(
-			 'name' => '',
+		$this->view->suppliers = array(
+			'name' => '',
 			'description' => '',
 			'contact_name' => '',
 			'email' => '',
@@ -121,12 +121,12 @@ class Inventory extends Controller {
 			'fax' => '',
 			'url' => '' 
 		);
-		$this->view->render( 'inventory/createSupplier' );
+		$this->view->render( 'inventory/createEditSupplier' );
 	}
 	function editSupplier( $id ) {
 		if ( isset( $_POST[ 'save' ] ) ) {
 			$this->model->updateSupplier( $_POST[ 'id' ], array(
-				 'name' => $_POST[ 'name' ],
+				'name' => $_POST[ 'name' ],
 				'description' => $_POST[ 'description' ],
 				'contact_name' => $_POST[ 'contact_name' ],
 				'email' => $_POST[ 'email' ],
@@ -138,7 +138,7 @@ class Inventory extends Controller {
 		}
 		$filter = ' WHERE id = ' . $id;
 		$this->view->suppliers = $this->model->getSuppliers( $filter );
-		$this->view->render( 'inventory/editSupplier' );
+		$this->view->render( 'inventory/createEditSupplier' );
 	}
 	function deleteSupplier( $id ) {
 		$this->model->deleteSupplier( $id );
@@ -162,11 +162,11 @@ class Inventory extends Controller {
 			header( 'Location: ' . $this->view->refer );
 		}
 		/** Default values for new item template */
-		$this->view->groupDefaults = array(
+		$this->view->groups = array(
 			 'name' => '',
 			'description' => 'No Description' 
 		);
-		$this->view->render( 'inventory/createGroup' );
+		$this->view->render( 'inventory/createEditGroup' );
 	}
 	function editGroup( $id ) {
 		if ( isset( $_POST[ 'save' ] ) ) {
@@ -178,7 +178,7 @@ class Inventory extends Controller {
 		}
 		$filter = ' WHERE id = ' . $id;
 		$this->view->groups = $this->model->getGroups( $filter );
-		$this->view->render( 'inventory/editGroup' );
+		$this->view->render( 'inventory/createEditGroup' );
 	}
 	function deleteGroup( $id ) {
 		$this->model->deleteGroup( $id );

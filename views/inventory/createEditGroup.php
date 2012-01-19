@@ -1,12 +1,18 @@
 <?php
-	$group = $this->groups[1][0];
+	$group = isset( $this->groups[ 1 ][ 0 ] ) ? $this->groups[ 1 ][ 0 ] : $this->groups;
 ?>
 <div class="ui-padded-bottom ui-heading">
+<?php if( isset( $group['id'] ) ) { ?>
 	Edit Group <?php echo $group['id']; ?>
+<?php } else { ?>
+	Create New Group
+<?php } ?>
 </div>
 <div class="iblock ui-padded-all">
 <form method="post">
-<input type="hidden" name="id" value="<?php echo $group['id']; ?>" />
+<?php if( isset( $group['id'] ) ) { ?>
+	<input type="hidden" name="id" value="<?php echo $group['id']; ?>" />
+<? } ?>
 <table>
 	<tr>
 		<td>
