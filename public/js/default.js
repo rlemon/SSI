@@ -19,6 +19,15 @@ $('.ui-btn').each(function() {
 	StyleButton(this);
 });
 
+$('.ui-btn-delete').bind('click', function(event) {
+	var cells = $(this).closest('tr').children();
+	cells.addClass('ui-state-error');
+	if( !confirm('Are you sure you want to delete this record?\nThis action cannot be undone.') ) {
+		event.preventDefault();
+	}
+	cells.removeClass('ui-state-error');
+});
+
 function Notify(message, delay) {
 	if (typeof message === 'undefined') {
 		return;

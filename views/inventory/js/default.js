@@ -1,12 +1,4 @@
-$('.ui-btn-delete').bind('click', function(event) {
-	console.log($(this).closest('tr'));
-	var cells = $(this).closest('tr').children();
-	cells.addClass('ui-state-error');
-	if( !confirm('Are you sure you want to delete this item?\nThis action cannot be undone.') ) {
-		event.preventDefault();
-	}
-	cells.removeClass('ui-state-error');
-});
+
 $('#filter_limit').bind('change', function() {
 	document.forms['filter'].submit();
 });
