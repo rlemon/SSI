@@ -6,8 +6,8 @@ class Error extends Controller {
 		parent::__construct();
 	}
 	
-	function index() {
-		$this->view->msg = 'This page doesnt exist';
+	function index($message = null) {
+		$this->view->msg = ( $message == null ) ? 'There was an error processing your request.' : $message;
 		$this->view->render('error/index');
 	}
 

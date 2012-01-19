@@ -1,6 +1,6 @@
 
 <?php
-$item = $this->items[ 1 ][ 0 ];
+$item = isset( $this->items[ 1 ][ 0 ] ) ? $this->items[ 1 ][ 0 ] : $this->items;
 $suppliers = $this->suppliers[ 1 ];
 $groups = $this->groups[ 1 ];
 $suppliers_options = '<option value="-1">- None -</option>';
@@ -28,18 +28,17 @@ ITM;
 }
 ?>
 <div class="ui-padded-bottom ui-heading">
-	Edit Item <?php echo $item['id']; ?>
+	Create New Item
 </div>
 <div class="iblock ui-padded-all">
-<form method="post">
-<input type="hidden" name="id" value="<?php echo $item['id']; ?>" />
+<form method="post" class="validate">
 <table>
 	<tr>
 		<td>
 			Part Code (P.C)
 		</td>
 		<td>
-			<input type="text" name="part_code" value="<?php echo $item['part_code']; ?>" />
+			<input type="text" class="required" name="part_code" value="<?php echo $item['part_code']; ?>" />
 		</td>
 		<td>
 			Supplier
@@ -69,13 +68,13 @@ ITM;
 			LOC
 		</td>
 		<td>
-			<input type="text" name="loc" value="<?php echo $item['loc']; ?>" />
+			<input type="text" class="required" name="loc" value="<?php echo $item['loc']; ?>" />
 		</td>
 		<td>
-			Unit Cost
+			Unit Cost (CND)
 		</td>
 		<td>
-			<input type="text" name="unit_cost" value="<?php echo $item['unit_cost']; ?>" />
+			<input type="text" class="required number" name="unit_cost" value="<?php echo $item['unit_cost']; ?>" />
 		</td>
 	</tr>
 	<tr>
@@ -83,7 +82,7 @@ ITM;
 			QTY
 		</td>
 		<td valign="top">
-			<input type="text" name="qty" value="<?php echo $item['qty']; ?>" />
+			<input type="text" class="required number" name="qty" value="<?php echo $item['qty']; ?>" />
 		</td>
 		<td valign="top">
 			Group(s)

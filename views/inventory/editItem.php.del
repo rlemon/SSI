@@ -1,21 +1,38 @@
+
 <?php
-$item = $this->itemDefaults;
+$item = $this->items[ 1 ][ 0 ];
 $suppliers = $this->suppliers[ 1 ];
 $groups = $this->groups[ 1 ];
-$suppliers_options = '<option value="">- None -</option>';
+$suppliers_options = '<option value="-1">- None -</option>';
 for ( $i = 0, $l = count( $suppliers ); $i < $l; $i++ ) {
-    $suppliers_options .= '<option value="' . $suppliers[ $i ][ 'id' ] . '">' . $suppliers[ $i ][ 'name' ] . '</option>';
+	$selected = '';
+	if ( $item[ 'part_supplier_id' ] == $suppliers[ $i ][ 'id' ] ) {
+		$selected = ' selected="selected" ';
+	}
+	$suppliers_options .= '<option value="' . $suppliers[ $i ][ 'id' ] . '" ' . $selected . '>' . $suppliers[ $i ][ 'name' ] . '</option>';
 }
+$selected_groups = '';
 $groups_options = '<option value="">- Add a Group -</option>';
 for ( $i = 0, $l = count( $groups ); $i < $l; $i++ ) {
-    $groups_options .= '<option value="' . $groups[ $i ][ 'id' ] . '">' . $groups[ $i ][ 'name' ] . '</option>';
+	for ( $j = 0, $k = count( $item[ 'groups' ] ); $j < $k; $j++ ) {
+		if ( $item[ 'groups' ][ $j ][ 'id' ] === $groups[ $i ][ 'id' ] ) {
+			$selected_groups .= <<<ITM
+			<div class="filter_menu_item">
+				<input type="hidden" name="groups[]" value="{$groups[$i]['id']}" />
+				{$groups[$i]['name']}<a class="ui-btn xsmall" data-icon-only="ui-icon-trash" onclick="$(this.parentNode).remove()">delete</a>
+			</div>
+ITM;
+		}
+	}
+	$groups_options .= "\n\t\t\t\t" . '<option value="' . $groups[ $i ][ 'id' ] . '">' . $groups[ $i ][ 'name' ] . '</option>';
 }
 ?>
 <div class="ui-padded-bottom ui-heading">
-	Create New Item
+	Edit Item <?php echo $item['id']; ?>
 </div>
 <div class="iblock ui-padded-all">
 <form method="post">
+<input type="hidden" name="id" value="<?php echo $item['id']; ?>" />
 <table>
 	<tr>
 		<td>
@@ -55,7 +72,7 @@ for ( $i = 0, $l = count( $groups ); $i < $l; $i++ ) {
 			<input type="text" name="loc" value="<?php echo $item['loc']; ?>" />
 		</td>
 		<td>
-			Unit Cost
+			Unit Cost (CND)
 		</td>
 		<td>
 			<input type="text" name="unit_cost" value="<?php echo $item['unit_cost']; ?>" />
@@ -75,6 +92,7 @@ for ( $i = 0, $l = count( $groups ); $i < $l; $i++ ) {
 			<select class="ui-state-default" id="filter_menu_groups" data-list-name="groups[]" >
 				<?php echo $groups_options; ?>
 			</select>
+			<?php echo $selected_groups; ?>
 		</td>
 	</tr>
 </table>

@@ -1,12 +1,35 @@
 <?php
-function save_cancel_buttons() {
+/*
+ * 
+ * HEREDOC syntax was a good idea at the start but is clearly getting out of hand 
+ * 
+ * filter menu needs to be ported over to a widget.
+ * 
+ * are they really widgets or 'components'?
+ * 
+ * */
+
+
+function save_cancel_buttons($ref) {
 	return <<<WGT
 <div class="ui-padded-all">
-	<input type="hidden" name="ref_url" value="{$_SERVER['HTTP_REFERER']}" />
+	<input type="hidden" name="refer" value="{$ref}" />
 	<input type="submit" name="save" class="ui-btn small" value="Save" />
-	<input type="submit" name="cancel" class="ui-btn small" value="Cancel" />
+	<a href="{$ref}" class="ui-btn small">Cancel</a>
 </div>
 WGT;
+}
+
+function small_button($selected, $buttons) {
+	$return = '';
+	foreach($buttons as $key => $button) {
+		$return .= '<a class="ui-btn small" href="' . URL . $button['url'] . '"';
+		if( $key == $selected ) {
+			$return .= ' data-disabled="disabled"';
+		}
+		$return .= '>' . $button['title'] . '</a> ';
+	}
+	return $return;
 }
 
 function data_table($type, $columns, $rows, $sort, $direction, $rpp, $offset, $len) {
@@ -50,9 +73,20 @@ BODY;
 BODY;
 			foreach( $columns as $column ) {
 				if( $column['name'] != 'actions' ) {
+					if( is_array( $row[$column['name']] ) ) {
+						$list = array();
+						foreach($row[$column['name']] as $part) {
+							array_push($list, $part['name']);
+						}
+						$list = implode(', ', $list);
+						$body .= <<<BODY
+			<td>{$list}</td>
+BODY;
+					} else {
 					$body .= <<<BODY
 			<td>{$row[$column['name']]}</td>
 BODY;
+					}
 				}
 			}
 			
@@ -93,7 +127,7 @@ PAGING;
 			$disabled .= 'data-disabled="disabled" ';
 		}
 		$paging .= <<<PAGING
-			<input class="ui-btn xsmall" {$disabled}type="submit" name="ro" value="{$val}" />
+			<input class="ui-btn xsmall" {$disabled}type="submit" name="page" value="{$val}" />
 PAGING;
 	}
 	$paging .= <<<PAGING

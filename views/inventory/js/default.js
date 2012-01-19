@@ -7,7 +7,7 @@ $('.ui-btn-delete').bind('click', function(event) {
 	}
 	cells.removeClass('ui-state-error');
 });
-$('#filter_rpp').bind('change', function() {
+$('#filter_limit').bind('change', function() {
 	document.forms['filter'].submit();
 });
 $('#filter_menu_groups, #filter_menu_suppliers').bind('change', function() {
@@ -60,7 +60,13 @@ $('.order-by').bind('click', function(event) {
 		//handle.detach();
 		//$(this).prepend(handle);
 	}
-	
 	document.forms['filter'].submit();
+});
+jQuery.validator.messages.required = '';
+$('form.validate').validate({
+	errorClass: 'ui-state-error',
+	errorElement: 'div',
+	onkeyup: false,
+	onfocusout: false
 });
 

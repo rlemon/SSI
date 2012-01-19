@@ -165,6 +165,7 @@ class Inventory_Model extends Model {
 		$this->deleteData( 'suppliers', $id );
 	}
 	public function deleteGroup( $id ) {
+		$dbo = $this->db->exec( 'DELETE FROM group_item_mapping WHERE group_id = ' . $id );
 		$this->deleteData( 'groups', $id );
 	}
 }

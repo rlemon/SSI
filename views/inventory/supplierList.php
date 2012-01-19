@@ -1,17 +1,17 @@
 <?php
 $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
 $rowData = $this->rowData[1];
-$rpp = isset($_GET['rpp']) ? $_GET['rpp'] : RESULTS_PER_PAGE;
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-
-$order_by = isset($_GET['order']) ? $_GET['order'] : 'id';
-$order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
-
 
 ?>
-<a class="ui-btn small" href="<?php echo URL; ?>inventory/itemList">Items</a>
-<a class="ui-btn small" href="<?php echo URL; ?>inventory/groupList">Groups</a>
-<a class="ui-btn small" data-disabled="disabled" href="<?php echo URL; ?>inventory/supplierList">Suppliers</a>
+
+<?php
+	echo small_button( 2, array(
+		array('title' => 'Items', 'url' => 'inventory/itemList'),
+		array('title' => 'Groups', 'url' => 'inventory/groupList'),
+		array('title' => 'Suppliers', 'url' => 'inventory/supplierList')
+	) );
+?>
+
 	<form method="get" name="filter" id="filter">
 <div class="ui-padded-all iblock">
 	<div class="ui-padded-bottom"><u>Filter Options</u></div>
@@ -22,12 +22,12 @@ $order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
 			<a href="#" id="btn-clear-term" class="ui-btn xsmall ui-btn-inline" data-icon-only="ui-icon-cancel">Clear Field</a>
 		</div>
 		<div class="clearfix">
-			<label for="filter_rpp">Results Per Page</label>
-			<select class="ui-state-default" name="rpp" id="filter_rpp">
+			<label for="filter_limit">Results Per Page</label>
+			<select class="ui-state-default" name="limit" id="filter_limit">
 				<?php
 					foreach(array(5,10,25,50,100) as $value) {
 						echo '<option value="' . $value . '" ';
-						if( $rpp == $value ) {
+						if( $this->limit == $value ) {
 							echo 'selected="selected" ';
 						}
 						echo '>'. $value .'</option>';
@@ -91,7 +91,7 @@ $order_dir = isset($_GET['dir']) ? $_GET['dir'] : 'ASC';
 			'title' => 'Actions',
 			'is_static' => true
 		)
-	), $this->rowData[1], $this->sort, $this->order, $rpp, $page, $this->rowData[0] );
+	), $this->rowData[1], $this->sort, $this->order, $this->limit, $this->page, $this->rowData[0] );
 ?>
 <div class="ui-padded-all">
 	<a class="ui-btn small" data-icon="ui-icon-plus" href="<?php echo URL; ?>inventory/createSupplier">New Supplier</a>

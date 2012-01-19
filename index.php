@@ -12,5 +12,10 @@ require 'libs/Session.php';
 
 require 'config/conf.php';
 require 'config/database.php';
-
-$app = new Bootstrap();
+try {
+	$app = new Bootstrap();
+} catch( Exception $ex ) {
+	require PATH_CONTROLLERS . 'error.php';
+	$controller = new Error();
+	$controller->index($ex->getMessage());
+}

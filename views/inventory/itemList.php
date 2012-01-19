@@ -1,7 +1,5 @@
 <?php
 $filter_term = isset($_GET['term']) ? $_GET['term'] : '';
-$rpp = isset($_GET['rpp']) ? $_GET['rpp'] : RESULTS_PER_PAGE;
-$ro = isset($_GET['page']) ? $_GET['page'] : 1;
 $selected_suppliers_list = isset($_GET['suppliers']) ? $_GET['suppliers'] : null;
 $selected_groups_list = isset($_GET['groups']) ? $_GET['groups'] : null;
 
@@ -41,20 +39,15 @@ ITM;
 	}
 	$groups_options .= "\n\t\t\t\t" . '<option value="' . $groups[$i]['id'] . '">' . $groups[$i]['name'] . '</option>';
 }
-
-function extractNames($arr) {
-	$ret = array();
-	foreach($arr as $grp) {
-		array_push($ret, $grp['name']);
-	}
-	return implode(', ', $ret);
-}
-
 ?>
 
-<a class="ui-btn small" data-disabled="disabled" href="<?php echo URL; ?>inventory/itemList">Items</a>
-<a class="ui-btn small" href="<?php echo URL; ?>inventory/groupList">Groups</a>
-<a class="ui-btn small" href="<?php echo URL; ?>inventory/supplierList">Suppliers</a>
+<?php
+	echo small_button( 0, array(
+		array('title' => 'Items', 'url' => 'inventory/itemList'),
+		array('title' => 'Groups', 'url' => 'inventory/groupList'),
+		array('title' => 'Suppliers', 'url' => 'inventory/supplierList')
+	) );
+?>
 
 	<form method="get" name="filter" id="filter">
 <div class="ui-padded-all iblock">
@@ -66,12 +59,12 @@ function extractNames($arr) {
 			<a href="#" id="btn-clear-term" class="ui-btn xsmall ui-btn-inline" data-icon-only="ui-icon-cancel">Clear Field</a>
 		</div>
 		<div class="clearfix ui-padded-bottom">
-			<label for="filter_rpp">Results Per Page</label>
-			<select class="ui-state-default" name="rpp" id="filter_rpp">
+			<label for="filter_limit">Results Per Page</label>
+			<select class="ui-state-default" name="limit" id="filter_limit">
 				<?php
 					foreach(array(5,10,25,50,100) as $value) {
 						echo '<option value="' . $value . '" ';
-						if( $rpp == $value ) {
+						if( $this->limit == $value ) {
 							echo 'selected="selected" ';
 						}
 						echo '>'. $value .'</option>';
@@ -107,6 +100,11 @@ function extractNames($arr) {
 		array(
 			'name' => 'id',
 			'title' => 'ID',
+			'is_static' => true
+		),
+		array(
+			'name' => 'groups',
+			'title' => 'Groups',
 			'is_static' => true
 		),
 		array(
@@ -149,7 +147,7 @@ function extractNames($arr) {
 			'title' => 'Actions',
 			'is_static' => true
 		)
-	), $this->rowData[1], $this->sort, $this->order, $rpp, $page, $this->rowData[0] );
+	), $this->rowData[1], $this->sort, $this->order, $this->limit, $this->page, $this->rowData[0] );
 ?>
 
 

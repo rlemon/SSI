@@ -6,16 +6,18 @@ class Bootstrap {
 			$url[ 0 ] = 'dashboard'; // default value
 		}
 		$file = PATH_CONTROLLERS . $url[ 0 ] . '.php';
-		if ( file_exists( $file ) ) {
-			require $file;
-		} else {
-			$this->error();
+		if ( !file_exists( $file ) ) {
+			throw new Exception('The page you requested does not exist!');
+		}
+		require $file;
+		if ( !class_exists( $url[ 0 ] ) ) {
+			throw new Exception('There was a problem generating the requested page!');
 		}
 		$controller = new $url[ 0 ];
 		$controller->loadModel( $url[ 0 ] );
 		if ( isset( $url[ 1 ] ) ) {
 			if ( !method_exists( $controller, $url[ 1 ] ) ) {
-				$this->error();
+				throw new Exception('The method you requested is not available!');
 			}
 			$params = array_slice( $url, 2 );
 			call_user_func_array( array(
@@ -25,11 +27,5 @@ class Bootstrap {
 		} else {
 			$controller->index();
 		}
-	}
-	function error() {
-		require PATH_CONTROLLERS . 'error.php';
-		$controller = new Error();
-		$controller->index();
-		return false;
 	}
 }

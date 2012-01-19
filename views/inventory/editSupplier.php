@@ -63,6 +63,6 @@
 </table>
 </div>
 
-<?php echo save_cancel_buttons(); ?>
+<?php echo save_cancel_buttons($this->refer); ?>
 
 </form>
