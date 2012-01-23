@@ -54,7 +54,8 @@ $rowData = $this->rowData[1];
 		array(
 			'name' => 'name',
 			'title' => 'Name',
-			'is_static' => true
+			'is_static' => true,
+			'nowrap' => true
 		),
 		array(
 			'name' => 'description',

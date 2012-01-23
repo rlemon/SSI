@@ -57,14 +57,20 @@
 		</td>
 	</tr>
 	<tr>
+		<td valign="top">
+			Address
+		</td>
+		<td>
+			<input type="text" name="address_1" value="<?php echo $supplier['address_1']; ?>" /><br />
+			<input type="text" name="address_2" value="<?php echo $supplier['address_2']; ?>" /><br />
+			<input type="text" name="address_3" value="<?php echo $supplier['address_3']; ?>" />
+		</td>
 		<td>
 			Email
 		</td>
 		<td>
 			<input type="text" name="email" value="<?php echo $supplier['email']; ?>" />
 		</td>
-		<td></td>
-		<td></td>
 	</tr>
 </table>
 </div>

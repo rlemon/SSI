@@ -72,6 +72,7 @@ BODY;
 		<tr{$alt_style}>
 BODY;
 			foreach( $columns as $column ) {
+				$cell_style = ( isset( $column['nowrap'] ) && $column['nowrap'] != false ) ? ' class="nowrap"' : '';
 				if( $column['name'] != 'actions' ) {
 					if( is_array( $row[$column['name']] ) ) {
 						$list = array();
@@ -80,11 +81,11 @@ BODY;
 						}
 						$list = implode(', ', $list);
 						$body .= <<<BODY
-			<td>{$list}</td>
+			<td{$cell_style}>{$list}</td>
 BODY;
 					} else {
 					$body .= <<<BODY
-			<td>{$row[$column['name']]}</td>
+			<td{$cell_style}>{$row[$column['name']]}</td>
 BODY;
 					}
 				}

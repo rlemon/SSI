@@ -120,7 +120,8 @@ ITM;
 		array(
 			'name' => 'part_supplier_name',
 			'title' => 'Supplier',
-			'is_static' => true
+			'is_static' => true,
+			'nowrap' => true
 		),
 		array(
 			'name' => 'supplier_part_code',
