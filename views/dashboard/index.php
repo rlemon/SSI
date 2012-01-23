@@ -32,7 +32,7 @@
 							<span class="small">Theme Selection:</span>
 						</td>
 						<td>
-							<select class="ui-state-default" name="ui_theme">
+							<select class="ui-state-default"name="ui_theme">
 								<?php
 									for($i = 0, $l = count($this->themes); $i < $l; $i++) {
 										$selected = '';

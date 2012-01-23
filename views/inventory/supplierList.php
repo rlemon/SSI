@@ -23,7 +23,7 @@ $rowData = $this->rowData[1];
 		</div>
 		<div class="clearfix">
 			<label for="filter_limit">Results Per Page</label>
-			<select class="ui-state-default" name="limit" id="filter_limit">
+			<select class="ui-state-default"name="limit" id="filter_limit">
 				<?php
 					foreach(array(5,10,25,50,100) as $value) {
 						echo '<option value="' . $value . '" ';

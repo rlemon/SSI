@@ -18,7 +18,10 @@ function StyleButton(elm) {
 $('.ui-btn').each(function() {
 	StyleButton(this);
 });
-
+//$('select').selectmenu();
+$('select').each(function() {
+	this.className += " ui-state-default";
+});
 $('.ui-btn-delete').bind('click', function(event) {
 	var cells = $(this).closest('tr').children();
 	cells.addClass('ui-state-error');

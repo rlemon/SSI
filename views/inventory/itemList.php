@@ -60,7 +60,7 @@ ITM;
 		</div>
 		<div class="clearfix ui-padded-bottom">
 			<label for="filter_limit">Results Per Page</label>
-			<select class="ui-state-default" name="limit" id="filter_limit">
+			<select class="ui-state-default"name="limit" id="filter_limit">
 				<?php
 					foreach(array(5,10,25,50,100) as $value) {
 						echo '<option value="' . $value . '" ';
@@ -74,14 +74,14 @@ ITM;
 		</div>
 		<div class="filter_menu">
 			<label for="filter_menu_groups">Groups</label>
-			<select class="ui-state-default" id="filter_menu_groups" data-list-name="groups[]" >
+			<select class="ui-state-default"id="filter_menu_groups" data-list-name="groups[]" >
 				<?php echo $groups_options; ?>
 			</select>
 			<?php echo $selected_groups; ?>
 		</div>
 		<div class="filter_menu">
 			<label for="filter_menu_suppliers">Suppliers</label>
-			<select class="ui-state-default" id="filter_menu_suppliers" data-list-name="suppliers[]">
+			<select class="ui-state-default"id="filter_menu_suppliers" data-list-name="suppliers[]">
 				<?php echo $suppliers_options; ?>
 			</select>
 			<?php echo $selected_suppliers; ?>

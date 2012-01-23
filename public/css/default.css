@@ -131,4 +131,9 @@ blockquote:before {
     line-height: 65px;
 }
 
-
+/* Select menu fix */
+select.ui-state-default {
+	padding: 3px; /* pure aesthetics */ 
+	background-color: auto !important;
+	background-image: none !important;
+}
