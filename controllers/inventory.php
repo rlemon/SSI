@@ -90,6 +90,11 @@ class Inventory extends Controller {
 		$this->view->groups = $this->model->getGroups();
 		$this->view->render( 'inventory/createEditItem' );
 	}
+	function viewItem( $id ) {
+		$filter = ' WHERE inv.id = ' . $id;
+		$this->view->items = $this->model->getItems( $filter );
+		$this->view->render( 'inventory/viewItem' );
+	}
 	function deleteItem( $id ) {
 		$this->model->deleteItem( $id );
 		header( 'Location: ' . URL . 'inventory/itemList' );

@@ -116,6 +116,18 @@ blockquote:before {
 	width: 1em;
 }
 
+/* temp solution... you will need to look at a decent design for this information then lay it out to match. */
+.view-table td {
+	vertical-align: top;
+	padding: 6px;
+}
+.view-table td:nth-child(odd) {
+	font-weight: 700;
+}
+.view-table td:nth-child(odd):after {
+	content: ':';
+}
+
 .ui-heading {
 	font-size: 1.33em;
 	font-weight: 700;

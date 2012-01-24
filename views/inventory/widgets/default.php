@@ -10,11 +10,12 @@
  * */
 
 
-function save_cancel_buttons($ref) {
-	return <<<WGT
+function save_cancel_buttons($ref, $makesave = true) {
+		$save = $makesave ? '<input type="submit" name="save" class="ui-btn small" value="Save" />' : '';
+		return <<<WGT
 <div class="ui-padded-all">
 	<input type="hidden" name="refer" value="{$ref}" />
-	<input type="submit" name="save" class="ui-btn small" value="Save" />
+	{$save}
 	<a href="{$ref}" class="ui-btn small">Cancel</a>
 </div>
 WGT;
@@ -93,6 +94,7 @@ BODY;
 			
 			$body .= <<<BODY
 			<td><span>
+				<a href="{$url}inventory/view{$type}/{$row['id']}" class="ui-btn" data-icon-only="ui-icon-document" title="View {$type}">View {$type}</a>
 				<a href="{$url}inventory/edit{$type}/{$row['id']}" class="ui-btn" data-icon-only="ui-icon-pencil" title="Edit {$type}">Edit {$type}</a>
 				<a href="{$url}inventory/delete{$type}/{$row['id']}" class="ui-btn ui-btn-delete" data-icon-only="ui-icon-trash" title="Delete {$type}">Delete {$type}</a>
 			</span></td>

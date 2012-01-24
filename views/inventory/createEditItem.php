@@ -1,8 +1,10 @@
-
 <?php
 $item = isset( $this->items[ 1 ][ 0 ] ) ? $this->items[ 1 ][ 0 ] : $this->items;
 $suppliers = $this->suppliers[ 1 ];
 $groups = $this->groups[ 1 ];
+/* can i also look into making this a little more streamlined.. this really should be part of the framework.. 
+ * i will need to look into better design patterns for MVC for later versions.. possibly with better understanding
+ * i should use a pre-fabd MVC framework */
 $suppliers_options = '<option value="-1">- None -</option>';
 for ( $i = 0, $l = count( $suppliers ); $i < $l; $i++ ) {
 	$selected = '';
