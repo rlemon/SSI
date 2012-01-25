@@ -71,6 +71,7 @@ blockquote:before {
 .small {
 	font-size: .89em;
 }
+
 .xsmall {
 	font-size: .68em;
 }
@@ -108,25 +109,19 @@ blockquote:before {
 .data-table, .data-table td {
     font-size: 90%; 
 }
-.data-table td, .data-table th {
+.data-table td, .data-table th, .ui-widget-content table td {
     padding: 6px 12px;
+}
+
+.data-table td.ui-priority-secondary {
+	white-space: nowrap;
+	width: 1em;
 }
 
 .static-column {
 	width: 1em;
 }
 
-/* temp solution... you will need to look at a decent design for this information then lay it out to match. */
-.view-table td {
-	vertical-align: top;
-	padding: 6px;
-}
-.view-table td:nth-child(odd) {
-	font-weight: 700;
-}
-.view-table td:nth-child(odd):after {
-	content: ':';
-}
 
 .ui-heading {
 	font-size: 1.33em;

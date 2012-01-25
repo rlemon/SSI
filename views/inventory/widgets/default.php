@@ -21,6 +21,29 @@ function save_cancel_buttons($ref, $makesave = true) {
 WGT;
 }
 
+function button($map, $ref = null, $use_container = true) {
+	$html = '';
+	
+	foreach( $map as $button) {
+		$html .= '<a href="' . $button['url'] . '"';
+		
+		if( isset( $button['disabled'] ) ) {
+			 $html .= ' data-disabled="disabled"';
+		}
+		
+		$html .= ' title="' . $button['title'] . '" class="ui-btn small">'. $button['title'] . '</a>';
+	}
+	
+	if( $ref ) {
+	$html .= '<input type="hidden" name="refer" value="' . $ref . '" />';
+	}
+	
+	if( $use_container ) {
+		return '<div class="ui-padded-all">' . $html . '</div>';
+	}
+	return $html;
+}
+
 function small_button($selected, $buttons) {
 	$return = '';
 	foreach($buttons as $key => $button) {

@@ -93,7 +93,7 @@ class Inventory extends Controller {
 	function viewItem( $id ) {
 		$filter = ' WHERE inv.id = ' . $id;
 		$this->view->items = $this->model->getItems( $filter );
-		$this->view->render( 'inventory/viewItem' );
+		$this->view->render( 'inventory/Item' );
 	}
 	function deleteItem( $id ) {
 		$this->model->deleteItem( $id );
