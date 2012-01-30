@@ -1,10 +1,7 @@
-#Sales Shipping Inventory
-Shipping, Sales, and Inventory management system.
+#SSI<sup>2.0</sup>
+###*Shipping Sales and Inventory Management*
 
-###TBC
-- Add Validation to all forms.
-
-- Shipping Service
-- Sales Service
-
-- clean up all variable names. Currently they do not follow a consistent pattern and some are confusing. Think this through.
+## Changes
+- Abandoned the no-framework framework for CodeIgniter
+- Refactored database tables to make things more expandable
+- Refactored page flow to make more sense
