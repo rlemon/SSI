@@ -92,5 +92,6 @@
 		<script type="text/javascript" src="<?php echo $script; ?>"></script>
 	<?php endforeach; ?>
 <?php endif; ?>
+<script type="text/javascript" src="<?php echo base_url('application/assets/js/notifications.js'); ?>"></script>
 </body>
 </html>

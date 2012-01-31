@@ -21,7 +21,7 @@ class Template {
 		unset( $data['styles'] );
 
 		$headData['controller'] = $CI->router->fetch_class();
-		
+		echo $headData['controller'];
 		$headData['logged_in'] = $CI->tank_auth->is_logged_in();
 		
 		if( array_key_exists('styles', $headData) ) {

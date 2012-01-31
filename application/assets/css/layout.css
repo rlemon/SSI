@@ -319,3 +319,23 @@ h3.title_03 {
 .center-options.ui-padded-top {
 	padding-top: 26px;
 }
+
+
+.notifier-bar {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	background-color: #2aa198;
+}
+.notifier-bar p {
+	padding: 3px 1px 2px 1px;
+	text-align: center;
+}
+.notifier-bar button {
+	border: 2px solid #073642;
+	padding: 2px;
+	margin: 1px;
+	color: #073642;
+	background-color: #2aa198;
+}
