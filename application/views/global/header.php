@@ -1,6 +1,5 @@
 <?php
-function checkMenuItem($item, $override = false) {
-	$ctrl = &$controller;
+function checkMenuItem($ctrl, $item, $override = false) {
 	$class = '';
 	if( $ctrl == $item ) {
 		$class .= ' selected';
@@ -31,22 +30,22 @@ function checkMenuItem($item, $override = false) {
 </div>
 <div class="main_menu clearfix">
     <ul class="gradient clearfix">
-        <li class="first<?php echo checkMenuItem('dashboard', true); ?>">
+        <li class="first<?php echo checkMenuItem($controller, 'dashboard', true); ?>">
             <?php echo anchor('/dashboard', 'Dashboard'); ?>
         </li>
-        <li <?php checkMenuItem('inventory'); ?>>
+        <li <?php checkMenuItem($controller, 'inventory'); ?>>
             <?php echo anchor('/inventory', 'Inventory'); ?>
         </li>
-        <li <?php checkMenuItem('sales'); ?>>
+        <li <?php checkMenuItem($controller, 'sales'); ?>>
             <?php echo anchor('/sales', 'Sales'); ?>
         </li>
-        <li <?php checkMenuItem('shipping'); ?>>
+        <li <?php checkMenuItem($controller, 'shipping'); ?>>
             <?php echo anchor('/shipping', 'Shipping'); ?>
         </li>
-        <li <?php checkMenuItem('help'); ?>>
+        <li <?php checkMenuItem($controller, 'help'); ?>>
             <?php echo anchor('/help', 'Help'); ?>
         </li>
-        <li class="last<?php echo checkMenuItem('auth', true); ?>">
+        <li class="last<?php echo checkMenuItem($controller, 'auth', true); ?>">
             <?php
             if( !$logged_in ) {
 				echo anchor('/auth/login', 'Login');
