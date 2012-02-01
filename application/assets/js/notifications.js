@@ -110,8 +110,3 @@ var Notifier = (function() {
     };
     return Notifier;
 })();
-var n = new Notifier();
-n.success('hello world', 'title');
-setTimeout(function() {
-	n.warning('hello world2', 'title');
-}, 1000);

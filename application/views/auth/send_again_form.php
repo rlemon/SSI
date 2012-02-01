@@ -8,7 +8,7 @@ $email = array(
 );
 ?>
 <?php echo form_open($this->uri->uri_string()); ?>
-<table class="tbl_padded">
+<table class="auth-form">
 	<tr>
 		<td><?php echo form_label('Email Address', $email['id']); ?></td>
 		<td><?php echo form_input($email); ?></td>
@@ -16,7 +16,7 @@ $email = array(
 	</tr>
 	<tr>
 		<td colspan="3">
-			<?php echo form_submit('send', 'Send'); ?>
+			<?php echo form_submit('send', 'Send activation email'); ?>
 		</td>
 	</tr>
 </table>

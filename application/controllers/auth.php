@@ -9,9 +9,7 @@ class Auth extends CI_Controller
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		$this->load->library('security');
-		$this->load->library('tank_auth');
 		$this->lang->load('tank_auth');
-		
 	}
 
 	function index()
@@ -30,11 +28,6 @@ class Auth extends CI_Controller
 	 */
 	function login()
 	{
-		$data['scripts'] = array(
-			base_url('application/assets/js/util.js'),
-			base_url('application/assets/js/auth.js')
-		);
-		
 		if ($this->tank_auth->is_logged_in()) {									// logged in
 			redirect('');
 
@@ -121,11 +114,6 @@ class Auth extends CI_Controller
 	 */
 	function register()
 	{
-		$data['scripts'] = array(
-			base_url('application/assets/js/util.js'),
-			base_url('application/assets/js/auth.js')
-		);
-		
 		if ($this->tank_auth->is_logged_in()) {									// logged in
 			redirect('');
 
@@ -210,11 +198,6 @@ class Auth extends CI_Controller
 	 */
 	function send_again()
 	{
-		$data['scripts'] = array(
-			base_url('application/assets/js/util.js'),
-			base_url('application/assets/js/auth.js')
-		);
-		
 		if (!$this->tank_auth->is_logged_in(FALSE)) {							// not logged in or activated
 			redirect('/auth/login/');
 
@@ -272,10 +255,6 @@ class Auth extends CI_Controller
 	 */
 	function forgot_password()
 	{
-		$data['scripts'] = array(
-			base_url('application/assets/js/util.js'),
-			base_url('application/assets/js/auth.js')
-		);
 		if ($this->tank_auth->is_logged_in()) {									// logged in
 			redirect('');
 
@@ -316,10 +295,6 @@ class Auth extends CI_Controller
 	 */
 	function reset_password()
 	{
-		$data['scripts'] = array(
-			base_url('application/assets/js/util.js'),
-			base_url('application/assets/js/auth.js')
-		);
 		$user_id		= $this->uri->segment(3);
 		$new_pass_key	= $this->uri->segment(4);
 
@@ -363,10 +338,6 @@ class Auth extends CI_Controller
 	 */
 	function change_password()
 	{
-		$data['scripts'] = array(
-			base_url('application/assets/js/util.js'),
-			base_url('application/assets/js/auth.js')
-		);
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
 			redirect('/auth/login/');
 
@@ -399,10 +370,6 @@ class Auth extends CI_Controller
 	 */
 	function change_email()
 	{
-		$data['scripts'] = array(
-			base_url('application/assets/js/util.js'),
-			base_url('application/assets/js/auth.js')
-		);
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
 			redirect('/auth/login/');
 
@@ -462,10 +429,6 @@ class Auth extends CI_Controller
 	 */
 	function unregister()
 	{
-		$data['scripts'] = array(
-			base_url('application/assets/js/util.js'),
-			base_url('application/assets/js/auth.js')
-		);
 		if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
 			redirect('/auth/login/');
 

@@ -6,7 +6,7 @@ $password = array(
 );
 ?>
 <?php echo form_open($this->uri->uri_string()); ?>
-<table class="tbl_padded">
+<table class="auth-form">
 	<tr>
 		<td><?php echo form_label('Password', $password['id']); ?></td>
 		<td><?php echo form_password($password); ?></td>
