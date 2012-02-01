@@ -23,4 +23,9 @@ class Dashboard extends CI_Controller {
 		$this->template->load('dashboard/index', $data);
 	}
 	
+	public function personal_options() {
+		$data['login'] = $this->tank_auth->get_username();
+		$data['email'] = $this->tank_auth->get_email();
+		$this->template->load('dashboard/personal_options', $data);
+	}
 }

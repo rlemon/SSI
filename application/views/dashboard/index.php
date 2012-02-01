@@ -7,7 +7,7 @@
 	<div class="menu_inline">
 		<ul>
 			<li>
-				<a href="#" title="">Personal Options</a>
+				<?php echo anchor('/dashboard/personal_options/', 'Personal Options'); ?>
 			</li>
 			<li>
 				<a href="#" title="">Notifications</a>
