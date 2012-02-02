@@ -14,10 +14,8 @@ class Dashboard extends CI_Controller {
 	public function index()
 	{
 		$data['scripts'] = array(
-			base_url('application/assets/js/util.js')
-		);
-		$data['styles'] = array(
-			
+			base_url('application/assets/js/util.js'),
+			base_url('application/views/dashboard/js/xhrfunctions.js')
 		);
 		
 		$this->template->load('dashboard/index', $data);
