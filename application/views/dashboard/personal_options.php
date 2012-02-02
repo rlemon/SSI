@@ -22,7 +22,7 @@
 	<div class="content">
 		<h2 class="title_02">Personal Options</h2>
 		<p>
-			<span class="label_02">Login: </span><?php echo $login ?>
+			<span class="label_02">Login: </span><span class="editable"><?php echo $login ?></span>
 		</p>
 		<p>
 			<span class="label_02">Email: </span><?php echo $email ?>
@@ -32,6 +32,13 @@
 		</p>
 		<p>
 			<span class="label_02">Registered on: </span><?php ?>
+		</p>
+		<p>
+			<form action="http://localhost/index.php/auth/test" method="post" accept-charset="utf-8">
+				<input type="text" name="test1" value="hello" />
+				<input type="text" name="test2" value="world" />
+				<input type="submit" value="Send" />
+			</form>
 		</p>
 	</div>
 </div>

@@ -16,6 +16,42 @@ var addEventListener = function( obj, evt, func, capture ) {
 		throw "error attaching event.";
 	}
 }
+var urlstringify = (function() {
+    //simple types, for which toString does the job
+    //used in singularStringify
+    var simplies = {
+        number: true,
+        string: true,
+        boolean: true
+    };
+
+    var singularStringify = function(thing) {
+        if (typeof thing in simplies) {
+            return encodeURIComponent(thing.toString());
+        }
+        return '';
+    };
+
+    var arrayStringify = function(array, keyName) {
+        keyName = singularStringify(keyName);
+
+        return array.map(function(thing) {
+            return keyName + '=' + singularStringify(thing);
+        });
+    };
+
+    return function(obj) {
+        return Object.keys(obj).map(function(key) {
+            var val = obj[key];
+
+            if (Array.isArray(val)) {
+                return arrayStringify(val, key);
+            } else {
+                return singularStringify(key) + '=' + singularStringify(val);
+            }
+        }).join('&');
+    };
+}());
 var xhr = {
 	xmlhttp: (function() {
 		var xmlhttp;
@@ -44,6 +80,7 @@ var xhr = {
 		if (this.xmlhttp && options && 'url' in options) {
 			var _xhr = this.xmlhttp;
 			_xhr.open(type, options.url, true);
+			_xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 			_xhr.onreadystatechange = function() {
 				if (_xhr.readyState == 4 && _xhr.status == 200) {
 					if( typeof options.success  === 'function' ) {
@@ -55,7 +92,11 @@ var xhr = {
 					}
 				}
 			};
-			_xhr.send(null);
+			var data = null;
+			if( 'data' in options ) {
+				data = urlstringify( options.data ); 
+			}
+			_xhr.send( data );
 		}
 	}
 };

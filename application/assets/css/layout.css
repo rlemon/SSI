@@ -328,3 +328,7 @@ span.label_02 {
 	width: 125px;
 	color: #888;
 }
+
+span.editable {
+	width: 100%;
+}

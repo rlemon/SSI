@@ -10,16 +10,16 @@ class Template {
 		return rtrim( $results );
 	}
 
-	function load($view, $data = null)
+	function load($view, $data = array())
 	{
 		$CI = &get_instance();
 
 		$headData = array_key_exists('styles', $data) ? array('styles' => $data['styles']) : array();
 		$footData = array_key_exists('scripts', $data) ? array('scripts' => $data['scripts']) : null;
-
+		
 		unset( $data['scripts'] );
 		unset( $data['styles'] );
-
+			
 		$headData['controller'] = $CI->router->fetch_class();
 		$headData['logged_in'] = $CI->tank_auth->is_logged_in();
 		

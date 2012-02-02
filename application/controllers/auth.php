@@ -12,6 +12,12 @@ class Auth extends CI_Controller
 		$this->lang->load('tank_auth');
 	}
 
+	function test() {
+		$test1 = $this->input->post('test1');
+		$test2 = $this->input->post('test2');
+		echo $test1. ' ' .$test2. ' received as post';
+	}
+
 	function index()
 	{
 		if ($message = $this->session->flashdata('message')) {
