@@ -12,12 +12,6 @@ class Auth extends CI_Controller
 		$this->lang->load('tank_auth');
 	}
 
-	function test() {
-		$test1 = $this->input->post('test1');
-		$test2 = $this->input->post('test2');
-		echo $test1. ' ' .$test2. ' received as post';
-	}
-
 	function index()
 	{
 		if ($message = $this->session->flashdata('message')) {
@@ -368,7 +362,27 @@ class Auth extends CI_Controller
 			$this->template->load('auth/change_password_form', $data);
 		}
 	}
-
+	
+	/**
+	 * Change user login
+	 *
+	 * @return void
+	 */
+	 function xhr_change_username()
+	 {
+		if (!$this->tank_auth->is_logged_in()) {
+			return null;
+		} else {
+			$data['errors'] = array();
+			if( !is_null( $data = $this->tank_auth->change_username($this->input->post('username')))) {			// success
+					$data['message'] = 'username successfully updated!';
+			} else {
+				$errors = $this->tank_auth->get_error_message();
+				foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+			}
+			echo json_encode($data);
+		}
+	 }
 	/**
 	 * Change user email
 	 *

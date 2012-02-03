@@ -41,7 +41,6 @@ var Notifier = (function() {
 			},
             notify: function(message, title, image) {
                 var _this = this, timeout = this.config.defaultTimeout;
-                console.log( timeout );
                 var notification = document.createElement('div');
                 notification.onmouseover = function() {
 					 _this.fn.applyStyles.apply(this, [notification, _this.config.notificationStylesHover]);

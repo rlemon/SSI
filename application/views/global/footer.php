@@ -87,11 +87,6 @@
 	</div>
 </div>
 </div>
-<?php if( isset( $scripts ) ): ?>
-	<?php foreach( $scripts as $script ): ?>
-		<script type="text/javascript" src="<?php echo $script; ?>"></script>
-	<?php endforeach; ?>
-<?php endif; ?>
 <script type="text/javascript" src="<?php echo base_url('application/assets/js/notifications.js'); ?>"></script>
 <script type="text/javascript">
 	var notifier = new Notifier();
@@ -101,5 +96,10 @@
 	<?php endforeach; ?>
 <?php endif; ?>
 </script>
+<?php if( isset( $scripts ) ): ?>
+	<?php foreach( $scripts as $script ): ?>
+		<script type="text/javascript" src="<?php echo $script; ?>"></script>
+	<?php endforeach; ?>
+<?php endif; ?>
 </body>
 </html>

@@ -22,10 +22,10 @@
 	<div class="content">
 		<h2 class="title_02">Personal Options</h2>
 		<p>
-			<span class="label_02">Login: </span><span class="editable"><?php echo $login ?></span>
+			<span class="label_02">Login: </span><span class="editable" name="username" data-url="auth/xhr_change_username/"><?php echo $login ?></span>
 		</p>
 		<p>
-			<span class="label_02">Email: </span><?php echo $email ?>
+			<span class="label_02">Email: </span><span class="editable" name="email" data-url="auth/xhr_change_email/"><?php echo $email ?></span>
 		</p>
 		<p>
 			<span class="label_02">Last Login: </span><?php ?>

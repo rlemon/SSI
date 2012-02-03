@@ -265,6 +265,38 @@ class Tank_auth
 	}
 
 	/**
+	 * Change username and return some data about user:
+	 * user_id, username, email, new_email_key.
+	 * Can be called for not activated users only.
+	 *
+	 * @param	string
+	 * @return	array
+	 */
+	function change_username($username)
+	{
+		$user_id = $this->ci->session->userdata('user_id');
+
+		if (!is_null($user = $this->ci->users->get_user_by_id($user_id, TRUE))) {
+
+			$data = array(
+				'user_id'	=> $user_id,
+				'username'	=> $user->username
+			);
+			if (strtolower($user->username) == strtolower($username)) {
+				return $data;
+				
+			} elseif ($this->ci->users->is_username_available($username)) {
+				$this->ci->users->set_new_username($user_id, $username, TRUE);
+				return $data;
+
+			} else {
+				$this->error = array('login' => 'auth_username_in_use');
+			}
+		}
+		return NULL;
+	}
+
+	/**
 	 * Activate user using given key
 	 *
 	 * @param	string
