@@ -283,7 +283,7 @@ class Tank_auth
 				'username'	=> $user->username
 			);
 			if (strtolower($user->username) == strtolower($username)) {
-				return $data;
+				return NULL;
 				
 			} elseif ($this->ci->users->is_username_available($username)) {
 				$this->ci->users->set_new_username($user_id, $username, TRUE);

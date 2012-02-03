@@ -25,18 +25,17 @@ var editable_blur_handler = function(e) {
     xhr.post({
         url: "/index.php/" + _this.getAttribute('data-url'),
         success: function(data) {
-			data = JSON.parse(data);
-			if( data.errors ) {
-				notifier.warning(data.errors.login,"XHR Warning");
+			data = JSON.parse(data.responseText);
+			if( data && 'errors' in data ) {
+				notifier.warning(data.errors.login);
 				_this.value = _this.getAttribute('value');
-			} else {
-				notifier.success("Your records have been updated.","XHR success");
-				
+			} else if( data ){
+				notifier.success("Your records have been updated.");
 			}
 			editable_success_handler.apply(_this);
         },
-        failure: function() {
-			notifier.error("There was an error processing your request.","XHR error");
+        failure: function(data) {
+			notifier.error(data.statusText, data.status);
 			_this.value = _this.getAttribute('value');
 			editable_success_handler.apply(_this);
 		},
