@@ -287,6 +287,9 @@ class Tank_auth
 				
 			} elseif ($this->ci->users->is_username_available($username)) {
 				$this->ci->users->set_new_username($user_id, $username, TRUE);
+				$this->ci->session->set_userdata(array(
+					'username'	=> $username
+				));
 				return $data;
 
 			} else {

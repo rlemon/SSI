@@ -16,14 +16,20 @@ class Dashboard extends CI_Controller {
 		$this->template->load('dashboard/index');
 	}
 	
-	public function personal_options() {
+	public function personal_options($loading_self = FALSE) {
+
 		$data['scripts'] = array(
 			base_url('application/assets/js/util.js'),
 			base_url('application/views/dashboard/js/xhrfunctions.js')
 		);
-
 		$data['login'] = $this->tank_auth->get_username();
 		$data['email'] = $this->tank_auth->get_email();
-		$this->template->load('dashboard/personal_options', $data);
+		$data['default_view'] = $this->load->view('dashboard/personal_options_form', $data, TRUE);
+		if( $loading_self ) {
+			echo $data['default_view'];
+			return;
+		} else {
+			$this->template->load('dashboard/personal_options', $data);
+		}
 	}
 }

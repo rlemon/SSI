@@ -7,38 +7,28 @@
 	<div class="menu_inline">
 		<ul>
 			<li>
-				<?php echo anchor('/auth/change_email/', 'Change Email'); ?>
+				<?php echo anchor('/dashboard/personal_options/1', 'View Data','class="xhr-load"'); ?>
 			</li>
 			<li>
-				<?php echo anchor('/auth/change_password/', 'Change Password'); ?>
+				<?php echo anchor('/auth/change_username/', 'Change Username','class="xhr-load"'); ?>
 			</li>
 			<li>
-				<?php echo anchor('/auth/unregister/', 'Delete Account'); ?>
+				<?php echo anchor('/auth/change_email/', 'Change Email','class="xhr-load"'); ?>
+			</li>
+			<li>
+				<?php echo anchor('/auth/change_password/', 'Change Password','class="xhr-load"'); ?>
+			</li>
+			<li>
+				<?php echo anchor('/auth/reset_password/', 'Force Reset Password','class="xhr-load"'); ?>
+			</li>
+			<li>
+				<?php echo anchor('/auth/unregister/', 'Delete Account','class="xhr-load"'); ?>
 			</li>
 		</ul>
 	</div>
 </div>
 <div class="column_02">
-	<div class="content">
-		<h2 class="title_02">Personal Options</h2>
-		<p>
-			<span class="label_02">Login: </span><span class="editable" name="username" data-url="auth/xhr_change_username/"><?php echo $login ?></span>
-		</p>
-		<p>
-			<span class="label_02">Email: </span><span class="editable" name="email" data-url="auth/xhr_change_email/"><?php echo $email ?></span>
-		</p>
-		<p>
-			<span class="label_02">Last Login: </span><?php ?>
-		</p>
-		<p>
-			<span class="label_02">Registered on: </span><?php ?>
-		</p>
-		<p>
-			<form action="http://localhost/index.php/auth/test" method="post" accept-charset="utf-8">
-				<input type="text" name="test1" value="hello" />
-				<input type="text" name="test2" value="world" />
-				<input type="submit" value="Send" />
-			</form>
-		</p>
+	<div class="content" id="content-area">
+		<?php echo $default_view; ?>
 	</div>
 </div>
