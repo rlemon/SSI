@@ -28,15 +28,17 @@ var editable_blur_handler = function(e) {
 			data = JSON.parse(data);
 			if( data.errors ) {
 				notifier.warning(data.errors.login,"XHR Warning");
-				_this.focus();
+				_this.value = _this.getAttribute('value');
 			} else {
 				notifier.success("Your records have been updated.","XHR success");
-				editable_success_handler.apply(_this);
+				
 			}
+			editable_success_handler.apply(_this);
         },
         failure: function() {
 			notifier.error("There was an error processing your request.","XHR error");
-			_this.focus();
+			_this.value = _this.getAttribute('value');
+			editable_success_handler.apply(_this);
 		},
         data: {
 			"username": _this.value
