@@ -4,22 +4,10 @@
  *
  * An open source application development framework for PHP 5.1.6 or newer
  *
- * NOTICE OF LICENSE
- * 
- * Licensed under the Open Software License version 3.0
- * 
- * This source file is subject to the Open Software License (OSL 3.0) that is
- * bundled with this package in the files license.txt / license.rst.  It is
- * also available through the world wide web at this URL:
- * http://opensource.org/licenses/OSL-3.0
- * If you did not receive a copy of the license and are unable to obtain it
- * through the world wide web, please send an email to
- * licensing@ellislab.com so we can send you a copy immediately.
- *
  * @package		CodeIgniter
- * @author		EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2012, EllisLab, Inc. (http://ellislab.com/)
- * @license		http://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
  * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
@@ -33,18 +21,11 @@
  * @package		CodeIgniter
  * @subpackage	Helpers
  * @category	Helpers
- * @author		EllisLab Dev Team
+ * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/helpers/xml_helper.html
  */
 
 // ------------------------------------------------------------------------
-
-/**
- * Edits by rlemon for captcha image complexity
- * Font Size for readability
- * TODO: Fix font size from config
- */
-
 
 /**
  * Create CAPTCHA
@@ -128,11 +109,13 @@ if ( ! function_exists('create_captcha'))
 	   if ($word == '')
 	   {
 			$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
 			$str = '';
-			for ($i = 0, $l = mt_rand(6,9); $i < $l; $i++)
+			for ($i = 0; $i < 8; $i++)
 			{
 				$str .= substr($pool, mt_rand(0, strlen($pool) -1), 1);
 			}
+
 			$word = $str;
 	   }
 
@@ -163,9 +146,9 @@ if ( ! function_exists('create_captcha'))
 		//  Assign colors
 		// -----------------------------------
 
-		$bg_color		= imagecolorallocate($im, 255, 255, 255);
-		$border_color	= imagecolorallocate($im, 153, 102, 102);
-		$text_color		= imagecolorallocate($im, 204, 153, 153);
+		$bg_color		= imagecolorallocate ($im, 255, 255, 255);
+		$border_color	= imagecolorallocate ($im, 153, 102, 102);
+		$text_color		= imagecolorallocate ($im, 204, 153, 153);
 		$grid_color		= imagecolorallocate($im, 255, 182, 182);
 		$shadow_color	= imagecolorallocate($im, 255, 240, 240);
 
@@ -213,11 +196,11 @@ if ( ! function_exists('create_captcha'))
 		}
 		else
 		{
-			$font_size	= 18;
+			$font_size	= 16;
 			$x = rand(0, $img_width/($length/1.5));
 			$y = $font_size+2;
 		}
-		
+
 		for ($i = 0; $i < strlen($word); $i++)
 		{
 			if ($use_font == FALSE)
@@ -228,7 +211,7 @@ if ( ! function_exists('create_captcha'))
 			}
 			else
 			{
-				$y = rand( $img_height*.8, $font_size*1.2 );
+				$y = rand($img_height/2, $img_height-3);
 				imagettftext($im, $font_size, $angle, $x, $y, $text_color, $font_path, substr($word, $i, 1));
 				$x += $font_size;
 			}
@@ -260,4 +243,4 @@ if ( ! function_exists('create_captcha'))
 // ------------------------------------------------------------------------
 
 /* End of file captcha_helper.php */
-/* Location: ./system/helpers/captcha_helper.php */
+/* Location: ./system/heleprs/captcha_helper.php */

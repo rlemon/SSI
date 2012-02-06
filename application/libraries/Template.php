@@ -1,4 +1,14 @@
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * Template
+ *
+ * Simple template loader for CodeIgniter
+ *
+ * @package		Template
+ * @author		Robert Lemon
+ * @version		0.0.1
+ */
 class Template {
 
 	function titlecase( $str ) {
@@ -12,30 +22,45 @@ class Template {
 
 	function load($view, $data = array())
 	{
-		$CI = &get_instance();
 
-		$headData = array_key_exists('styles', $data) ? array('styles' => $data['styles']) : array();
-		$footData = array_key_exists('scripts', $data) ? array('scripts' => $data['scripts']) : null;
+		$CI = &get_instance();
+		$data_head = array();
+		$data_foot = array();
 		
-		unset( $data['scripts'] );
-		unset( $data['styles'] );
-			
-		$headData['controller'] = $CI->router->fetch_class();
-		$headData['logged_in'] = $CI->tank_auth->is_logged_in();
-		
-		if( array_key_exists('styles', $headData) ) {
-			array_push( $headData['styles'], base_url('application/assets/css/layout.css') );
-		} else {
-			$headData['styles'] = array( base_url('application/assets/css/layout.css') );
+		/* check for additional styles 
+		 * If they are included push to header
+		 * and remove entry from the data
+		 * */
+		if( array_key_exists('styles', $data) ) {
+			$data_head['styles'] = $data['styles'];
+			unset( $data['styles'] );
 		}
 
-		$CI->load->view('global/header', $headData );
+		/* check for additional scripts 
+		 * If they are included push to footer
+		 * and remove entry from the data
+		 * */
+		if( array_key_exists('scripts', $data) ) {
+			$data_foot['scripts'] = $data['scripts'];
+			unset( $data['scripts'] );
+		}
 
+
+		$data_head['controller'] = $CI->router->fetch_class();
+		
+		$data_head['logged_in'] = $CI->tank_auth->is_logged_in();
+
+		/* Load header
+		 * */
+		$CI->load->view('global/header', $data_head );
+		
+		/* Breadcrumbs!!! 
+		 * */
 		$breadcrumbs = array();
 		$uri = uri_string();
-		
+
 		if( empty( $uri ) ) {
-			$uri = $headData['controller'];
+			$uri = $data_head['controller'];
 		}
 
 		while( !empty( $uri ) ) {
@@ -46,14 +71,15 @@ class Template {
 		$tmp['breadcrumbs'] = array_reverse( $breadcrumbs );
 
 		$CI->load->view('global/breadcrumbs.php', $tmp );
-
+		
+		/* Main view
+		 * */
+		 
 		$CI->load->view($view, $data);
 
-		if( $footData ) {
-			$CI->load->view('global/footer', $footData );
-		} else {
-			$CI->load->view('global/footer');
-		}
+		/* Load footer
+		 * */
+		$CI->load->view('global/footer', $data_foot );
 
 	}
 

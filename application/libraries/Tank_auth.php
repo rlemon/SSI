@@ -71,7 +71,6 @@ class Tank_auth
 						$this->ci->session->set_userdata(array(
 								'user_id'	=> $user->id,
 								'username'	=> $user->username,
-								'email' 	=> $user->email,
 								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
 						));
 
@@ -148,16 +147,6 @@ class Tank_auth
 	function get_username()
 	{
 		return $this->ci->session->userdata('username');
-	}
-	
-	/**
-	 * Get email
-	 *
-	 * @return	string
-	 */
-	function get_email()
-	{
-		return $this->ci->session->userdata('email');
 	}
 
 	/**
@@ -259,41 +248,6 @@ class Tank_auth
 
 			} else {
 				$this->error = array('email' => 'auth_email_in_use');
-			}
-		}
-		return NULL;
-	}
-
-	/**
-	 * Change username and return some data about user:
-	 * user_id, username, email, new_email_key.
-	 * Can be called for not activated users only.
-	 *
-	 * @param	string
-	 * @return	array
-	 */
-	function change_username($username)
-	{
-		$user_id = $this->ci->session->userdata('user_id');
-
-		if (!is_null($user = $this->ci->users->get_user_by_id($user_id, TRUE))) {
-
-			$data = array(
-				'user_id'	=> $user_id,
-				'username'	=> $user->username
-			);
-			if (strtolower($user->username) == strtolower($username)) {
-				return NULL;
-				
-			} elseif ($this->ci->users->is_username_available($username)) {
-				$this->ci->users->set_new_username($user_id, $username, TRUE);
-				$this->ci->session->set_userdata(array(
-					'username'	=> $username
-				));
-				return $data;
-
-			} else {
-				$this->error = array('login' => 'auth_username_in_use');
 			}
 		}
 		return NULL;

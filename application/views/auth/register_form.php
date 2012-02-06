@@ -32,11 +32,11 @@ $confirm_password = array(
 $captcha = array(
 	'name'	=> 'captcha',
 	'id'	=> 'captcha',
-	'maxlength'	=> 9,
+	'maxlength'	=> 8,
 );
 ?>
 <?php echo form_open($this->uri->uri_string()); ?>
-<table class="auth-form">
+<table>
 	<?php if ($use_username) { ?>
 	<tr>
 		<td><?php echo form_label('Username', $username['id']); ?></td>
@@ -95,11 +95,6 @@ $captcha = array(
 	</tr>
 	<?php }
 	} ?>
-	<tr>
-		<td colspan="3">
-			<?php echo form_submit('register', 'Register'); ?>
-		</td>
-	</tr>
 </table>
-
+<?php echo form_submit('register', 'Register'); ?>
 <?php echo form_close(); ?>

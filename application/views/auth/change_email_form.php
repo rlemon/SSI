@@ -13,7 +13,7 @@ $email = array(
 );
 ?>
 <?php echo form_open($this->uri->uri_string()); ?>
-<table class="auth-form">
+<table>
 	<tr>
 		<td><?php echo form_label('Password', $password['id']); ?></td>
 		<td><?php echo form_password($password); ?></td>
@@ -24,11 +24,6 @@ $email = array(
 		<td><?php echo form_input($email); ?></td>
 		<td style="color: red;"><?php echo form_error($email['name']); ?><?php echo isset($errors[$email['name']])?$errors[$email['name']]:''; ?></td>
 	</tr>
-	<tr>
-		<td colspan="3">
-			<?php echo form_submit('change', 'Send confirmation email'); ?>
-		</td>
-	</tr>
 </table>
-
+<?php echo form_submit('change', 'Send confirmation email'); ?>
 <?php echo form_close(); ?>

@@ -298,25 +298,6 @@ class Users extends CI_Model
 		return $this->db->affected_rows() > 0;
 	}
 
-
-	/**
-	 * Set new username for user (may be activated or not).
-	 * The new username cannot be used for login or notification before it is activated.
-	 *
-	 * @param	int
-	 * @param	string
-	 * @return	bool
-	 */
-	function set_new_username($user_id, $new_username, $activated)
-	{
-		$this->db->set('username', $new_username);
-		$this->db->where('id', $user_id);
-		$this->db->where('activated', $activated ? 1 : 0);
-
-		$this->db->update($this->table_name);
-		return $this->db->affected_rows() > 0;
-	}
-	
 	/**
 	 * Activate new email (replace old email with new one) if activation key is valid.
 	 *

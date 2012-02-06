@@ -1,36 +1,36 @@
 </div>
 <div class="box_menu_footer clearfix">
 	<div class="menu_footer first">
-		<h3 class="title_03">DryerMaster Web</h3>
+		<h3 class="title_03">Make this menu</h3>
 		<ul>
 			<li>
-				<a href="#">Sitemap</a>
+				<a href="#">Link back</a>
 			</li>
 			<li>
-				<a href="#">FAQ</a>
+				<a href="#">To each users</a>
 			</li>
 			<li>
-				<a href="#">Request account</a>
+				<a href="#">'Links' section in</a>
 			</li>
 			<li>
-				<a href="#">Contact Admin</a>
+				<a href="#">their profile options</a>
 			</li>
 		</ul>
 	</div>
 	<div class="menu_footer">
-		<h3 class="title_03">Resources</h3>
+		<h3 class="title_03">Then the user</h3>
 		<ul>
 			<li>
-				<a href="#">DryerMaster</a>
+				<a href="#">Can link to what</a>
 			</li>
 			<li>
-				<a href="#">Digi-Key</a>
+				<a href="#">Ever They so</a>
 			</li>
 			<li>
-				<a href="#">Car-Sans</a>
+				<a href="#">Choose!</a>
 			</li>
 			<li>
-				<a href="#">Something-Else-Here</a>
+				<a href="#">Right is more examples</a>
 			</li>
 		</ul>
 	</div>
@@ -87,7 +87,9 @@
 	</div>
 </div>
 </div>
-<script type="text/javascript" src="<?php echo base_url('application/assets/js/notifications.js'); ?>"></script>
+
+<script type="text/javascript" src="<?php echo base_url('public_files/js/notifications.js'); ?>"></script>
+
 <script type="text/javascript">
 	var notifier = new Notifier();
 <?php if( isset( $errors ) ): ?>
@@ -96,10 +98,12 @@
 	<?php endforeach; ?>
 <?php endif; ?>
 </script>
+
 <?php if( isset( $scripts ) ): ?>
 	<?php foreach( $scripts as $script ): ?>
 		<script type="text/javascript" src="<?php echo $script; ?>"></script>
 	<?php endforeach; ?>
 <?php endif; ?>
+
 </body>
 </html>
