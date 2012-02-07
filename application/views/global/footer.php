@@ -88,13 +88,12 @@
 </div>
 </div>
 
-<script type="text/javascript" src="<?php echo base_url('public_files/js/notifications.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public_files/js/notifier.js'); ?>"></script>
 
 <script type="text/javascript">
-	var notifier = new Notifier();
 <?php if( isset( $errors ) ): ?>
 	<?php foreach( $errors as $title => $message ): ?>
-		notifier.error("<?php echo $message; ?>", "<?php echo $title; ?> system error");
+		Notifier.error("<?php echo $message; ?>", "<?php echo $title; ?> system error");
 	<?php endforeach; ?>
 <?php endif; ?>
 </script>
