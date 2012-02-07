@@ -7,8 +7,17 @@
 | These details are used in emails sent by authentication library.
 |--------------------------------------------------------------------------
 */
-$config['website_name'] = 'Your project';
-$config['webmaster_email'] = 'webmaster@your-site.com';
+$config['website_name'] = 'Dryer Master web 2.1';
+$config['webmaster_email'] = 'rob@dryermaster.com';
+
+/*
+|--------------------------------------------------------------------------
+| Landing Page
+|
+| This is the page the user is directed to upon successful login.
+|--------------------------------------------------------------------------
+*/
+$config['landing_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -94,7 +103,7 @@ $config['autologin_cookie_life'] = 60*60*24*31*2;
 | 'forgot_password_expire' = Time before forgot password key become invalid. Default is 15 minutes (60*15).
 |--------------------------------------------------------------------------
 */
-$config['forgot_password_expire'] = 60*15;
+$config['forgot_password_expire'] = 60*60; // one hour for new key
 
 /*
 |--------------------------------------------------------------------------
@@ -126,9 +135,9 @@ $config['captcha_case_sensitive'] = TRUE;
 | You can get reCAPTCHA keys by registering at http://recaptcha.net
 |--------------------------------------------------------------------------
 */
-$config['use_recaptcha'] = FALSE;
-$config['recaptcha_public_key'] = '';
-$config['recaptcha_private_key'] = '';
+$config['use_recaptcha'] = TRUE;
+$config['recaptcha_public_key'] = '6Lf0U80SAAAAAElR2GBO6EdUfWPnlTD0gg_wZQ1R';
+$config['recaptcha_private_key'] = '6Lf0U80SAAAAAAoa6fJ9pOQASa_9mE1vIas7LgFK';
 
 /*
 |--------------------------------------------------------------------------

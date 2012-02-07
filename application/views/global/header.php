@@ -15,6 +15,7 @@
 <div class="header clearfix">
     <img src="<?php echo base_url('public_files/images/logo_001.png'); ?>" alt="Dryer Master Web 2.0" title="Dryer Master Web 2.0" />
 </div>
+<?php if( $logged_in ): ?>
 <div class="main_menu clearfix">
     <ul class="gradient clearfix">
         <li class="first">
@@ -37,5 +38,5 @@
         </li>
     </ul>
 </div>
-
+<?php endif; ?>
 <div class="content-wrapper">
