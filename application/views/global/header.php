@@ -18,23 +18,23 @@
 <?php if( $logged_in ): ?>
 <div class="main_menu clearfix">
     <ul class="gradient clearfix">
-        <li class="first">
+        <li class="first<?php echo $controller === 'dashboard' ? ' selected' : ''; ?>">
             <?php echo anchor('dashboard/', 'Dashboard'); ?>
         </li>
-        <li>
+        <li<?php echo $controller === 'inventory' ? ' class="selected"' : ''; ?>>
             <?php echo anchor('inventory/', 'Inventory'); ?>
         </li>
-        <li>
+        <li<?php echo $controller === 'sales' ? ' class="selected"' : ''; ?>>
             <?php echo anchor('sales/', 'Sales'); ?>
         </li>
-        <li>
+        <li<?php echo $controller === 'shipping' ? ' class="selected"' : ''; ?>>
             <?php echo anchor('shipping/', 'Shipping'); ?>
         </li>
-        <li>
+        <li<?php echo $controller === 'help' ? ' class="selected"' : ''; ?>>
             <?php echo anchor('help/', 'Help'); ?>
         </li>
         <li class="last">
-            <?php echo anchor('auth/logout/', 'Logout'); ?>
+            <?php echo anchor('authentication/logout/', 'Logout'); ?>
         </li>
     </ul>
 </div>

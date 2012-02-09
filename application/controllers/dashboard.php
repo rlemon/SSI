@@ -10,11 +10,12 @@ class Dashboard extends CI_Controller {
 	}
 	
 	public function reroute($args) {
-		$subsection = array_shift($args);
-		if( $subsection ) {
-			call_user_func_array(array(&$this, $subsection), $args);
-			exit;
+		$sub = array_shift($args);
+		if( $sub ) {
+			call_user_func_array(array($this, $sub), $args);
+			return true;
 		}
+		return false;
 	}
 
 	public function index()
@@ -24,62 +25,56 @@ class Dashboard extends CI_Controller {
 	
 	/* INFORMATION
 	 * */
-	public function information()
+	public function account_information()
 	{
-		$this->reroute(func_get_args());
-		echo "Information index";
+		if( $this->reroute(func_get_args()) ) return;
+		$this->template->load('dashboard/account_information/index');
 	}
-	public function view_information($var = null) {
-		echo "Viewing information with " . $var ;
+	public function view_information() {
+		$this->template->load('dashboard/account_information/view_information');
 	}
 	public function change_username() {
-		
+		$this->template->load('dashboard/account_information/change_username');
 	}
 	public function change_email() {
-		
+		$this->template->load('dashboard/account_information/change_email');
 	}
 	public function change_password() {
-		
+		$this->template->load('dashboard/account_information/change_password');
 	}
 	public function delete_account() {
-		
+		$this->template->load('dashboard/account_information/delete_account');
 	}
 	
 	/* NOTIFICATIONS
 	 * */
 	public function notifications()
 	{
-		$this->reroute(func_get_args());
-		echo "Notifications index";
+		if( $this->reroute(func_get_args()) ) return;
+		$this->template->load('dashboard/notifications/index');
 	}
-	public function view_notifications($var = null) {
-		echo "Viewing notifications with " . $var ;
-	}
-	public function notifications_options() {
-		
+	public function notification_options() {
+		$this->template->load('dashboard/notifications/notification_options');
 	}
 	
 	/* NOTES
 	 * */
 	public function notes()
 	{
-		$this->reroute(func_get_args());
-		echo "Notes Index";
+		if( $this->reroute(func_get_args()) ) return;
+		$this->template->load('dashboard/notes/index');
 	}
-	public function view_notes($var = null) {
-		echo "Viewing notes with " . $var ;
-	}
-	public function view_note($id = null) {
-		
+	public function view_note() {
+		$this->template->load('dashboard/notes/view_note');
 	}
 	public function add_note() {
-		
+		$this->template->load('dashboard/notes/add_note');
 	}
 	public function edit_note($id = null) {
-		
+		$this->template->load('dashboard/notes/edit_note');
 	}
 	public function delete_note($id = null) {
-		
+		$this->template->load('dashboard/notes/delete_note');
 	}
 	
 	/* Links

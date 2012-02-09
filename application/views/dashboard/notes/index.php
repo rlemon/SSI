@@ -1,18 +1,8 @@
-
 <div class="column_01">
 	<div class="menu_inline">
 		<ul>
 			<li>
-				<?php echo anchor('/dashboard/account_information/', 'Account Information'); ?>
-			</li>
-			<li>
-				<?php echo anchor('/dashboard/notifications/', 'Notifications'); ?>
-			</li>
-			<li>
-				<?php echo anchor('/dashboard/notes/', 'My Notes'); ?>
-			</li>
-			<li>
-				<?php echo anchor('/dashboard/links/', 'My Links'); ?>
+				<?php echo anchor('/dashboard/notes/create_note', 'Create Note'); ?>
 			</li>
 		</ul>
 	</div>
@@ -20,7 +10,7 @@
 
 <div class="column_02">
 	<div class="content">
-		<h2 class="title_02">Dashboard</h2>
+		<h2 class="title_02">Notes</h2>
 		<p>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula diam, accumsan sit amet vestibulum ac, egestas nec metus. Quisque aliquam tempor nibh, id suscipit magna convallis ut. Nullam malesuada dictum consequat. Mauris sit amet lacus sapien, sit amet tristique tellus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam facilisis tristique magna, in lobortis tortor sollicitudin et. In interdum feugiat elit eget molestie. Nunc porttitor ullamcorper faucibus. Aliquam erat volutpat. Aliquam erat volutpat. Aliquam orci quam, varius in condimentum eget, ultrices quis nunc. Proin bibendum nunc quis diam interdum ultrices. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
 		</p>
