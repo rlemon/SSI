@@ -13,7 +13,7 @@ var Notifier = (function() {
         if (element.style.opacity && element.style.opacity > 0.05) {
             element.style.opacity = element.style.opacity - 0.05;
         } else if (element.style.opacity && element.style.opacity <= 0.1) {
-            if( element.parentNode ) {
+            if (element.parentNode) {
                 element.parentNode.removeChild(element);
             }
         } else {
@@ -36,58 +36,55 @@ var Notifier = (function() {
         return target;
     };
     var config = {
+            /* How long the notification stays visible */
         default_timeout: 5000,
-        styles: {
-            container: {
-                base: {
-                    position: "fixed",
-                    zIndex: 99999,
-                    right: "12px",
-                    top: "12px"
-                }
-            },
-            box: {
-                base: {
-                    cursor: "pointer",
-                    padding: "12px 18px",
-                    margin: "0 0 6px 0",
-                    backgroundColor: "#000",
-                    opacity: 0.8,
-                    color: "#fff",
-                    font: "normal 13px 'Lucida Sans Unicode', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif",
-                    borderRadius: "3px",
-                    boxShadow: "#999 0 0 12px",
-                    width: "300px"
-                },
-                hover: {
-                    opacity: 1,
-                    boxShadow: "#000 0 0 12px"
-                }
-            },
-            title: {
-                base: {
-                    fontWeight: "700"
-                }
-            },
-            text: {
-                base: {
-                    display: "inline-block",
-                    verticalAlign: "middle",
-                    padding: "0 12px"
-                }
-            },
-            icon: {
-                base: {
-                    display: "inline-block",
-                    verticalAlign: "middle",
-                    height: "36px",
-                    width: "36px"
-                }
-            }
+            /* container for the notifications */
+        container: document.createElement('div'),
+            /* container styles for notifications */
+        container_styles: {
+            position: "fixed",
+            zIndex: 99999,
+            right: "12px",
+            top: "12px"
         },
-        container: document.createElement('div')
+            /* individual notification box styles */
+        box_styles: {
+            cursor: "pointer",
+            padding: "12px 18px",
+            margin: "0 0 6px 0",
+            backgroundColor: "#000",
+            opacity: 0.8,
+            color: "#fff",
+            font: "normal 13px 'Lucida Sans Unicode', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif",
+            borderRadius: "3px",
+            boxShadow: "#999 0 0 12px",
+            width: "300px"
+        },
+            /* individual notification box hover styles */
+        box_styles_hover: {
+            opacity: 1,
+            boxShadow: "#000 0 0 12px"
+        },
+            /* notification title text styles */
+        title_styles: {
+            fontWeight: "700"
+        },
+            /* notification body text styles */
+        text_styles: {
+            display: "inline-block",
+            verticalAlign: "middle",
+            width: "240px",
+            padding: "0 12px"
+        },
+            /* notification icon styles */
+        icon_styles: {
+            display: "inline-block",
+            verticalAlign: "middle",
+            height: "36px",
+            width: "36px"
+        }
     };
-    apply_styles(config.container, config.styles.container.base);
+    apply_styles(config.container, config.container_styles);
     document.body.appendChild(config.container);
     return {
         config: function(options) {
@@ -96,13 +93,13 @@ var Notifier = (function() {
         notify: function(message, title, image) {
 
             var notification = document.createElement('div');
-            apply_styles(notification, config.styles.box.base);
+            apply_styles(notification, config.box_styles);
 
             notification.onmouseover = function() {
-                apply_styles(this, config.styles.box.hover);
+                apply_styles(this, config.box_styles_hover);
             };
             notification.onmouseout = function() {
-                apply_styles(this, config.styles.box.base);
+                apply_styles(this, config.box_styles);
             };
             notification.onclick = function() {
                 this.style.display = 'none';
@@ -110,18 +107,18 @@ var Notifier = (function() {
 
             var icon = document.createElement('img');
             icon.src = image;
-            apply_styles(icon, config.styles.icon.base);
+            apply_styles(icon, config.icon_styles);
 
             notification.appendChild(icon);
 
             var text = document.createElement('div');
-            apply_styles(text, config.styles.text.base);
+            apply_styles(text, config.text_styles);
 
             notification.appendChild(text);
 
             if (title) {
                 var title_text = document.createElement('div');
-                apply_styles(title_text, config.styles.title.base);
+                apply_styles(title_text, config.title_styles);
                 title_text.appendChild(document.createTextNode(title));
                 text.appendChild(title_text);
             }

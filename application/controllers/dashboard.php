@@ -2,22 +2,32 @@
 
 class Dashboard extends CI_Controller {
 
+	public function __construct() {
+		parent::__construct();
+		if( !$this->tank_auth->is_logged_in() ) {
+			redirect('/authentication/login');
+		}
+	}
+	
+	public function reroute($args) {
+		$subsection = array_shift($args);
+		if( $subsection ) {
+			call_user_func_array(array(&$this, $subsection), $args);
+			exit;
+		}
+	}
+
 	public function index()
 	{
-		echo "dashboard main view";
+		$this->template->load('dashboard/index');
 	}
 	
 	/* INFORMATION
 	 * */
 	public function information()
 	{
-		$args = func_get_args();
-		$subsection = array_shift($args);
-		if( !$subsection ) {
-			echo "information first view";
-		} else {
-			call_user_func_array(array(&$this, $subsection), $args);
-		}
+		$this->reroute(func_get_args());
+		echo "Information index";
 	}
 	public function view_information($var = null) {
 		echo "Viewing information with " . $var ;
@@ -39,13 +49,8 @@ class Dashboard extends CI_Controller {
 	 * */
 	public function notifications()
 	{
-		$args = func_get_args();
-		$subsection = array_shift($args);
-		if( !$subsection ) {
-			echo "notifications first view";
-		} else {
-			call_user_func_array(array(&$this, $subsection), $args);
-		}
+		$this->reroute(func_get_args());
+		echo "Notifications index";
 	}
 	public function view_notifications($var = null) {
 		echo "Viewing notifications with " . $var ;
@@ -58,13 +63,8 @@ class Dashboard extends CI_Controller {
 	 * */
 	public function notes()
 	{
-		$args = func_get_args();
-		$subsection = array_shift($args);
-		if( !$subsection ) {
-			echo "notes first view";
-		} else {
-			call_user_func_array(array(&$this, $subsection), $args);
-		}
+		$this->reroute(func_get_args());
+		echo "Notes Index";
 	}
 	public function view_notes($var = null) {
 		echo "Viewing notes with " . $var ;
@@ -86,13 +86,8 @@ class Dashboard extends CI_Controller {
 	 * */
 	public function links()
 	{
-		$args = func_get_args();
-		$subsection = array_shift($args);
-		if( !$subsection ) {
-			echo "links first view";
-		} else {
-			call_user_func_array(array(&$this, $subsection), $args);
-		}
+		$this->reroute(func_get_args());
+		echo "Links Index";
 	}
 	public function view_links($var = null) {
 		echo "Viewing links with " . $var ;

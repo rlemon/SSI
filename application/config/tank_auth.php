@@ -17,7 +17,7 @@ $config['webmaster_email'] = 'rob@dryermaster.com';
 | This is the page the user is directed to upon successful login.
 |--------------------------------------------------------------------------
 */
-$config['landing_page'] = '';
+$config['landing_page'] = 'dashboard/';
 
 /*
 |--------------------------------------------------------------------------
