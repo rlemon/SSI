@@ -41,7 +41,17 @@
 $route['default_controller'] = "dashboard";
 $route['404_override'] = '';
 
-$route['dashboard/:any'] = "catalog/product_lookup";
+$route['dashboard/account_information'] = "account_information";
+$route['dashboard/account_information/(:any)'] = "account_information/$1";
+
+$route['dashboard/notifications'] = "notifications";
+$route['dashboard/notifications/(:any)'] = "notifications/$1";
+
+$route['dashboard/notes'] = "notes";
+$route['dashboard/notes/(:any)'] = "notes/$1";
+
+$route['dashboard/links'] = "links";
+$route['dashboard/links/(:any)'] = "links/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

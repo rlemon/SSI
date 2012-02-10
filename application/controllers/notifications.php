@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Notifications extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -8,11 +8,12 @@ class Dashboard extends CI_Controller {
 			redirect('/authentication/login');
 		}
 	}
-
 	public function index()
 	{
-		$this->template->load('dashboard/index');
+		$this->template->load('dashboard/notifications/index');
 	}
-
+	public function notification_options() {
+		$this->template->load('dashboard/notifications/notification_options');
+	}
+	
 }
-
