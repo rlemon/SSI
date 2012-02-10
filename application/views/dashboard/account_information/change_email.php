@@ -2,15 +2,18 @@
 	<div class="menu_inline">
 		<ul>
 			<li>
+				<?php echo anchor('/dashboard/account_information', 'Account Information'); ?>
+			</li>
+			<li class="sub">
 				<?php echo anchor('/dashboard/account_information/change_username', 'Change Username'); ?>
 			</li>
-			<li class="selected">
+			<li class="sub selected">
 				<?php echo anchor('/dashboard/account_information/change_email', 'Change Email'); ?>
 			</li>
-			<li>
+			<li class="sub">
 				<?php echo anchor('/dashboard/account_information/change_password', 'Change Password'); ?>
 			</li>
-			<li>
+			<li class="sub">
 				<?php echo anchor('/dashboard/account_information/delete_account', 'Delete Account'); ?>
 			</li>
 		</ul>

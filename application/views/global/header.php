@@ -17,20 +17,20 @@
 </div>
 <?php if( $logged_in ): ?>
 <div class="main_menu clearfix">
-    <ul class="gradient clearfix">
-        <li class="first<?php echo $controller === 'dashboard' ? ' selected' : ''; ?>">
+    <ul class="clearfix">
+        <li class="first<?php echo $base_controller === 'dashboard' ? ' selected' : ''; ?>">
             <?php echo anchor('dashboard/', 'Dashboard'); ?>
         </li>
-        <li<?php echo $controller === 'inventory' ? ' class="selected"' : ''; ?>>
+        <li<?php echo $base_controller === 'inventory' ? ' class="selected"' : ''; ?>>
             <?php echo anchor('inventory/', 'Inventory'); ?>
         </li>
-        <li<?php echo $controller === 'sales' ? ' class="selected"' : ''; ?>>
+        <li<?php echo $base_controller === 'sales' ? ' class="selected"' : ''; ?>>
             <?php echo anchor('sales/', 'Sales'); ?>
         </li>
-        <li<?php echo $controller === 'shipping' ? ' class="selected"' : ''; ?>>
+        <li<?php echo $base_controller === 'shipping' ? ' class="selected"' : ''; ?>>
             <?php echo anchor('shipping/', 'Shipping'); ?>
         </li>
-        <li<?php echo $controller === 'help' ? ' class="selected"' : ''; ?>>
+        <li<?php echo $base_controller === 'help' ? ' class="selected"' : ''; ?>>
             <?php echo anchor('help/', 'Help'); ?>
         </li>
         <li class="last">

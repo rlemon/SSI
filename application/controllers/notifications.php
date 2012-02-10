@@ -12,8 +12,8 @@ class Notifications extends CI_Controller {
 	{
 		$this->template->load('dashboard/notifications/index');
 	}
-	public function notification_options() {
-		$this->template->load('dashboard/notifications/notification_options');
+	public function notification_settings() {
+		$this->template->load('dashboard/notifications/notification_settings');
 	}
 	
 }

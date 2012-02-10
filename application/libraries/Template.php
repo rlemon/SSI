@@ -46,7 +46,7 @@ class Template {
 		}
 
 
-		$data_head['controller'] = $CI->router->fetch_class();
+		$data_head['base_controller'] = $CI->uri->segment(1);
 		
 		$data_head['logged_in'] = $CI->tank_auth->is_logged_in();
 
@@ -60,7 +60,7 @@ class Template {
 		$uri = uri_string();
 
 		if( empty( $uri ) ) {
-			$uri = $data_head['controller'];
+			$uri = $data_head['base_controller'];
 		}
 
 		while( !empty( $uri ) ) {
