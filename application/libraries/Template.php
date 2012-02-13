@@ -45,20 +45,24 @@ class Template {
 			unset( $data['scripts'] );
 		}
 
-
-		$data_head['base_controller'] = $CI->uri->segment(1);
+		/* get the current 'section' or 'base_controller' (whatever makes more sense to call it) 
+		 * This will be used thoughtout to determine which 'section' the user is in
+		 * because sections group lower level controllers this is needed for breadcrumbs and 
+		 * menubar selection... 
+		 * */
+		$data_head['base_controller'] = ( $CI->uri->segment(1) ) ? $CI->uri->segment(1) : $CI->router->fetch_class();
 		
+		/* Very simple.. check the login status */
 		$data_head['logged_in'] = $CI->tank_auth->is_logged_in();
 
-		/* Load header
-		 * */
-		$CI->load->view('global/header', $data_head );
+
 		
 		/* Breadcrumbs!!! 
 		 * */
 		$breadcrumbs = array();
 		$uri = uri_string();
 
+		/* If the URI string is empty use the base_controller */
 		if( empty( $uri ) ) {
 			$uri = $data_head['base_controller'];
 		}
@@ -70,6 +74,16 @@ class Template {
 		}
 		$tmp['breadcrumbs'] = array_reverse( $breadcrumbs );
 
+
+		/* Output the template with the correct data! 
+		 * */
+
+		/* Load header
+		 * */
+		$CI->load->view('global/header', $data_head );
+		
+		/* Load Breadcrumbs
+		 * */
 		$CI->load->view('global/breadcrumbs.php', $tmp );
 		
 		/* Main view

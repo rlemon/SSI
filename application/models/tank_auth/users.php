@@ -33,9 +33,9 @@ class Users extends CI_Model
 	 */
 	function get_user_by_id($user_id, $activated)
 	{
-		$this->db->where('id', $user_id);
-		$this->db->where('activated', $activated ? 1 : 0);
-
+		$this->db->where($this->table_name . '.id', $user_id);
+		$this->db->where($this->table_name . '.activated', $activated ? 1 : 0);
+		$this->db->join( $this->profile_table_name, $this->table_name . '.id = ' . $this->profile_table_name . '.user_id' );
 		$query = $this->db->get($this->table_name);
 		if ($query->num_rows() == 1) return $query->row();
 		return NULL;
@@ -86,6 +86,7 @@ class Users extends CI_Model
 		if ($query->num_rows() == 1) return $query->row();
 		return NULL;
 	}
+	
 
 	/**
 	 * Check if username available for registering

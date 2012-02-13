@@ -23,23 +23,23 @@
 <div class="column_02">
 	<div class="content">
 		<h2 class="title_02">Account Information</h2>
-		<p>
-		Username:
-		</p>
-		<p>
-		Email Address:
-		</p>
-		<p>
-		Registered: 
-		</p>
-		<p>
-		Last Login: 
-		</p>
-		<p>
-		Last Updated: 
-		</p>
-		<p>
-		Website:
-		</p>
+		<div class="block_01">
+		Username: <?php echo $userdata->username;?>
+		</div>
+		<div class="block_01">
+		Email Address: <?php echo $userdata->email;?>
+		</div>
+		<div class="block_01">
+		Registered: <?php echo $userdata->created;?>
+		</div>
+		<div class="block_01">
+		Last Login: <?php echo $userdata->last_login;?>
+		</div>
+		<div class="block_01">
+		Last Updated: <?php echo $userdata->modified;?>
+		</div>
+		<div class="block_01">
+		Website: <?php echo $userdata->website;?>
+		</div>
 	</div>
 </div>

@@ -1,4 +1,10 @@
 <?php
+/* use flash data to send the previous url 
+ * if and only if the previous url was a page
+ * within the application. then when the user logs in we can 
+ * direct them to the applicable page.
+ * */
+
 $login = array(
 	'name'	=> 'login',
 	'id'	=> 'login',

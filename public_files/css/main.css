@@ -262,7 +262,7 @@ h3.title_03 {
 	padding-left: 14px;
 	width: 544px;
 }
-.column_02 p, .column_02 table tr { /* This is for the demo content... but it doesn't look that bad */
+.column_02 .block_01, .column_02 table tr { /* This is for the demo content... but it doesn't look that bad */
 	margin: 0px 15px 15px 0px;
 	color: #444;
 	background-color: transparent;
@@ -311,3 +311,10 @@ input[type=text],input[type=password] {
 	text-decoration: underline;
 }
 
+span.error { /* This is form_validation wrapper */
+	color: #f00;
+}
+
+.small_text {
+	font-size: 90%;
+}
