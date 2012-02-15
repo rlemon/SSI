@@ -262,7 +262,7 @@ h3.title_03 {
 	padding-left: 14px;
 	width: 544px;
 }
-.column_02 .block_01, .column_02 table tr { /* This is for the demo content... but it doesn't look that bad */
+.column_02 .block_01 { 
 	margin: 0px 15px 15px 0px;
 	color: #444;
 	background-color: transparent;
@@ -271,9 +271,7 @@ h3.title_03 {
 	font-weight: normal;
 	padding: 14px 15px 10px 15px;
 }
- .column_02 table td {
-	padding: 2px 0px 2px 12px;
- }
+
 
 input[type=submit] {
 	margin: 0px 15px 15px 0px;
