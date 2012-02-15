@@ -53,5 +53,7 @@ $route['dashboard/notes/(:any)'] = "notes/$1";
 $route['dashboard/links'] = "links";
 $route['dashboard/links/(:any)'] = "links/$1";
 
+$route['inventory'] = "inventory/inventory";
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

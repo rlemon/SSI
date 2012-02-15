@@ -21,8 +21,8 @@
 <div class="column_02">
 	<div class="content">
 		<h2 class="title_02">Dashboard</h2>
-		<p>
+		<div class="block_01">
 		The dashboard should contain snapshot or at-a-glance information about the application.. examples: Pending Orders, Supplies out of stock, late shipments, ect... 
-		</p>
+		</div>
 	</div>
 </div>
