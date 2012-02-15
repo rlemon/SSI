@@ -17,7 +17,10 @@ class Stockroom extends CI_Controller {
 
 	public function new_item()
 	{
-		$this->template->load('inventory/stockroom/new_item');
+		$data['scripts'] = array(
+			'/public_files/js/stockroom.js'
+		);
+		$this->template->load('inventory/stockroom/new_item', $data);
 	}
 }
 

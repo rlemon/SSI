@@ -220,12 +220,11 @@ h3.title_03 {
 .menu_inline {
 	width: 214px;
 }
- .menu_inline li {
+.menu_inline li {
+	background: transparent url(../images/border_gradient_transparent.gif) no-repeat 0 top;
 	font-size: 14px;
 	padding: 8px 0 8px 12px;
-	background: transparent url(../images/border_gradient_transparent.gif) no-repeat 0 top;
 }
-
 .menu_inline li.first {
 	background: 0;
 }
@@ -316,3 +315,21 @@ span.error { /* This is form_validation wrapper */
 .small_text {
 	font-size: 90%;
 }
+
+
+/* Inventory Item Form */
+.form-layout li {
+	clear: both;
+	padding: 12px 0 4px 0;
+}
+.label-top {
+	display: block;
+}
+.split-left, .split-right {
+	width: 50%;
+	float: left;
+}
+.faded-text {
+	color: #666;
+}
+
