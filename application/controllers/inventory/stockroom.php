@@ -15,12 +15,14 @@ class Stockroom extends CI_Controller {
 	}
 
 
-	public function new_item()
+	public function new_item($type='material')
 	{
-		$data['scripts'] = array(
-			'/public_files/js/stockroom.js'
-		);
+		$data['type'] = $type;
+		if( $type !== 'material' ) {
+			$data['stock_list'] = array(1,2,3);
+		}
 		$this->template->load('inventory/stockroom/new_item', $data);
 	}
+
 }
 

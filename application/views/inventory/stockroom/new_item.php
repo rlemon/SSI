@@ -78,8 +78,17 @@ $sales_price_per_units = array(
 			<li>
 				<?php echo anchor('/inventory/stockroom', 'Stockroom'); ?>
 			</li>
-			<li class="sub selected">
-				<?php echo anchor('/inventory/stockroom/new_item', 'Create New Item'); ?>
+			<li class="sub">
+				<?php echo anchor('/inventory/stockroom/manage', 'Manage Stock Levels'); ?>
+			</li>
+			<li class="sub <?php if( $type === 'material' ) echo "selected"; ?>">
+				<?php echo anchor('/inventory/stockroom/new_item/material', 'Create New Material'); ?>
+			</li>
+			<li class="sub <?php if( $type === 'module' ) echo "selected"; ?>">
+				<?php echo anchor('/inventory/stockroom/new_item/module', 'Create New Module'); ?>
+			</li>
+			<li class="sub <?php if( $type === 'product' ) echo "selected"; ?>">
+				<?php echo anchor('/inventory/stockroom/new_item/product', 'Create New Product'); ?>
 			</li>
 		</ul>
 	</div>
@@ -87,69 +96,104 @@ $sales_price_per_units = array(
 
 <div class="column_02">
 	<div class="content">
-		<h2 class="title_02">New Item</h2>
+		<h2 class="title_02">New <?php echo ucfirst($type); ?></h2>
 		<div class="block_01">
 		
-		<ul class="form-layout">
-			<li>
-				<label for="name" class="label-top">Name</label>
-				<input type="text" id="name" name="name" size="50" />
-			</li>
-			<li>
-				<div class="split-left">
-					<label for="code" class="label-top">Code</label>
-					<input type="text" id="code" name="code" size="20" />
-				</div>
-				<div class="split-right">
-					<label for="type" class="label-top">Type</label>
-					<select id="type" name="type">
-						<option value="material">Material</option>
-						<option value="module">Module</option>
-						<option value="product">Product</option>
-					</select>
-				</div>
-			</li>
-			<li>
-				<label for="weight_value" class="label-top">Weight</label>
-				<div class="split-left">
-					<input type="text" id="weight_value" name="weight_value" size="6" /><span class="faded-text">lbs</span>
-				</div>
-				<div class="split-right">
-					<label>Per&nbsp;<input type="text" id="weight_per_units" name="weight_per_units" size="4" />&nbsp;units</label>
-				</div>
-			</li>
-			<li>
-				<label for="cost_value" class="label-top">Cost</label>
-				<div class="split-left">
-					<input type="text" id="cost_value" name="cost_value" size="6" /><span class="faded-text">CND</span>
-				</div>
-				<div class="split-right">
-					<label>Per&nbsp;<input type="text" id="cost_per_units" name="cost_per_units" size="4" />&nbsp;units</label>
-				</div>
-			</li>
-			<li>
-				<label> <input type="checkbox" name="is_sales_ready" id="is_sales_ready" /> Sales Ready Item</label>
-			</li>
-			<li id="sales_price" style="display: none">
-				<label for="sales_price_value" class="label-top">Sales Price</label>
-				<div class="split-left">
-					<input type="text" id="sales_price_value" name="sales_price_value" size="6" /><span class="faded-text">CND</span>
-				</div>
-				<div class="split-right">
-					<label>Per&nbsp;<input type="text" id="sales_price_per_units" name="sales_price_per_units" size="4" />&nbsp;units</label>
-				</div>
-			</li>
-			<li>
-				<label> <input type="checkbox" name="is_manufactured" id="is_manufactured" /> Manufactured in house</label>
-			</li>
-			<li id="materials_list" style="display: none">
-				and a materials list here
-			</li>
-			
-			<li></li>
-			
-		</ul>
-		
+        <ul class="form-list">
+            <li>
+                <div class="title-top">
+                    Name
+                </div>
+                <input type="text" name="name" id="name" class="wide" />
+            </li>
+
+            <li>
+                <div class="split">
+                    <div class="title-top">
+                        Part Code
+                    </div>
+                    <input type="text" name="code" id="code" class="wide" />
+                </div>
+
+                <div class="split">
+                    <div class="title-top">
+                        Location
+                    </div>
+                    <select name="location" id="location" class="wide">
+                        <option value="0">
+                            A
+                        </option>
+                        
+                        <option value="1">
+                            B
+                        </option>
+
+                        <option value="3">
+                            C
+                        </option>
+                        
+                        <option value="4">
+                            D
+                        </option>
+                    </select>
+                </div>
+                <div style="clear: both;"></div>
+            </li>
+
+            <li>
+                <div class="split">
+                    <div class="title-top">
+                        Weight
+                    </div>
+                    <input type="text" name="weight" id="weight" class="small-input" /><small> lbs. per </small><input type="text" name="weight_units" id="weight_units" class="smaller-input" /><small> units.</small>
+                </div>
+
+                <div class="split">
+                    <div class="title-top">
+                        Cost <small>(CND)</small>
+                    </div>
+                    <input type="text" name="cost" id="cost" class="small-input" /><small> $ per </small><input type="text" name="cost_units" id="cost_units" class="smaller-input" /><small> units.</small>
+                </div>
+                <div style="clear: both;"></div>
+            </li>
+<?php if( $type === 'module' ): ?>
+            <li>
+                <div class="title-top">
+                <label><input type="checkbox" name="is_sales_ready" id="is_sales_ready" onclick="document.getElementById('price_input').style.display = this.checked?'block':'none';" /> Is Sales Item</label>
+                </div>
+            </li>
+<?php endif; ?>
+<?php if( $type !== 'material' ): ?>
+            <li <?php if( $type !== 'product' ) echo 'hidden="hidden"'; ?> id="price_input">
+                <div class="title-top">
+                    Price <small>(CND)</small>
+                </div>
+                <input type="text" name="price" id="price" class="small-input" /><small> $ per </small><input type="text" name="price_units" id="price_units" class="smaller-input" /><small> units.</small>
+            </li>
+<?php endif; ?>
+<?php if( $type !== 'material' ): ?>
+            <li>
+                <div class="title-top">
+                    Required Materials
+                </div>
+                <div>
+					here will be a form for the user to select materials / modules from a list of existing items. 
+					The user will be able to specify the quantity of each of these items. 
+                </div>
+            </li>
+<?php endif; ?>
+            <li>
+                <div class="title-top">
+                    Description
+                </div>
+                <textarea rows="4" id="description" name="description" class="wide"></textarea>
+            </li>
+            
+            <li>
+				<input type="submit" name="save" id="save" value="Save New Item" />
+            </li>
+        </ul>
+		<div style="clear: both;"></div>
 		</div>
 	</div>
 </div>

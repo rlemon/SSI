@@ -51,6 +51,11 @@ a {
     text-decoration: none;
 }
 
+small { font-size: 0.81em; }
+
+input, textarea, select {
+    border: 1px solid #666; outline: none; 
+}
 
 .ui-padded-top, .ui-padded-all, .ui-padded-tr, .ui-padded-tl { padding-top: 6px; }
 .ui-padded-right, .ui-padded-all, .ui-padded-tr, .ui-padded-br { padding-right: 6px; }
@@ -272,29 +277,6 @@ h3.title_03 {
 }
 
 
-input[type=submit] {
-	margin: 0px 15px 15px 0px;
-	color: #444;
-	background-color: transparent;
-	border: 1px solid #D0D0D0;
-	font-family: "Lucida Sans Unicode","Lucida Grande",Verdana,Arial,Helvetica,sans-serif;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-	padding: 9px 15px 10px 15px;
-    border-radius: 8px;
-    moz-border-radius: 8px;
-    webkit-border-radius: 8px;
-}
-input[type=text],input[type=password] {
-	margin: 1px 2px;
-	color: #444;
-	background-color: transparent;
-	border: 1px solid #D0D0D0;
-	font-size: 16px;
-	font-weight: normal;
-	padding: 4px 6px 3px 6px;
-}
 
 .breadcrumbs_container {
 	color: #515151;
@@ -318,18 +300,28 @@ span.error { /* This is form_validation wrapper */
 
 
 /* Inventory Item Form */
-.form-layout li {
-	clear: both;
-	padding: 12px 0 4px 0;
+.form-list li div.title-top {
+    padding: 4px 15px 0px 6px;
 }
-.label-top {
-	display: block;
+.form-list li {
+    text-align: left;
+    padding: 0px 16px 6px 0px;   
 }
-.split-left, .split-right {
-	width: 50%;
-	float: left;
+.form-list li .wide  {
+    width: 95%;
 }
-.faded-text {
-	color: #666;
+.form-list li div.split {
+    float: left;
+    width: 50%;
 }
+.form-list li input.small-input {
+    width: 64px; 
+}
+.form-list li input.smaller-input {
+    width: 32px;
+}
+.form-list li input.small-input, .form-list li input.smaller-input {
+    text-align: right; 
+}
+
 

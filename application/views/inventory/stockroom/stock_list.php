@@ -6,7 +6,16 @@
 				<?php echo anchor('/inventory/stockroom', 'Stockroom'); ?>
 			</li>
 			<li class="sub">
-				<?php echo anchor('/inventory/stockroom/new_item', 'Create New Item'); ?>
+				<?php echo anchor('/inventory/stockroom/manage', 'Manage Stock Levels'); ?>
+			</li>
+			<li class="sub">
+				<?php echo anchor('/inventory/stockroom/new_item/material', 'Create New Material'); ?>
+			</li>
+			<li class="sub">
+				<?php echo anchor('/inventory/stockroom/new_item/module', 'Create New Module'); ?>
+			</li>
+			<li class="sub">
+				<?php echo anchor('/inventory/stockroom/new_item/product', 'Create New Product'); ?>
 			</li>
 		</ul>
 	</div>

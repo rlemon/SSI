@@ -10,3 +10,4 @@ function make_toggle_checkbox(cb_id, block_id) {
 }
 make_toggle_checkbox('is_sales_ready','sales_price');
 make_toggle_checkbox('is_manufactured','materials_list');
+	
